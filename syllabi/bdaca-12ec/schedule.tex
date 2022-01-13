@@ -49,7 +49,8 @@ We will write a script to collect and handle some JSON data.
 
 \section*{Week 4: Data wrangling, simple statistics and visualizations}
 Of course, you don't need Python to do statistics. Whether it's R, Stata, or SPSS -- you probably already have a tool that you are comfortable with. But you also do not want to switch to a different environment just for getting a correlation. And you definitly don't want to do advanced data wrangling in SPSS\ldots
-This week, we will discuss different ways of organizing your data (e.g., long vs wide formats) as well as how to do conventional statistical tests and simple plots in Python.
+This week, we will discuss different ways of organizing your data (e.g., long vs wide formats) as well as how to do conventional statistical tests and simpleplots in Python.
+
 
 \subsection*{Wednesday, 2--3. Short lecture plus lab session.}
 \textsc{\ding{52} Chapter 6: Data wrangling}\\
@@ -76,7 +77,7 @@ You will write a script to conduct a top-down automated content analysis, in whi
 
 
 \subsection*{Take-home exam}
-In week 5, the first midterm take-home exam is distributed after the Friday meeting. The answer sheets and all files have to be handed in no later than the day before the next meeting, i.e. Tuesday evening (9--5, 23.59).
+In week 5, the first midterm take-home exam is distributed after the Friday meeting. The answer sheets and all files have to be handed in no later than the day before the next meeting, i.e. Tuesday evening (15--5, 23.59).
 
 
 
@@ -103,6 +104,7 @@ You will combine the techiques discussed on Wednesday and write a full automated
 \section*{Week 7: Web scraping}
 Reserve some time for exercising in this week. Web scraping can be really hard, because there are so many specifics of specific websites to consider. After all, every website is different, and we need to customize scraper for every site! At the same time, it is one of the most useful techniques to know, and the majority of students in previous cohorts used web scraping as a part of their final project.
 
+
 \subsection*{Wednesday, 23--3. Lecture.}
 \textsc{\ding{52} Chapter 12: Scraping online data}\\
 We will explore techniques to download data from web pages and to extract meaningful information like the text (or a photo, or a headline, or the author) from an article on \url{http://nu.nl}, a review (or a price, or a link) from \url{http://kieskeurig.nl}, or similar.
@@ -122,7 +124,7 @@ We will exercise with web scraping and parsing.
 
 
 \section*{Week 8: Basics of Machine Learning}
-In weeks 8 and 9, you will learn how to work with scikit-learn \citep{scikit-learn}, one of the most well-known machine learning libraries.
+You will learn how to work with scikit-learn \citep{scikit-learn}, one of the most well-known machine learning libraries.
 
 
 \subsection*{Wednesday, 6--4. Lecture.}
@@ -134,8 +136,8 @@ We will discuss what unsupervised and supervised machine learning are, what they
 
 %Mandatory reading (in advance): \cite{burscher2014}.
 
-\subsection*{Friday, 8--4. MEETING TO BE ADDED}
-MEETING TO BE ADDED
+\subsection*{Friday, 8--4. Lab session.}
+Exercises with scikit-learn.
 
 
 \section*{Week 9: Supervised Approaches to Text Analysis}
@@ -148,9 +150,6 @@ In this week, we will combine our knowledge from weeks 4 and 5 with our knowledg
 We discuss why and when to choose supervised machine learning approaches as opposed to dictionary- or rule-based approaches (weeks 4 and 5), and discuss how BOW representations can be used as an input for supervised machine learning.
 
 \subsection*{Friday, 15--4. No meeting (Good Friday).}
-MEETING TO BE REMOVED
-We exercise with supervised machine learning as a technique for automated content analysis.
-
 
 
 
@@ -179,9 +178,11 @@ Mandatory readings (in advance): \cite{Maier2018a} and \cite{Tsur2015}.
 You will apply the techniques discussed on Wednesday using gensim \citep{Rehurek2010}.
 
 
-\subsection*{Take-home exam}
-In week 11, the second midterm take-home exam is distributed after the Friday meeting. The answer sheets and all files have to be handed in no later than the day before the next meeting, i.e. Tuesday evening (27--4, 23.59).
 
+\subsection*{Take-home exam}
+In week 11, the second midterm take-home exam is distributed after the Friday meeting. The answer sheets and all files have to be handed in no later than the day before the next meeting, i.e. Tuesday evening (10--5, 23.59).
+
+% THIS MEANS THEY HAVE MORE THAN A WEEK THIS TIME -- BUT OK, WHY NOT?
 
 
 
@@ -216,11 +217,24 @@ We will apply a word2vec model and get a short introduction to keras.
 
 \section*{Week 14: Wrapping up}
 
-\subsection*{Wendesday, 18--5. Open Lab}
-MEETING TO BE ADDED!!
+\subsection*{Wendesday, 18--5. Lecture.}
+% deze is (deels) nieuw
+In this lecture, we will look back and look forward. We try to bring all parts we learned together and discuss how to combine all parts into a good CCS-project. We will also focus on best practices and discuss alternatives to approaches we covered in this course. For instance: Should we still use BOW approaches at all? Are LDA topic models still a good choice, or do we have to move towards using fancy language models such as BERT? And is that also true for classification tasks?
+
+
+%Contextualized Topic Models (CTM), topic models with embeddings and BERT: https://github.com/MilaNLProc/contextualized-topic-models
+
+%https://towardsdatascience.com/interactive-topic-modeling-with-bertopic-1ea55e7d73d8
+
+%https://github.com/MaartenGr/BERTopic
+
+
+
+
+
 
 \subsection*{Friday, 20--5. Open Lab}
-Possibility to ask last (!) questions regarding the final project.
+Open meeting with the possibility to ask last (!) questions regarding the final project.
 
 
 \subsection*{Final project}
