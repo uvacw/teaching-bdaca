@@ -1,0 +1,114 @@
+% !TeX document-id = {f19fb972-db1f-447e-9d78-531139c30778}
+% !BIB program = biber
+
+%\documentclass[handout]{beamer}
+\documentclass[compress]{beamer}
+\usepackage[T1]{fontenc}
+\usetheme[block=fill,subsectionpage=progressbar,sectionpage=progressbar]{metropolis} 
+\usepackage{graphicx}
+
+\usepackage{wasysym}
+\usepackage{etoolbox}
+\usepackage[utf8]{inputenc}
+
+\usepackage{pifont}
+
+\usepackage{threeparttable}
+\usepackage{subcaption}
+
+\usepackage{tikz-qtree}
+\setbeamercovered{still covered={\opaqueness<1->{5}},again covered={\opaqueness<1->{100}}}
+
+
+\usepackage{listings}
+
+\lstset{
+	basicstyle=\scriptsize\ttfamily,
+	columns=flexible,
+	breaklines=true,
+	numbers=left,
+	%stepsize=1,
+	numberstyle=\tiny,
+	backgroundcolor=\color[rgb]{0.85,0.90,1}
+}
+
+
+
+\lstnewenvironment{lstlistingoutput}{\lstset{basicstyle=\footnotesize\ttfamily,
+		columns=flexible,
+		breaklines=true,
+		numbers=left,
+		%stepsize=1,
+		numberstyle=\tiny,
+		backgroundcolor=\color[rgb]{.7,.7,.7}}}{}
+
+
+\lstnewenvironment{lstlistingoutputtiny}{\lstset{basicstyle=\tiny\ttfamily,
+		columns=flexible,
+		breaklines=true,
+		numbers=left,
+		%stepsize=1,
+		numberstyle=\tiny,
+		backgroundcolor=\color[rgb]{.7,.7,.7}}}{}
+
+
+
+\usepackage[american]{babel}
+\usepackage{csquotes}
+\usepackage[style=apa, backend = biber]{biblatex}
+\renewcommand*{\bibfont}{\tiny}
+
+
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,matrix}
+\usepackage{multicol}
+
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{graphicx}
+
+
+
+\makeatletter
+\setbeamertemplate{headline}{%
+	\begin{beamercolorbox}[colsep=1.5pt]{upper separation line head}
+	\end{beamercolorbox}
+	\begin{beamercolorbox}{section in head/foot}
+		\vskip2pt\insertnavigation{\paperwidth}\vskip2pt
+	\end{beamercolorbox}%
+	\begin{beamercolorbox}[colsep=1.5pt]{lower separation line head}
+	\end{beamercolorbox}
+}
+\makeatother
+
+
+
+
+
+\setbeamercolor{section in head/foot}{fg=normal text.bg, bg=structure.fg}
+
+
+
+\newcommand{\question}[1]{
+	\begin{frame}[plain]
+	\begin{columns}
+		\column{.3\textwidth}
+		\makebox[\columnwidth]{
+			\includegraphics[width=\columnwidth,height=\paperheight,keepaspectratio]{mannetje.png}}
+		\column{.7\textwidth}
+		\large
+		\textcolor{orange}{\textbf{\emph{#1}}}
+	\end{columns}
+\end{frame}}
+
+
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, 
+text width=5em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{line} = [draw]
+\tikzstyle{pijltje} = [draw, -latex']
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
+minimum height=2em, text width=4em, text centered,]
+
+
+\setbeamercovered{transparent}
