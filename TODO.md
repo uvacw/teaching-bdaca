@@ -10,8 +10,7 @@ Daarnaast is het ook aan te raden om een kijkje te nemen op https://github.com/d
 - LDA slides: .inference() berekent gamma scores, maar we .get_document_topics() of zo geeft probabilities (wat we willen)
 - network science-vak https://github.com/cuinfoscience/INFO5613-Fall2021
 
-- slides les 1: verwachtingsmanagement ok als je het óók van YouTube en tutorials en zo leert: iedereen heeft baat bij iets anders 
+
 - verwachtingen eindopdracht nog meer benadrukken
 
-- slides modulariseren, \input
 
