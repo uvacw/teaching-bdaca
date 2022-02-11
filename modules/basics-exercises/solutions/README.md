@@ -8,6 +8,8 @@ In addition, we makde additional videos that walk you through the reasoning behi
 
 ## Instructional videos
 
+(There is no video for the warm-up Exercise 1 -- you should be able to figure out that one yourself with the help of the `.py` files in this folder).
+
 - Instructional video explaining [Exercise 2](../exercises.md#exercise-2-working-with-dictionaries): *Working with dictionaries*: [Video here](https://www.youtube.com/watch?v=M_bkVPfQcgs)
 
 - Instructional video explaining [Exercise 3](../exercises.md#exercise-3-working-with-defaultdicts): *Working with defaultdicts:* [Video here](https://www.youtube.com/watch?v=2l9aRWcKVyA)
