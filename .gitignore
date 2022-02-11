@@ -8,6 +8,7 @@
 *.snm
 *.synctex.gz
 *.log
+*.vrb
 *~
 *.toc
 *.bak
