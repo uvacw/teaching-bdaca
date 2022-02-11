@@ -1,4 +1,4 @@
 # Exercises week 2
 
-This week, we do these [../../modules/basics-exercises](exercises).
+This week, we do these [exercises](../../modules/basics-exercises).
 
