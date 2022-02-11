@@ -29,4 +29,7 @@ For the second option,
 2. Follow the steps in https://towardsdatascience.com/geopandas-installation-the-easy-way-for-windows-31a666b3610f
 W hen installing the dependencies, make sure you follow the exact order as the packages are listed. So first, you need to install GDAL, then pyproj etc.
 
+Another approach (which is based on the same logic) is outlined at: https://stackoverflow.com/questions/54734667/error-installing-geopandas-a-gdal-api-version-must-be-specified-in-anaconda.
+
+ . Open the Windows PowerShell as an Administrator and then run the commands outlined in the stackoverflow link.
 
