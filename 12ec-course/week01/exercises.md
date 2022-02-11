@@ -15,11 +15,11 @@
 - Try to guess the working of elements of the code by playing around with it and changing parts!
 
 
-### On the installatiom of `geopandas`
+### On the installation of `geopandas` (and/or wordcloud)
 You *may* encounter problems installing `geopandas`. If that is the case, you can skip the example -- you do not necessarily have to use geopandas in the course, if you are not interested in plotting maps. The reason for the problem is that a part of geopandas is written in the language C, and you do not have a C-compiler (a program for transforming C code into an executable file). If you want to solve this problem, here are two approaches:
 
 
-- You get a C compiler. A C compiler comes with installing `Xcode` (MacOS, via the MacOS App Store -- that's a good idea anyway, it also includes useful tools like `git`) or the `Buildtools for Virtual Studio` (Windows).
+- You get a C compiler. A C compiler comes with installing `Xcode` (MacOS, via the MacOS App Store -- that's a good idea anyway, it also includes useful tools like `git`) or the `Buildtools for Virtual Studio` (Windows). For some people, this may also be required to install wordcloud (you get an error message that somewhere in the middle complains about not being able to run `clang` or similar).
 
 - You use a version of `geopandas` in which the C-code is already compiled. 
 
@@ -32,4 +32,5 @@ W hen installing the dependencies, make sure you follow the exact order as the p
 Another approach (which is based on the same logic) is outlined at: https://stackoverflow.com/questions/54734667/error-installing-geopandas-a-gdal-api-version-must-be-specified-in-anaconda.
 
  . Open the Windows PowerShell as an Administrator and then run the commands outlined in the stackoverflow link.
+
 
