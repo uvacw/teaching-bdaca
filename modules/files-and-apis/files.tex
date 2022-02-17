@@ -1,0 +1,407 @@
+\section[Files]{File types \& corresponding data structures}
+
+
+\begin{frame}{Some ways of storing data}
+\begin{table}[]
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llll@{}}
+\toprule
+use case          & data type       & structure         & typical file format \\ \midrule
+\onslide<+->{(long) texts       & string          & unstructured      & multiple .txt files               \\}
+\onslide<+->{list of messages/words/\ldots       & list of strings  & newline-delimited      & .txt                \\}
+\onslide<+->{hierarchical data & dict                          & (semi-)structured & .json               \\}
+\onslide<+->{table             & nested lists, dict, dataframe & tabular           & .csv (.json)   \\ \bottomrule}
+\end{tabular}%
+}
+\end{table}
+\pause
+\textcolor{red}{\footnotesize{(Of course, there are many, many, many other formats we can use)}}
+\end{frame}
+
+
+
+
+\begin{frame}[fragile]{string $\leftrightarrow$ file}
+\begin{lstlisting}
+data = "Hi I'm a string."
+with open("mytext.txt", mode="w", encoding="utf-8") as fo:
+    fo.write(data)
+\end{lstlisting}
+$\Rightarrow$ create (or overwrite(!)) file, assign handler name \texttt{fo}, write string to it.
+
+\pause 
+\begin{lstlisting}
+with open("mytext.txt", mode="r", encoding="utf-8") as fi:
+    data = fi.read()
+\end{lstlisting}
+
+$\Rightarrow$ make connection with file for reading, assign handler name \texttt{fi}, read string from it
+
+\end{frame}
+
+
+
+
+\begin{frame}[fragile]{The indented block again\ldots}
+	
+\begin{block}{Do you remember?}
+	\begin{itemize}
+		\item The \texttt{with} statement makes sure that at the end of the block, the file connection is automatically closed again
+		\item Of course, you can also loop over \emph{multiple} files: e.g, read all files from a dictionary and put them into a list $\Rightarrow$ just nest these commands in a for loop!
+		\item For that, you can use the \texttt{glob} module to get a list of files
+	\end{itemize}
+\end{block}
+
+\pause
+
+\begin{lstlisting}
+from glob import glob
+
+data = []
+for fn in glob("./mydata/*.txt):
+    with open(fn, mode="r", encoding="utf-8") as fi:
+        data.append(fi.read())
+\end{lstlisting}
+
+
+\end{frame}
+
+
+
+\question{For what can you use this? Think of use cases for both single and multiple files!}
+
+
+\begin{frame}[fragile]{list $\rightarrow$ file}
+\begin{lstlisting}
+data = ["ik", "jij", "je", "hij", "zij", "ze", "wij", "we", "jullie"]
+
+with open("pronouns.txt", mode="w", encoding="utf-8") as fo:
+    for pronoun in data:
+        fo.write(pronoun)
+        fo.write("\n")
+\end{lstlisting}
+$\Rightarrow$ create file, assign handler name \texttt{fo}, write each element from list to \texttt{fo} followed by a line break
+
+Result: a file \texttt{pronouns.txt} with this content:
+\begin{lstlisting}
+ik
+jij
+je
+hij
+zij
+ze
+wij
+we
+jullie
+\end{lstlisting}
+\end{frame}
+
+
+
+\begin{frame}[fragile]{list $\leftarrow$ file}
+\begin{lstlisting}
+with open("pronouns.txt", mode="r", encoding="utf-8") as fi:
+     data = [line.strip() for line in fi]
+print(data)
+\end{lstlisting}
+$\Rightarrow$ Open file for reading, assign handler name \texttt{fi}, loop over all lines in \texttt{fi}, strip whitespace from end (such as line endings), put in new list.
+
+Output:
+\begin{lstlisting}
+['ik', 'jij', 'je', 'hij', 'zij', 'ze', 'wij', 'we', 'jullie']
+\end{lstlisting}
+\end{frame}
+
+
+\question{For what can you use this?}
+
+
+
+
+
+\begin{frame}[fragile]{dict $\rightarrow$ file}
+\begin{lstlisting}
+import json
+
+data = {'Alice': {'office': '020222', 'mobile': '0666666'},
+    'Bob': {'office': '030111'},
+    'Carol': {'office': '040444', 'mobile': '0644444'},
+    'Daan': "020222222",
+    'Els': ["010111", "06222"]}
+
+with open("phonebook.json", mode="w", encoding="utf-8") as f:
+    json.dump(data, f)
+
+\end{lstlisting}
+$\Rightarrow$ Open file for writing, convert dict to JSON, dump in file.
+
+Creates a file \texttt{phonebook.json} that looks like this:
+\begin{lstlisting}
+{"Alice": {"office": "020222", "mobile": "0666666"}, "Bob": {"office": "030111"}, "Carol": {"office": "040444", "mobile": "0644444"}, "Daan": "020222222", "Els": ["010111", "06222"]}
+\end{lstlisting}
+\end{frame}
+
+
+
+
+\begin{frame}[fragile]{dict $\leftarrow$ file}
+\begin{lstlisting}
+import json
+
+with open("phonebook.json", mode="r", encoding="utf-8") as f:
+	data = json.load(f)
+	
+\end{lstlisting}
+
+$\Rightarrow$ Reads data from f, converts to dict (or list of dicts\ldots), store in \texttt{data}
+
+\pause
+
+\small
+\begin{alertblock}{JSON lines}
+There is also a dialect in which you write \emph{one JSON object per line instead of per file}. For this, you can use a for loop as in the one-string-per-file example, but convert each string with  \texttt{json.load\textbf{s}} or \texttt{json.dump\textbf{s}} to a dict.
+\end{alertblock}
+
+
+\end{frame}
+
+
+
+
+\begin{frame}[fragile]{multiple (thousands?) of dicts}
+The JSON lines dialect is particularly useful if you have a lot of dictionaries:
+
+\begin{lstlisting}
+data = [{'name': 'Alice', 'office': '020222', 'mobile': '0666666'},
+	{'name': 'Carol', 'office': '040444', 'mobile': '0644444'},
+	{'name': 'Daan', 'office': '020222222'}]
+
+
+# writing
+with open("phonebook2.json", mode="w", encoding="utf-8") as fo:
+    for entry in data:
+        fo.write(json.dumps(entry))
+        fo.write("\n")
+	
+# reading
+with open("phonebook2.json", mode="r", encoding="utf-8") as fi:
+    data = [json.loads(line) for line in fi]
+\end{lstlisting}
+
+\end{frame}
+
+
+
+\question{For what can you use this?}
+
+
+
+
+\begin{frame}[fragile]{Tabular data}
+How can we store this data?
+\begin{lstlisting}
+names = ['Alice', 'Bob', 'Carol', 'Daan', 'Els']
+phonenumbers = ['020111111', '020222222', '020333333', '020444444', '020555555']
+\end{lstlisting}
+\pause
+
+1. We could convert to some dict and store as json (not too bad\ldots)
+
+\pause
+2. We can store in a table
+(next slide)
+\end{frame}
+
+\begin{frame}[fragile]{Tabular data}
+\begin{lstlisting}
+import csv
+with open("mytable.csv", mode="w", encoding="utf-8") as f:
+    mywriter = csv.writer(f)
+    for row in zip(names,phonenumbers):
+        mywriter.writerow(row)
+\end{lstlisting}
+	
+Results in a file \texttt{mytable.csv} that looks like this:
+\begin{lstlisting}
+Alice,020111111
+Bob,020222222
+Carol,020333333
+Daan,020444444
+Els,020555555
+\end{lstlisting}
+\pause
+\textcolor{red}{But you don't have to do it like this! There is a more user-friendly way (Pandas, later today).}
+\end{frame}
+
+
+\subsection{Encodings and dialects}
+
+
+\begin{frame}{Choices to make}
+For all text-based (as opposed to binary) file formats:
+\begin{block}{How to separate data?}
+	\begin{itemize}
+		\item new line = new record?
+		\item Unix-style (\texttt{\textbackslash n}, also known as LF),  or Windows-style (\texttt{\textbackslash r\textbackslash n}, also known as CRLF) line endings?
+		\item some delimiter = new field?
+		\item or new file = new record?
+	\end{itemize}
+\end{block}
+\pause
+\begin{block}{How to convert bytes to characters?}
+	\begin{itemize}
+		\item choose right encoding (e.g., UTF-8)
+		\item (seldom) does the file start with a so-called byte-order-marker (BOM) -- then the encoding is often referred to as sth like UTF-8-BOM
+	\end{itemize}
+\end{block}
+\end{frame}
+
+
+\begin{frame}{Let's look at csv files}
+	\begin{block}{comma-separated values: always a good choice}
+		\begin{itemize}
+			\item \emph{All} programs can read it
+			\item Even human-readable in a simple text editor
+			\item Plain text, with a comma (or a semicolon) denoting column breaks
+			\item No limits regarging the size
+			\item But: several dialects (e.g., \texttt{,} vs. \texttt{;} as delimiter)
+			\item Also: tab-separated files (.csv, .tab, .txt -- no consensus) (delimiter is \texttt{\textbackslash t})
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}[fragile]{A CSV-file with tweets}
+	\begin{itemize}
+		\item delimiter is \texttt{,}
+		\item with  header row
+	\end{itemize}
+	\begin{lstlisting}
+text,to_user_id,from_user,id,from_user_id,iso_language_code,source,profile_image_url,geo_type,geo_coordinates_0,geo_coordinates_1,created_at,time
+:-) #Lectrr #wereldleiders #uitspraken #Wikileaks #klimaattop http://t.co/Udjpk48EIB,,henklbr,407085917011079169,118374840,nl,web,http://pbs.twimg.com/profile_images/378800000673845195/b47785b1595e6a1c63b93e463f3d0ccc_normal.jpeg,,0,0,Sun Dec 01 09:57:00 +0000 2013,1385891820
+Wat zijn de resulaten vd #klimaattop in #Warschau waard? @EP_Environment ontmoet voorzitter klimaattop @MarcinKorolec http://t.co/4Lmiaopf60,,Europarl_NL,406058792573730816,37623918,en,<a href="http://www.hootsuite.com" rel="nofollow">HootSuite</a>,http://pbs.twimg.com/profile_images/2943831271/b6631b23a86502fae808ca3efde23d0d_normal.png,,0,0,Thu Nov 28 13:55:35 +0000 2013,1385646935
+\end{lstlisting}
+\end{frame}
+
+
+
+\begin{frame}[plain]
+	\makebox[\linewidth]{
+		\includegraphics[width=\columnwidth,height=.8\paperheight,keepaspectratio]{csv-atom-encoding.png}}
+
+Opening a file in a (good) text editor (here: Atom) to check its encoding and line-ending style.
+\end{frame}
+
+
+\begin{frame}{Why encodings are really, really, REALLY important -- and why you shouldn't let Excel mess with them}
+\begin{itemize}
+	\item Unicode is around for decades, but sometimes legacy encodings (ASCII, ANSI, Windows-1252, \ldots) are still used
+	\item Problem 1: They don't support all Unicode symbols (emoticons, different scripts, \ldots)
+	\item Problem 2: What is an \texttt{\"a} in the one encoding may be an \texttt{\o}  in another $\Rightarrow$ big confusion if you use the wrong one
+	\item Some programs (looking at you, Excel!) may use legacy encodings when saving CSV files without telling you!
+\end{itemize}
+\textbf{Make sure to use UTF-8 from beginning to end, unless you know what you are doing!}
+
+\end{frame}
+
+
+
+
+\begin{frame}{Sidenote and outlook: custom file handling}
+\begin{enumerate}
+	\item Many file formats (CSV, XML, HTML, SVG, many network analysis file formats) are just plain text files.
+	\item Because \texttt{read()} and \texttt{write()} do not care about what the content means, you can essentially write an own program to deal with such files
+	\item Also, it is possible to write a \emph{parser} for semi-strucutred files (think: newspaper articles where the first line is always the headline etc.)
+\end{enumerate}
+	
+\end{frame}
+
+
+
+
+
+
+\section{From file to dataframes and back}
+
+
+\begin{frame}{What are dataframes?}
+	\texttt{pd.DataFrame}s (from the pandas package) are
+	\begin{itemize}
+		\item objects that store tabular data in rows and columns.
+		\item columns and rows can have names
+		\item they have methods built-in for data wrangling and analysis
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}{Creating dataframes}
+	\begin{columns}[T]
+		\column{.5\textwidth}
+		\textbf{Option 1: transform existing data into a dataframe}
+		
+		\texttt{df = pd.DataFrame(list-of-lists, dict, or similar)}
+		
+		(use \texttt{pd.DataFrame?} for help if necessary)
+		
+		\column{.5\textwidth}
+		\textbf{Option 2: read from file}
+		\makebox[\columnwidth]{
+			\includegraphics[width=\columnwidth,height=\paperheight,keepaspectratio]{pd-read.png}}
+		Using tab-completion to see methods to read dataframes from a file)
+	\end{columns}
+\end{frame}
+
+\begin{frame}[plain]
+	\includegraphics[width=\columnwidth,height=\paperheight,keepaspectratio]{pd-read-csv.png}
+\end{frame}
+
+
+
+
+\begin{frame}{``I get an error!''}
+
+\begin{enumerate}
+	\item Use the \texttt{?} to get information on which options you can specify: \texttt{pd.read\_csv?}
+	\item Specify the encoding!
+	\item For CSV files, specify the delimiter!
+	\item For JSON, specify \texttt{lines=True} if it's one JSON object per line (instead of per file)
+	\item But there are many more options!
+\end{enumerate}
+
+\end{frame}
+
+
+\question{Can you think of a situation when you would use the for-loop approach to reading or writing tabular data instead of the pandas approach? What are pros and cons?}
+
+
+
+\begin{frame}{When (not) to use dataframes}
+	\footnotesize
+	\begin{columns}[T]
+		\column{.5\textwidth}
+		\begin{exampleblock}{use it!}
+			\begin{itemize}
+				\item tabular data
+				\item visual inspection
+				\item data wrangling or statistical analysis
+			\end{itemize}
+		\end{exampleblock}
+		\column{.5\textwidth}
+		\begin{alertblock}{don't use it}
+			\begin{itemize}
+				\item non-tabular data
+				\item when it does not make sense to consider rows as ``cases'' and columns as ``variables''
+				\item if you only care about one (or maybe two) column anyway
+				\item size of dataset $>$ available RAM 
+				\item long or expensive operations, play safe and write to / read from file line by line*
+			\end{itemize}
+		\end{alertblock}
+	\end{columns}
+	
+	\tiny{* imagine scraping 10,000 pages for a week and your program crashes at nr. 9,999 just before saving the dataframe\ldots}
+\end{frame}
+
+
+
+
+

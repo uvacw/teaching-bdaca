@@ -1,0 +1,73 @@
+\section{Beyond standard data files}
+\subsection{API's}
+
+\begin{frame}{Beyond files}
+It probably has occured to you by now that
+
+
+\textcolor{red}{\large{\textbf{it's all about the structure}}}:
+\begin{itemize}
+	\item<2-> we can write \textit{anything} to files
+	\item<3-> it doesn't really matter whether sth is called "csv" or whatever -- as long as we know how records are delimited and what the encoding is
+	\item<4-> and $\ldots$ do we then even need files?
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{APIs}
+	{\huge{No.}}
+	Why not just send a JSON object (with a question/request) directly through the internet and get another one (with an answer/response) back?
+	
+	That's what (most) Application Programming Interfaces (APIs) do.
+	
+	\begin{block}{Great if we have a nested data structure}
+		\begin{itemize}
+			\item<2-> Items within news feeds
+			\item<3-> Personal data within authors within books
+			\item<4-> Bio statements within authors within tweets
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}[fragile]{A JSON object containing GoogleBooks data}
+	\begin{lstlisting}
+{'totalItems': 574, 'items': [{'kind': 'books#volume', 'volumeInfo': {'publisher': '"O\'Reilly Media, Inc."', 'description': u'Get a comprehensive, in-depth introduction to the core Python language with this hands-on book. Based on author Mark Lutz\u2019s popular training course, this updated fifth edition will help you quickly write efficient, high-quality code with Python. It\u2019s an ideal way to begin, whether you\u2019re new to programming or a professional developer versed in other languages. Complete with quizzes, exercises, and helpful illustrations, this easy-to-follow, self-paced tutorial gets you started with both Python 2.7 and 3.3\u2014 the
+...
+...
+'kind': 'books#volumes'}
+	\end{lstlisting}
+\end{frame}
+
+
+
+\begin{frame}{Who offers APIs?}
+	The usual suspects: Twitter, Facebook, Google -- but also Reddit, Youtube, \ldots \\~
+	\begin{block}{If you ever leave your bag on a bus on Chicago}<2->
+		\onslide<3->{
+			\ldots but do have Python on your laptop, watch this: \url{https://www.youtube.com/watch?v=RrPZza_vZ3w}. \\
+			That guy queries the Chicago bus company's API to calculate when \emph{exactly the vehicle} with his bag arrives the next time at the bus stop in front of his office.
+			\\~\\ \tiny{(Yes, he tried calling the help desk before, but they didn't know. He got his bag back.)}
+		}
+	\end{block}
+\end{frame}
+
+\begin{frame}{APIs}
+	\begin{block}{Pro}<1->
+		\begin{itemize}
+			\item Structured data (JSON!)
+			\item Easy to process automatically
+			\item Can be directy embedded in your script
+		\end{itemize}
+	\end{block}
+	\begin{block}{Con}<2->
+		\begin{itemize}
+			\item Often limitations (requests per minute, sampling, \ldots)
+			\item You have to trust the provider that he delivers the right content \parencite{Morstatter2013} 
+			\item {\textbf{Some APIs won't allow you to go back in time!}}
+		\end{itemize}
+	\end{block}
+
+
+
+\end{frame}
