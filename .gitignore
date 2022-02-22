@@ -14,3 +14,4 @@
 *.bak
 *#
 .ipynb_checkpoints/
+_minted*

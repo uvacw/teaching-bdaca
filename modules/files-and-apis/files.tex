@@ -22,18 +22,18 @@ use case          & data type       & structure         & typical file format \\
 
 
 \begin{frame}[fragile]{string $\leftrightarrow$ file}
-\begin{lstlisting}
+\begin{minted}{python}
 data = "Hi I'm a string."
 with open("mytext.txt", mode="w", encoding="utf-8") as fo:
     fo.write(data)
-\end{lstlisting}
+\end{minted}
 $\Rightarrow$ create (or overwrite(!)) file, assign handler name \texttt{fo}, write string to it.
 
 \pause 
-\begin{lstlisting}
+\begin{minted}{python}
 with open("mytext.txt", mode="r", encoding="utf-8") as fi:
     data = fi.read()
-\end{lstlisting}
+\end{minted}
 
 $\Rightarrow$ make connection with file for reading, assign handler name \texttt{fi}, read string from it
 
@@ -54,14 +54,14 @@ $\Rightarrow$ make connection with file for reading, assign handler name \texttt
 
 \pause
 
-\begin{lstlisting}
+\begin{minted}{python}
 from glob import glob
 
 data = []
 for fn in glob("./mydata/*.txt):
     with open(fn, mode="r", encoding="utf-8") as fi:
         data.append(fi.read())
-\end{lstlisting}
+\end{minted}
 
 
 \end{frame}
@@ -72,18 +72,18 @@ for fn in glob("./mydata/*.txt):
 
 
 \begin{frame}[fragile]{list $\rightarrow$ file}
-\begin{lstlisting}
+\begin{minted}{python}
 data = ["ik", "jij", "je", "hij", "zij", "ze", "wij", "we", "jullie"]
 
 with open("pronouns.txt", mode="w", encoding="utf-8") as fo:
     for pronoun in data:
         fo.write(pronoun)
         fo.write("\n")
-\end{lstlisting}
+\end{minted}
 $\Rightarrow$ create file, assign handler name \texttt{fo}, write each element from list to \texttt{fo} followed by a line break
 
 Result: a file \texttt{pronouns.txt} with this content:
-\begin{lstlisting}
+\begin{minted}{python}
 ik
 jij
 je
@@ -93,23 +93,23 @@ ze
 wij
 we
 jullie
-\end{lstlisting}
+\end{minted}
 \end{frame}
 
 
 
 \begin{frame}[fragile]{list $\leftarrow$ file}
-\begin{lstlisting}
+\begin{minted}{python}
 with open("pronouns.txt", mode="r", encoding="utf-8") as fi:
      data = [line.strip() for line in fi]
 print(data)
-\end{lstlisting}
+\end{minted}
 $\Rightarrow$ Open file for reading, assign handler name \texttt{fi}, loop over all lines in \texttt{fi}, strip whitespace from end (such as line endings), put in new list.
 
 Output:
-\begin{lstlisting}
+\begin{minted}{python}
 ['ik', 'jij', 'je', 'hij', 'zij', 'ze', 'wij', 'we', 'jullie']
-\end{lstlisting}
+\end{minted}
 \end{frame}
 
 
@@ -120,7 +120,7 @@ Output:
 
 
 \begin{frame}[fragile]{dict $\rightarrow$ file}
-\begin{lstlisting}
+\begin{minted}{python}
 import json
 
 data = {'Alice': {'office': '020222', 'mobile': '0666666'},
@@ -132,26 +132,26 @@ data = {'Alice': {'office': '020222', 'mobile': '0666666'},
 with open("phonebook.json", mode="w", encoding="utf-8") as f:
     json.dump(data, f)
 
-\end{lstlisting}
+\end{minted}
 $\Rightarrow$ Open file for writing, convert dict to JSON, dump in file.
 
 Creates a file \texttt{phonebook.json} that looks like this:
-\begin{lstlisting}
+\begin{minted}{python}
 {"Alice": {"office": "020222", "mobile": "0666666"}, "Bob": {"office": "030111"}, "Carol": {"office": "040444", "mobile": "0644444"}, "Daan": "020222222", "Els": ["010111", "06222"]}
-\end{lstlisting}
+\end{minted}
 \end{frame}
 
 
 
 
 \begin{frame}[fragile]{dict $\leftarrow$ file}
-\begin{lstlisting}
+\begin{minted}{python}
 import json
 
 with open("phonebook.json", mode="r", encoding="utf-8") as f:
 	data = json.load(f)
 	
-\end{lstlisting}
+\end{minted}
 
 $\Rightarrow$ Reads data from f, converts to dict (or list of dicts\ldots), store in \texttt{data}
 
@@ -171,7 +171,7 @@ There is also a dialect in which you write \emph{one JSON object per line instea
 \begin{frame}[fragile]{multiple (thousands?) of dicts}
 The JSON lines dialect is particularly useful if you have a lot of dictionaries:
 
-\begin{lstlisting}
+\begin{minted}{python}
 data = [{'name': 'Alice', 'office': '020222', 'mobile': '0666666'},
 	{'name': 'Carol', 'office': '040444', 'mobile': '0644444'},
 	{'name': 'Daan', 'office': '020222222'}]
@@ -186,7 +186,7 @@ with open("phonebook2.json", mode="w", encoding="utf-8") as fo:
 # reading
 with open("phonebook2.json", mode="r", encoding="utf-8") as fi:
     data = [json.loads(line) for line in fi]
-\end{lstlisting}
+\end{minted}
 
 \end{frame}
 
@@ -199,10 +199,10 @@ with open("phonebook2.json", mode="r", encoding="utf-8") as fi:
 
 \begin{frame}[fragile]{Tabular data}
 How can we store this data?
-\begin{lstlisting}
+\begin{minted}{python}
 names = ['Alice', 'Bob', 'Carol', 'Daan', 'Els']
 phonenumbers = ['020111111', '020222222', '020333333', '020444444', '020555555']
-\end{lstlisting}
+\end{minted}
 \pause
 
 1. We could convert to some dict and store as json (not too bad\ldots)
@@ -213,22 +213,22 @@ phonenumbers = ['020111111', '020222222', '020333333', '020444444', '020555555']
 \end{frame}
 
 \begin{frame}[fragile]{Tabular data}
-\begin{lstlisting}
+\begin{minted}{python}
 import csv
 with open("mytable.csv", mode="w", encoding="utf-8") as f:
     mywriter = csv.writer(f)
     for row in zip(names,phonenumbers):
         mywriter.writerow(row)
-\end{lstlisting}
+\end{minted}
 	
 Results in a file \texttt{mytable.csv} that looks like this:
-\begin{lstlisting}
+\begin{minted}{python}
 Alice,020111111
 Bob,020222222
 Carol,020333333
 Daan,020444444
 Els,020555555
-\end{lstlisting}
+\end{minted}
 \pause
 \textcolor{red}{But you don't have to do it like this! There is a more user-friendly way (Pandas, later today).}
 \end{frame}
@@ -276,11 +276,11 @@ For all text-based (as opposed to binary) file formats:
 		\item delimiter is \texttt{,}
 		\item with  header row
 	\end{itemize}
-	\begin{lstlisting}
+	\begin{minted}{python}
 text,to_user_id,from_user,id,from_user_id,iso_language_code,source,profile_image_url,geo_type,geo_coordinates_0,geo_coordinates_1,created_at,time
 :-) #Lectrr #wereldleiders #uitspraken #Wikileaks #klimaattop http://t.co/Udjpk48EIB,,henklbr,407085917011079169,118374840,nl,web,http://pbs.twimg.com/profile_images/378800000673845195/b47785b1595e6a1c63b93e463f3d0ccc_normal.jpeg,,0,0,Sun Dec 01 09:57:00 +0000 2013,1385891820
 Wat zijn de resulaten vd #klimaattop in #Warschau waard? @EP_Environment ontmoet voorzitter klimaattop @MarcinKorolec http://t.co/4Lmiaopf60,,Europarl_NL,406058792573730816,37623918,en,<a href="http://www.hootsuite.com" rel="nofollow">HootSuite</a>,http://pbs.twimg.com/profile_images/2943831271/b6631b23a86502fae808ca3efde23d0d_normal.png,,0,0,Thu Nov 28 13:55:35 +0000 2013,1385646935
-\end{lstlisting}
+\end{minted}
 \end{frame}
 
 

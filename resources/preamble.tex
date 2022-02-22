@@ -52,6 +52,20 @@
 		backgroundcolor=\color[rgb]{.7,.7,.7}}}{}
 
 
+% color-coded listings; replace those above 
+\usepackage{xcolor}
+\usepackage{minted}
+\definecolor{listingbg}{rgb}{0.87,0.93,1}
+\setminted[python]{
+	frame=none,
+	framesep=1mm,
+	baselinestretch=1,
+	bgcolor=listingbg,
+	fontsize=\scriptsize,
+	linenos,
+	breaklines
+	}
+
 
 \usepackage[american]{babel}
 \usepackage{csquotes}

@@ -82,7 +82,7 @@
 
 
 \begin{frame}[fragile]{Some functions}
-\begin{lstlisting}
+\begin{minted}{python}
 len(x)        # returns the length of x
 y = len(x)    # assign the value returned by len(x) to y
 print(len(x)) # print the value returned by len(x)
@@ -90,8 +90,9 @@ print(y)      # print y
 int(x)        # convert x to an integer
 str(x)        # convert x to a string
 sum(x)        # get the sum of x
-\end{lstlisting}
+\end{minted}
 \end{frame}
+
 
 \question{How could you print the mean (average) of a list of integers using the functions on the previous slide?}
 
@@ -99,14 +100,14 @@ sum(x)        # get the sum of x
 
 \begin{frame}[fragile]{Some methods}
 Some string methods
-\begin{lstlisting}
+\begin{minted}{python}
 mystring = "Hi! How are you?"
 mystring.lower()   # return lowercased string (doesn't change original!)
 mylowercasedstring =  mystring.lower()  # save to a new variable
 mystring =  mystring.lower()  # or override the old one
 mystring.upper()   # uppercase
 mystring.split()   # Splits on spaces and returns a list ['Hi!', 'How', 'are', 'you?']
-\end{lstlisting}
+\end{minted}
 
 We'll look into some list methods later.
 
@@ -116,20 +117,22 @@ We'll look into some list methods later.
 
 \begin{frame}[fragile]{Writing own functions}
 You can write an own function:
-\begin{lstlisting}
+\begin{minted}{python}
 def addone(x):
     y = x + 1
     return y
-\end{lstlisting}
+\end{minted}
 
 Functions take some input (``argument'') (in this example, we called it \texttt{x}) and \emph{return} some result.
 
 Thus, running
-\begin{lstlisting}	
+\begin{minted}{python}	
 addone(5)
-\end{lstlisting}
+\end{minted}
 returns \tt{6}.
 \end{frame}
+
+
 
 \begin{frame}[fragile]{Writing own functions}
 
@@ -139,10 +142,10 @@ returns \tt{6}.
 
 (wait a sec foruntil we cover for loops later today, but this is how you'd do it (by calling the function for each element in the list separately):):
 
-\begin{lstlisting}
+\begin{minted}{python}
 mynumbers = [5, 3, 2, 4]
 results = [addone(e) for e in mynumbers]
-\end{lstlisting}
+\end{minted}
 
 \vspace{1cm}
 \tiny{* Technically speaking, you could do this by wrapping the \texttt{map} function around your own function, but that's not considered ``pythonic''. Don't do it ;-) \\}
@@ -155,16 +158,16 @@ results = [addone(e) for e in mynumbers]
 \begin{frame}[fragile]{Modifying lists}
 	Let's use one of our first \textcolor{red}{method}s! Each \emph{list} has a method \texttt{.append()}:
 \begin{block}{Appending to a list}
-\begin{lstlisting}
+\begin{minted}{python}
 mijnlijst = ["element 1", "element 2"]
 anotherone = "element 3"   # note that this is a string, not a list!
 mijnlijst.append(anotherone)
 print(mijnlijst)
-\end{lstlisting}
+\end{minted}
 gives you:
-\begin{lstlisting}
+\begin{minted}{python}
 ["element 1", "element 2", "element 3"]
-\end{lstlisting}
+\end{minted}
 \end{block}
 \end{frame}
 
@@ -172,16 +175,16 @@ gives you:
 
 \begin{frame}[fragile]{Modifying lists}
 \begin{block}{Merging two lists (= extending)}
-\begin{lstlisting}
+\begin{minted}{python}
 mijnlijst = ["element 1", "element 2"]
 anotherone = ["element 3", "element 4"]
 mijnlist.extend(anotherone)
 print(mijnlijst)
-\end{lstlisting}
+\end{minted}
 gives you:
-\begin{lstlisting}
+\begin{minted}{python}
 ["element 1", "element 2", "element 3", "element 4]
-\end{lstlisting}
+\end{minted}
 \end{block}
 \end{frame}
 
@@ -192,15 +195,15 @@ gives you:
 
 \begin{frame}[fragile]{Modifying dicts}
 \begin{block}{Adding a key to a dict (or changing the value of an existing key)}
-\begin{lstlisting}
+\begin{minted}{python}
 mydict = {"whatever": 42, "something": 11}
 mydict["somethingelse"] = 76
 print(mydict)
-\end{lstlisting}
+\end{minted}
 gives you:
-\begin{lstlisting}
+\begin{minted}{python}
 {'whatever': 42, 'somethingelse': 76, 'something': 11}
-\end{lstlisting}
+\end{minted}
 If a key already exists, its value is simply replaced.
 \end{block}
 \end{frame}
@@ -228,7 +231,7 @@ If we want to \emph{repeat} a block of code, exectute a block of code only \emph
 \begin{block}{Structure}
 	A first example of an indented block -- in this case, we want to \emph{repeat} this block:
 \end{block}
-\begin{lstlisting}
+\begin{minted}{python}
 agedict = {'Zeus': None, 'Denis': 96, 'Alice': 18, 'Rebecca': 20 , 'Bob': 22, 'Cecile': 45}
 
 myfriends = ['Alice','Bob','Cecile']
@@ -236,22 +239,22 @@ myfriends = ['Alice','Bob','Cecile']
 print ("The names and ages of my friends:")
 for buddy in myfriends:
 	print (f"My friend {buddy} is {agedict[buddy]} years old")
-\end{lstlisting}
+\end{minted}
 
 Output:
-\begin{lstlisting}
+\begin{minted}{python}
 My friend Alice is 18 years old
 My friend Bob is 22 years old
 My friend Cecile is 45 years old
-\end{lstlisting}
+\end{minted}
 \end{frame}
 
 \begin{frame}[fragile]{What happened here?}
 
-\begin{lstlisting}
+\begin{minted}{python}
 for buddy in myfriends:
     print (f"My friend {buddy} is {agedict[buddy]} years old")
-\end{lstlisting}
+\end{minted}
 
 \small
 	\begin{block}{The for loop}
@@ -274,10 +277,10 @@ If you prepend a string with an \texttt{f}, you can use curly brackets \texttt{\
 
 
 \begin{frame}[fragile]{What happened here?}
-\begin{lstlisting}
+\begin{minted}{python}
 for buddy in myfriends:
     print (f"My friend {buddy} is {agedict[buddy]} years old")
-\end{lstlisting}
+\end{minted}
 \small
 The line \emph{before} an indented block starts with a \emph{statement} indicating what should be done with the block and ends with a \texttt{:}
 
@@ -297,7 +300,7 @@ The line \emph{before} an indented block starts with a \emph{statement} indicati
 \begin{frame}[fragile]{Can we also loop over dicts?}
 Sure! But we need to indicate how exactly:
 
-\begin{lstlisting}
+\begin{minted}{python}
 mydict = {"A":100, "B": 60, "C": 30}
 
 for k in mydict:   # or mydict.keys()
@@ -308,7 +311,7 @@ for v in mydict.values():
 
 for k,v in mydict.items():
     print(f"{k} has the value {v}")
-\end{lstlisting}
+\end{minted}
 
 \end{frame}
 
@@ -318,7 +321,7 @@ for k,v in mydict.items():
 \begin{frame}[fragile]{Can we also loop over dicts?}
 The result:
 
-\begin{lstlisting}
+\begin{minted}{python}
 A
 B
 C
@@ -330,7 +333,7 @@ C
 A has the value 100
 B has the value 60
 C has the value 30
-\end{lstlisting}
+\end{minted}
 
 \end{frame}
 
@@ -340,7 +343,7 @@ C has the value 30
 	\begin{block}{Structure}
 		Only execute block if condition is met
 	\end{block}
-	\begin{lstlisting}
+	\begin{minted}{python}
 x = 5
 if x <10:
    print(f"{x} is smaller than 10")
@@ -348,7 +351,7 @@ elif x > 20:
    print(f"{x} is greater than 20")
 else:
    print("No previous condition is met, therefore 10<={x}<=20")
-\end{lstlisting}
+\end{minted}
 
 \end{frame}
 
@@ -361,17 +364,17 @@ else:
 \begin{block}{Structure}
 If executed block fails, run another block instead
 \end{block}
-\begin{lstlisting}
+\begin{minted}{python}
 x = "5"
 try: 
    myint = int(x)
 except:
    myint = 0
-\end{lstlisting}
+\end{minted}
 
 \pause 
 \small{Again, more useful when executed repeatedly (in a loop or function):}
-\begin{lstlisting}
+\begin{minted}{python}
 mylist = ["5", 3, "whatever", 2.2]
 myresults = []
 for x in mylist:
@@ -380,7 +383,7 @@ for x in mylist:
     except:
         myresults.append(None)
 print(myresults)
-\end{lstlisting}
+\end{minted}
 \end{frame}
 
 
@@ -393,24 +396,24 @@ print(myresults)
 \begin{block}{Structure}
 A for loop that \texttt{.append()}s to an empty list can be replaced by a one-liner:
 \end{block}
-\begin{lstlisting}
+\begin{minted}{python}
 mynumbers = [2,1,6,5]
 mysquarednumbers = []
 for x in mynumbers:
     mysquarednumbers.append(x**2))
-\end{lstlisting}
+\end{minted}
 is equivalent to:
-\begin{lstlisting}
+\begin{minted}{python}
 mynumbers = [2,1,6,5]
 mysquarednumbers = [x**2 for x in mynumbers]
-\end{lstlisting}
+\end{minted}
 
 \pause 
 Optionally, we can have a condition:
-\begin{lstlisting}
+\begin{minted}{python}
 mynumbers = [2,1,6,5]
 mysquarednumbers = [x**2 for x in mynumbers if x>3]
-\end{lstlisting}
+\end{minted}
 
 \end{frame}
 
@@ -436,22 +439,22 @@ mysquarednumbers = [x**2 for x in mynumbers if x>3]
 \end{block}
 \footnotesize
 You can create a generator just like a list comprehension (but with \texttt{()} instead of \texttt{[]}):
-\begin{lstlisting}
+\begin{minted}{python}
 mynumbers = [2,1,6,5]
 squaregen = (x**2 for x in mynumbers)   # these are NOT calculated yet
 for e in squaregen:
     print(e)             # only here, we are calculating the NEXT item
-\end{lstlisting}
+\end{minted}
 \pause
 Or like a function (but with \texttt{yield} instead of \texttt{return}):
-\begin{lstlisting}
+\begin{minted}{python}
 def squaregen(listofnumbers):
     for x in listofnumbers:
         yield(x**2)
 mygen = squaregen(mynumbers)
 for e in mygen:
     print(e)
-\end{lstlisting}
+\end{minted}
 
 \end{frame}
 
