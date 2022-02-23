@@ -33,3 +33,10 @@ Go back to your dataset from Exercise 1, or choose a new one, or take the data f
 - (if it makes sense) plain text files.
 
 Use different tools for that (e.g., pandas and/or basic Python). Also, inspect the different versions using a text editor. Discuss differences with your neighbour.
+
+
+
+## 4. Bonus-exercise
+In case you have time left or do not feel challenged enough: Try to write loop that iterates over a nested data structure (like the data you retrieve from the GoogleBooks API) and collects some statistic (say, the length of some entry) or some subset of the data that you find interesting. Store this in a flatter dictionary or in a list. 
+
+Then, try to improve your code by replacing the inner part of your loop by one or more self-written functions.
