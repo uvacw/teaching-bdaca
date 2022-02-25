@@ -49,8 +49,7 @@ plt.hist(A)
 
 \centering
 
-\includegraphics[width=.3\linewidth]{histogram.png}\hfill                           |
-
+\includegraphics[width=.3\linewidth]{histogram.png}\hfill
 
 \end{frame}
 
@@ -341,7 +340,61 @@ df.groupby("gender")['internet'].describe()
 # ... or select specific aggregation functions
 df.groupby("gender")['internet'].agg([np.mean, np.std])
 \end{minted}
+\end{frame}
 
 
+\subsection{From wide to long}
+
+\begin{frame}{Wide vs long datasets}
+R-users know the long dataset also as ``tidy'' data
+
+\centering
+
+\includegraphics[width=.8\linewidth]{wide-vs-long.png}\hfill
+
+
+\end{frame}
+
+\begin{frame}{The problem with wide data}
+
+  \begin{itemize}[<+->]
+  \item The information that ``U.S.'', ``Germany'' etc. belong together (but not ``Year'') is nowhere encoded
+  \item Hence, we cannot refer to the ``country'' for plotting
+  \item The information what the cell entries mean is nowhere encoded (it's the private capital)
+  \item (We could solve that by renaming the columns to ``capital\_US'', ``capital\_DE'' etc. (but that's not very elegant)
+  \end{itemize}
+
+  \pause
+
+  Wide data have an advantage, though: It's easier to interpret/read at a glance \emph{for humans}. 
+
+\end{frame}
+
+\begin{frame}[fragile]{Converting from wide to long}
+  We need to specify
+  \begin{itemize}
+  \item ``identifier variables''that remain untouched (\texttt{id\_vars})
+  \item how the new variable in which the column names are to be placed is to be called (\texttt{var\_name})
+  \item how the new variable in which the cell entries are to be placed is to be called (\texttt{value\_name})
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Converting from wide to long}
+
+\begin{minted}{python}
+url="https://cssbook.net/d/private_capital.csv"
+df_wide = pd.read_csv(url)
+df_long = df_wide.melt(id_vars="Year", 
+                       var_name="country", 
+                       value_name="capital")
+\end{minted}
+
+Opposite direction:
+\begin{minted}{python}
+# note that there is just one value per country per year, so
+# min, max, mean, sum... all lead to the same result in this case
+# unstack flattens the hierarchical index (try without to see!)
+df_wide = df_long.groupby(['Year','country'])['capital'].agg(min).unstack()
+\end{minted}
 \end{frame}
 
