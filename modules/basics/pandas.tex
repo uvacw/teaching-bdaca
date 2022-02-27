@@ -1,5 +1,7 @@
 \section{Working with pandas}
 
+\subsection{Basics of pandas}
+
 \begin{frame}{The idea behind pandas}
   \begin{itemize}
   \item Central concepts: \textcolor{orange}{dataframe} (2D) and \textcolor{orange}{series} (1D)
@@ -62,7 +64,7 @@ plt.hist(A)
 
 
 
-\subsection{Basics of pandas}
+
 
 
 
@@ -145,27 +147,7 @@ mymodel.summary()
 
 
 
-
-%\begin{frame}{}
-%More examples here: \url{https://github.com/damian0604/bdaca/blob/master/ipynb/basic_statistics.ipynb}
-%\end{frame}
-
-
-
-%TODO  WE GAAN HET ZO DOEN
-
-
-%SLIDES MEER RICHTING BOEK
-
-
-%WOZ-WAARDE ALS OPDRACHT VOOR LABSESSIE!
-
-
-
-
-
-
-\subsection{Data wrangling}
+\subsection{Selecting and recoding data}
 
 
 
@@ -306,15 +288,14 @@ Main question: What do you want to do with keys that exist only in one of the  d
 
 
 
-\begin{frame}[plain]
-Aggregation
-\end{frame}
+\subsection{Grouping and aggregating}
+
 
 \begin{frame}{An example}
 \begin{itemize}
 	\item Suppose you have two dataframes, both containing information on something  per region per year.
-	\item 	You want to merge (join) the two, however, in one of them, the information is also split up by age groups. You don’t want that.
-	\item 	How do you bring these rows back to one row? With \texttt{.agg()}!
+	\item You want to merge (join) the two, however, in one of them, the information is also split up by age groups. You don't want that.
+	\item How do you bring these rows back to one row? With \texttt{.agg()}!
 \end{itemize}
 
 \end{frame}
