@@ -15,3 +15,5 @@
 *#
 .ipynb_checkpoints/
 _minted*
+.DS_Store
+**/.DS_Store
