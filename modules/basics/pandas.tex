@@ -216,7 +216,7 @@ df[df.loc[:, 'gender']==0]    # select all rows with females
   \begin{block}{A note on hard-coding ``magic numbers}
     \begin{itemize}
     \item Hard-coding ``magic numbers'' like \texttt{687} or \texttt{(0, 5)} should be avoided. Always \emph{calculate} them from your data.
-    \item This is a good argument for using \texttt{.loc} over \texttt{.loc}
+    \item This is a good argument for using \texttt{.loc} over \texttt{.iloc}
     \item If you \emph{really} cannot avoid this, define such things a constant at the beginning of your script:)      
     \end{itemize}
   \end{block}
