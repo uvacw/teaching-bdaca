@@ -21,7 +21,12 @@ For your understanding, Amsterdam is administatively divided into 7 "stadsdelen"
 - You may have realized that `wozwaarde-clean.csv` is in wide format. Transform it to long!
 
 
-## 2. Analyze the data!
+## 2. Merging and joining
+
+- Add data about the population of each "stadsdeel" (or, if you choose to do so, for each "wijk" -- it's up to you) to your dataset. You can find such data for instance here: https://cms.onderzoek-en-statistiek.nl/uploads/2021_jaarboek_2112_28485510ff.xlsx , but you can also use any other source.
+
+
+## 3. Analyze the data!
 
 Make a report in form of a Jupyter Notebook:
 - Use Markdown cells to format and interpret what you are doing and finding.
@@ -31,6 +36,6 @@ Make a report in form of a Jupyter Notebook:
 You will find useful examples here: https://github.com/uvacw/teaching-bdaca/blob/main/modules/basics/visualization.ipynb
 
 
-## 3. Bonus exercise
+## 4. Bonus exercise
 
-If you have time left and want an extra challenge, try to implement the necessary cleanup steps from step 0 yourself, so that your analysis can work directly on `wozwaarde.csv` instead of having to rely on our pre-cleaned `wozwaarde-clean.csv`.
+If you want an extra challenge to try out at home, try to implement the necessary cleanup steps from step 0 yourself, so that your analysis can work directly on `wozwaarde.csv` instead of having to rely on our pre-cleaned `wozwaarde-clean.csv`.
