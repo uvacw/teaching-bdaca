@@ -34,7 +34,7 @@
 			\item<2->e.g., 2000 labeled cases, 1000 for training, 1000 for testing --- if successful, run on 100,000 unlabeled cases
 		\end{itemize}
 		\item<3-> We use many more independent variables (``features'')
-		\item<4-> Typically, IVs are word frequencies (often weighted, e.g. tf$\times$idf) ($\Rightarrow$BOW-representation)
+		\item<4-> For text analysis, IVs can be word frequencies (often weighted, e.g. tf$\times$idf) ($\Rightarrow$BOW-representation)
 	\end{itemize}
 \end{frame}
 
@@ -118,8 +118,8 @@ For many computational approaches, we are actually not that interested in predic
 	\textcolor{red}{$$P(B) = P(very\, close\, game) = P(very) \times P(close) \times P(game)$$}
 	We can fill in all values by counting how many articles are about sports, and how often the words occur in these texts.
 	\vspace{0.3cm}
-	\footnotesize{
-		(Fully elaborated example on \url{https://monkeylearn.com/blog/practical-explanation-naive-bayes-classifier/})}
+	\tiny{
+		(Fully elaborated example on \url{https://monkeylearn.com/blog/practical-explanation-naive-bayes-classifier/})}\\
 \end{frame}
 
 \begin{frame}{Naïve Bayes}
@@ -179,7 +179,7 @@ $$ \frac{P(x_1 \mid label) \cdot P(x_2 \mid \rm{label})\ \cdot P(x_3 \mid label)
 		\tiny{\url{https://upload.wikimedia.org/wikipedia/commons/b/b5/Svm\_separating\_hyperplanes\_\%28SVG\%29.svg}}
 	\end{columns}
 	\vfill
-	\footnotesize{(Further reading: \url{https://monkeylearn.com/blog/introduction-to-support-vector-machines-svm/)}}
+	\tiny{(Further reading: \url{https://monkeylearn.com/blog/introduction-to-support-vector-machines-svm/)}}\\
 \end{frame}
 
 \begin{frame}{SVM vs logistic regression}
@@ -192,34 +192,28 @@ $$ \frac{P(x_1 \mid label) \cdot P(x_2 \mid \rm{label})\ \cdot P(x_3 \mid label)
 
 
 \begin{frame}{Decision Trees and Random Forests}
-	\begin{columns}
-		\column{.5\linewidth}
-		\begin{itemize}[<+->]
-			\item Model problem as a series of decisions (e.g., if cloudy then \ldots if temperature > 30 degrees then \ldots)
-			\item Order and cutoff-points are determined by an algorithm
-			\item Big advantage: Model non-linear relationships
-			\item And: They are easy to interpret (!) (``white box'')
-		\end{itemize}
-		\column{.5\linewidth}	
+  \begin{columns}
+    \column{.5\linewidth}
+    \begin{itemize}[<+->]
+    \item Model problem as a series of decisions (e.g., if cloudy then \ldots if temperature > 30 degrees then \ldots)
+    \item Order and cutoff-points are determined by an algorithm
+    \item Big advantage: Model non-linear relationships
+    \item And: They are easy to interpret (!) (``white box'')
+    \end{itemize}
+    \column{.5\linewidth}	
 		\includegraphics[width=.8\linewidth,height=.5\paperheight,keepaspectratio]{decisiontree}
 		\tiny{\url{https://upload.wikimedia.org/wikipedia/en/4/4f/GEP\_decision\_tree\_with\_numeric\_and\_nominal\_attributes.png}}
 	\end{columns}
 \end{frame}
 \begin{frame}{Decision Trees and Random Forests}
-	\begin{block}{Disadvantages of decision trees}
-		\begin{itemize}
-			\item comparatively inaccurate
-			\item once you are in the wrong branch, you cannot go `back up'
-			\item prone to overfitting (e.g., outlier in training data may lead to completely different outcome)
-		\end{itemize}
-	\end{block}
-	\pause
-	Therfore, nowadays people use \emph{random forests}: Random forests \emph{combine} the predictions of \emph{multiple} trees
-	$\Rightarrow$ might be a good choice for your non-linear classification problem
+  \begin{block}{Disadvantages of decision trees}
+    \begin{itemize}
+    \item comparatively inaccurate
+    \item once you are in the wrong branch, you cannot go `back up'
+    \item prone to overfitting (e.g., outlier in training data may lead to completely different outcome)
+    \end{itemize}
+  \end{block}
+  \pause
+  Therfore, nowadays people use \emph{random forests}: Random forests \emph{combine} the predictions of \emph{multiple} trees
+  $\Rightarrow$ might be a good choice for your non-linear classification problem
 \end{frame}
-
-
-
-
-
-

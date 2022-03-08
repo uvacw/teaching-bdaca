@@ -1,6 +1,3 @@
-
-
-
 \section[Unsupervised ML]{Unsupervised machine learning}
 
 \begin{frame}{A lot of applications and use cases, \ldots}
@@ -23,11 +20,9 @@ Are we more interested in which features ``belong together'' or which cases ``be
 
 \subsubsection{An introduction to dimensionality reduction}
 
+
 \begin{frame}{Dimensionality reduction}
 dimensionality = the number of features we have
-
-
-
 \begin{block}{(1) Explorative data analysis and visualization}
 \begin{itemize}
 \item No good way to visualize 10,000 dimensions (or even 4)
@@ -35,7 +30,6 @@ dimensionality = the number of features we have
 \end{block}
 
 \pause
-
 
 \begin{block}{(2) The curse of dimensionality}
 More features means more data (good!), but:
@@ -50,30 +44,7 @@ More features means more data (good!), but:
 
 \begin{frame}[fragile]{Dimensionality reduction}
 
-\begin{block}{First approach: feature selection}
-\begin{itemize}
-\item Only choose the features that are really relevant
-\end{itemize}
-\end{block}
-
-
-Example: Exclude all terms that occur in more than 50\% of the documents, or in less than $n=5$ documents:
-
-\begin{lstlisting}
-vec = CountVectorizer(max_df=0.5, min_df=5)
-\end{lstlisting}
-
-\tiny{\url{https://scikit-learn.org/stable/modules/generated/sklearn.feature\_extraction.text.CountVectorizer.html}}
-
-\end{frame}
-
-
-
-
-
-\begin{frame}[fragile]{Dimensionality reduction}
-
-\begin{block}{Second approach: feature extraction}
+\begin{block}{Feature extraction}
 \begin{itemize}
 \item Create a smaller set of features
 \item E.g.: 1,000 features $\rightarrow$ PCA to reduce to 50 components $\rightarrow$ SML with these 50 component scores as features
@@ -88,6 +59,7 @@ vec = CountVectorizer(max_df=0.5, min_df=5)
 
 So, we can use unsupervised ML as a dimension reduction step in a supervised ML pipeline. 
 \vspace{0.5cm}
+
 But it can also be a goal in itself, to understand the data better or to visualize them.
 \end{frame}
 
@@ -116,74 +88,153 @@ But it can also be a goal in itself, to understand the data better or to visuali
 
 
 
-\begin{frame}[fragile,plain]{Preparation: Import modules and get some texts}
-\begin{lstlisting}
-from sklearn import datasets
+\begin{frame}[fragile,plain]{Preparation: Import modules and get some sample data}
+\begin{minted}{python}
+import pandas as pd
 from sklearn.decomposition import PCA
-from sklearn.decomposition import TruncatedSVD
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.pipeline import make_pipeline
-from sklearn.preprocessing import FunctionTransformer
-import matplotlib.pyplot as plt
-%matplotlib inline
+from sklearn.preprocessing import StandardScaler
 
-autotexts = datasets.fetch_20newsgroups('rec.autos', remove=('headers', 'footers', 'quotes'), subset='train')['data']
-religiontexts = datasets.fetch_20newsgroups('soc.religion.christian', remove=('headers', 'footers', 'quotes'), subset='train')['data']
+df = pd.read_csv("https://cssbook.net/d/eurobarom_nov_2017.csv")\
+    .dropna()\
+    .groupby(["country"])[[
+    "support_refugees_n", 
+    "support_migrants_n", 
+    "age", 
+    "educational_n"]].mean()
+\end{minted}
 
-texts = autotexts[:20] + religiontexts[:20]
-\end{lstlisting}
+
+\begin{lstlistingoutputtiny}
+country   support_refugees_n  support_migrants_n        age  educational_n                                                                
+Austria             2.847674            2.576744  49.445349      18.930233
+Belgium             2.772619            2.252381  53.002381      19.338095
+Bulgaria            2.075159            1.769427  51.517197      19.652229
+Croatia             2.717105            2.002193  47.001096      18.899123
+Cyprus              3.018141            2.104308  53.734694      18.598639
+\end{lstlistingoutputtiny}
 \end{frame}
+
+
 
 
 
 
 \begin{frame}[fragile,plain]{Running PCA}
-PCA does not accept a \textit{sparse matrix} as input (but the CountVectorizer gives one as output), so we need to transform it into a \textit{dense matrix}.
+  \begin{minted}{python}
+# we first standardize our data to z-scores
+scaler = StandardScaler()
+df_s = scaler.fit_transform(df) 
+    
+mypca = PCA()
+componentscores = mypca.fit_transform(df_s)
+scores_df = pd.DataFrame(componentscores, index=df.index)
 
-\begin{lstlisting}
-myvec = CountVectorizer(texts, max_df=.5, min_df=5)
-mypca = PCA(n_components=2)
+components_df = pd.DataFrame(data=mypca.components_.T)
+components_df.index = df.columns
+print("Variable loadings on the 4 components:")
+print(components_df)  
 
-mypipe = make_pipeline(myvec, FunctionTransformer(lambda x: x.todense(), accept_sparse=True), mypca)
+# This is the transformed dataset
+# As we will see in a minute, we retain 86\% of the
+# variance even if we keep only the first 2 components
+print("The component scores for each case:")
+print(scores_df)
+\end{minted}
+\end{frame}
 
-r = mypipe.fit_transform(texts)
-\end{lstlisting}
+
+
+\begin{frame}[fragile,plain]{Running PCA}
+\begin{lstlistingoutputtiny}
+Variable loadings on the 4 components:
+                           0         1         2         3
+support_refugees_n  0.573292 -0.369010  0.139859  0.718058
+support_migrants_n  0.513586 -0.533140 -0.094283 -0.665659
+age                 0.445117  0.558601  0.670994 -0.199005
+educational_n       0.457642  0.517261 -0.722023  0.041073
+
+
+The component scores for each country:
+                       0         1         2         3
+country                                               
+Austria        -0.103285 -1.220018 -0.535673  0.066888
+Belgium        -0.029355 -0.084707  0.051515  0.227609
+Bulgaria       -1.660518  0.949533 -0.480337 -0.151837
+Croatia        -1.267502 -0.819093 -0.920657  0.843682
+Cyprus          0.060590 -0.195928  0.573670  0.812519
+Czech republic -2.219795  0.675655 -0.763679 -0.086147
+Denmark         2.925631  1.516636 -0.748940  0.495489
+Estonia        -0.602217  2.206418  0.785869 -0.152262
+Finland         2.224310  1.384983 -0.169499 -0.468742
+France         -0.102062 -0.046415  0.228587 -0.122965
+Germany         0.917864 -0.259560  0.940792  0.319158
+Greece         -0.832343 -0.313480  0.329525  0.683748
+Hungary        -2.234701  0.716823  0.391788 -0.315312
+Ireland         0.993243 -1.767147 -0.592957 -0.168892
+\end{lstlistingoutputtiny}
+\end{frame}
+
+
+
+
+
+
+
+
+
+\begin{frame}[fragile,plain]{Plotting the result}
+  \begin{minted}{python}
+import bioinfokit.visuz
+   
+bioinfokit.visuz.cluster.biplot(cscore=componentscores, 
+  loadings=mypca.components_, 
+  labels=df.columns, 
+  var1=round(mypca.explained_variance_ratio_[0],2), 
+  var2=round(mypca.explained_variance_ratio_[1],2), 
+  show=True)  
+\end{minted}
+
+\makebox[\linewidth]{\includegraphics[width=\paperwidth,height=.6\paperheight,keepaspectratio]{pca-example-book}}
+
 \end{frame}
 
 
 
 \begin{frame}[fragile,plain]{Plotting the result}
-\begin{lstlisting}
-plt.scatter([e[0] for e in r], [e[1] for e in r], alpha=.6)
-\end{lstlisting}
+  \begin{minted}{python}
+import numpy as np
+import matplotlib.pyplot as plt
 
-\makebox[\linewidth]{\includegraphics[width=\paperwidth,height=.6\paperheight,keepaspectratio]{pca-example}}
+fig, ax = plt.subplots()
+ax.plot(np.cumsum(mypca.explained_variance_ratio_))
+ax.set_xticks(range(mypca.n_components_))
+ax.set_xticklabels(range(1, mypca.n_components_+1))
+ax.set_xlabel("number of components") 
+ax.set_ylabel("cumulative explained variance") 
+ax.set_ylim(0,1)
+# in case you want to save:
+fig.savefig("pca-explained-variance.png")
+\end{minted}
 
+\makebox[\linewidth]{\includegraphics[width=\paperwidth,height=.6\paperheight,keepaspectratio]{pca-explained-variance}}
 
 \end{frame}
 
 
 
-\begin{frame}[fragile]{Singular value decomposition}
-The need to use a dense matrix is \emph{really} a problem for large feature sets (which we have in NLP).
-\pause
-
-We therefore can better use SVD, which is essentially* the same and very simple to use:
-
-\begin{lstlisting}
-mysvd = TruncatedSVD(n_components=2)
-mypipe = make_pipeline(myvec, mysvd)
-r = mypipe.fit_transform(texts)
-\end{lstlisting}
-
-\footnotesize{(In this specific case, we even get exactly the same plot\ldots)}
 
 
+
+\begin{frame}{Singular value decomposition}
+
+\begin{alertblock}{PCA uses a dense matrix!}
+In ``real life'' with larger datasets (essentially, everything (!) involving text), we never use PCA but SVD. It works exactly the same (check out \url{scikit-learn.org}), but does not require to hold a dense matrix in memory. Instead, it operates on a sparse matrix, in which only non-zero values are stored. (this will make a lot of sense once we talk about textual data)
+\end{alertblock}
+
+  
 \footnotesize{
 * It's mathematically different, but SVD is even used ``under the hood'' by several PCA modules to solve PCA problems.
-
 More info and background: \url{https://towardsdatascience.com/pca-and-svd-explained-with-numpy-5d13b0d2a4d8}}
-
 \end{frame}
 
 
@@ -196,30 +247,12 @@ More info and background: \url{https://towardsdatascience.com/pca-and-svd-explai
 
 \subsubsection{k-means clustering}
 
-
-
-
 \begin{frame}{Grouping features vs grouping cases}
-Let's consider a corpus of several thousand user comments.
-
-We could use SVD, MDS, or similar techniques to 
-\begin{itemize}
-\item figure out relationships between features
-\item see which features stand out
-\item get a first sense what topics are in the corpus.
-\end{itemize}
-\pause
-
-But:
-\begin{itemize}
-\item<+-> We do not learn anything about \emph{which} texts (cases) belong to which topic
-\item<+-> We could use the component scores returned by \texttt{.fit\_transform()} to then group our cases
-\end{itemize}
-
-\pause 
-$\Rightarrow$ \footnotesize{Alternative: Choose the opposite approach and first find out which cases are most similar, \textit{then} describe what features characterize each group of cases}
-
-
+  \begin{itemize}[<+->]
+  \item  In the previous example, we established that \emph{age} and \emph{education} measure almost the same thing, and so do \emph{support\_refugees} and \emph{support\_migrants}.
+  \item We could now, for instance, check out which countries receive similar scores to group them.
+  \item But if grouping countries (instead of variables) is our goal in the first place, we can directly do so.
+  \end{itemize}
 \end{frame}
 
 
@@ -250,84 +283,57 @@ Notice the big symbols indicating the centroids.
 
 \begin{frame}[plain,fragile]
 \begin{lstlisting}
-from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.cluster import KMeans
-
-k = 5
-texts = ['text1 ejkh ek ekh', 'ekyerykel'] # a list of texts
-
-vec = TfidfVectorizer(min_df=5, max_df=.4)
-features = vec.fit_transform(texts)
-km = KMeans(n_clusters=k, init='k-means++', max_iter=100, n_init=1)
-predictions = km.fit_predict(features)
-
+# everything needs to be measured on the same scale,
+# therefore we take the scaled dataset
+mykm = KMeans(n_clusters=3).fit(df_s)
+pd.DataFrame({"country":df.index, "cluster":mykm.labels_})
 \end{lstlisting}
 
-That's it!
-\pause
-
-\begin{itemize}
-\item \texttt{predictions} is a list of integers indicated the predicted cluster number. We can thus use \texttt{zip(predictions, texts)} to put them together.
-\item<+-> We could also use \texttt{.fit()} and \texttt{.transform()} sperately and use our \texttt{km} to predict clusters for additional cases we have not used to train the model
-\end{itemize}
+\begin{lstlistingoutputtiny}
+           country  cluster
+0          Austria        1
+1          Belgium        1
+2         Bulgaria        0
+3          Croatia        0
+4           Cyprus        1
+5   Czech republic        0
+\end{lstlistingoutputtiny}
 
 \end{frame}
 
 
-\begin{frame}[fragile,plain]{Let's get the terms closest to the centroids}
-\begin{lstlisting}
-order_centroids = km.cluster_centers_.argsort()[:, ::-1]
-terms = vec.get_feature_names()
-
-print("Top terms per cluster:")
-
-for i in range(k):
-    print("Cluster {}: ".format(i), end='')
-for ind in order_centroids[i, :10]:
-    print("{} ".format(terms[ind]), end='')
-    print()
-\end{lstlisting}
-\pause
-returns something like:
-
-\begin{lstlisting}
-Top terms per cluster:
-Cluster 0: heard could if opinions info day how really just around 
-Cluster 1: systems would ken pc am if as care summary ibm 
-Cluster 2: year car years was my no one higher single than 
-Cluster 3: which like seen 1000 few easily based personal work used 
-Cluster 4: as was he if they my all will get has 
-\end{lstlisting}
-\end{frame}
-
-
-\begin{frame}{Using k-means clustering\ldots}
-\begin{itemize}
-\item we get the cluster membership for each text; and
-\item we get the terms that are most characteristic for the documents in each cluster.
-\end{itemize}
-\end{frame}
 
 \begin{frame}{Finding the optimal $k$}
 
 \begin{itemize}
 \item The only way to find $k$ is to estimate multiple models with different $k$s
 \item No single best solution; finding a balance between error within clusters (distances from centroid) and low number of clusters.
-\item An elbow plot can be helpful (see example in Burscher et al, 2016)
+\item An elbow plot can be helpful
 \end{itemize}
-
-\pause
-
-\footnotesize 
-Code-example for creating an elbow plot:
-\url{https://pythonprogramminglanguage.com/kmeans-elbow-method/}
-
-(Don't forget to insert \texttt{\%matplotlib inline} to actually see the plot)
-
-
-\tiny{Burscher, B., Vliegenthart, R., \& de Vreese, C. H. (2016). Frames beyond words: Applying cluster and sentiment analysis to news coverage of the
-nuclear power issue.\textit{ Social Science Computer Review, 34}(5), 530-545. doi:10.1177/0894439315596385}
 \end{frame}
+
+
+\begin{frame}[fragile,plain]{Finding the optimal $k$}
+\begin{minted}{python}
+wss = []
+for i in range(1, 15):
+    km_out = KMeans(n_clusters=i)
+    km_out.fit(df_s)
+    wss.append(km_out.inertia_)
+
+fig, ax = plt.subplots()
+ax.plot(range(1, 15), wss, marker="o")
+ax.set_xlabel("Number of clusters")
+ax.set_ylabel("Within groups sum of squares")
+\end{minted}
+
+\makebox[\linewidth]{\includegraphics[width=\paperwidth,height=.6\paperheight,keepaspectratio]{kmeans-elbow}}
+
+\end{frame}
+
+
+
 
 
 \subsubsection{Hierarchical clustering}
