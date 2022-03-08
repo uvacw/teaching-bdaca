@@ -212,11 +212,10 @@ ax.set_xticklabels(range(1, mypca.n_components_+1))
 ax.set_xlabel("number of components") 
 ax.set_ylabel("cumulative explained variance") 
 ax.set_ylim(0,1)
-# in case you want to save:
-fig.savefig("pca-explained-variance.png")
+fig.savefig("pca-explained-variance.png")   # optional of course
 \end{minted}
 
-\makebox[\linewidth]{\includegraphics[width=\paperwidth,height=.6\paperheight,keepaspectratio]{pca-explained-variance}}
+\makebox[\linewidth]{\includegraphics[width=\paperwidth,height=.3\paperheight,keepaspectratio]{pca-explained-variance}}
 
 \end{frame}
 
@@ -284,8 +283,10 @@ Notice the big symbols indicating the centroids.
 \begin{frame}[plain,fragile]
 \begin{lstlisting}
 from sklearn.cluster import KMeans
+
 # everything needs to be measured on the same scale,
 # therefore we take the scaled dataset
+
 mykm = KMeans(n_clusters=3).fit(df_s)
 pd.DataFrame({"country":df.index, "cluster":mykm.labels_})
 \end{lstlisting}
@@ -318,9 +319,9 @@ pd.DataFrame({"country":df.index, "cluster":mykm.labels_})
 \begin{minted}{python}
 wss = []
 for i in range(1, 15):
-    km_out = KMeans(n_clusters=i)
-    km_out.fit(df_s)
-    wss.append(km_out.inertia_)
+    km = KMeans(n_clusters=i)
+    km.fit(df_s)
+    wss.append(km.inertia_)
 
 fig, ax = plt.subplots()
 ax.plot(range(1, 15), wss, marker="o")
@@ -328,7 +329,7 @@ ax.set_xlabel("Number of clusters")
 ax.set_ylabel("Within groups sum of squares")
 \end{minted}
 
-\makebox[\linewidth]{\includegraphics[width=\paperwidth,height=.6\paperheight,keepaspectratio]{kmeans-elbow}}
+\makebox[\linewidth]{\includegraphics[width=\paperwidth,height=.3\paperheight,keepaspectratio]{kmeans-elbow}}
 
 \end{frame}
 
@@ -389,9 +390,7 @@ $\Rightarrow$ Ward's linkage is a good default all-rounder choice, especially if
 \end{frame}
 
 
-\subsection{Important notes}
-
-\begin{frame}{Important notes}
+\begin{frame}{Important notes (for \emph{all} techniques today)}
 \begin{block}{Consider the scales of measurement}
 Clustering is based on distances -- if your features are not measured on the same scale, or if it is not meaningful to calculate a numerical distance, it won't produce meaningful results!
 
@@ -411,8 +410,6 @@ To reduce the number of features, but also to have \emph{meaningful} features (d
 
 
 \end{frame}
-
-
 
 
 

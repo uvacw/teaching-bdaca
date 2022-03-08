@@ -34,7 +34,7 @@
 			\item<2->e.g., 2000 labeled cases, 1000 for training, 1000 for testing --- if successful, run on 100,000 unlabeled cases
 		\end{itemize}
 		\item<3-> We use many more independent variables (``features'')
-		\item<4-> For text analysis, IVs can be word frequencies (often weighted, e.g. tf$\times$idf) ($\Rightarrow$BOW-representation)
+		\item<4-> For text analysis, IVs can be, e.g., word frequencies
 	\end{itemize}
 \end{frame}
 
@@ -51,10 +51,10 @@ In the machine learning world, predicting some continous value is referred to as
 \begin{frame}{Classification tasks}
 For many computational approaches, we are actually not that interested in predicting a continous value. Typical questions include:
 \begin{itemize}
-	\item Is this article about topix A, B, C, D, or E?
+	\item Is this article about topic A, B, C, D, or E?
 	\item Is this review positive or negative?
 	\item Does this text contain frame F?
-	\item I this satire? 
+	\item Is this satire? 
 	\item Is this misinformation?
 	\item Given past behavior, can I predict the next click?
 \end{itemize}
@@ -98,7 +98,8 @@ For many computational approaches, we are actually not that interested in predic
 	\item (remember: we have a test dataset that we did \emph{not} use to train the model, so that we can assess how well it predicts the test labels based on the test features)
 	\item To avoid $p$-hacking-like scenario's (which we call ``overfitting''), there are techniques available (cross-validation, later in this course)
 \end{itemize}
-(to make it easier, imagine a binary classfication ("positive"/"negative"), but it doesn't really matter whether there are two or more labels)
+\pause
+To make it easier, we focus on binary classfication (``positive''/``negative''), but it doesn't really matter whether there are two or more labels)
 \end{frame}
 
 
