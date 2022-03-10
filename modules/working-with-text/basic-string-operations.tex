@@ -1,1 +1,151 @@
 \section{Basic string operations}
+
+\begin{frame}{Working with strings}
+\begin{enumerate}[<+->]
+\item string methods that every string has (\texttt{"hello".upper()})
+\item functions that take a string as input (\texttt{len("hello")})
+\item pandas column string methods (\texttt{df["somecolumn"].str.upper()})
+\item applying string methods or functions to a pandas column (\texttt{df["somecolumn"].apply(len)} or \texttt{df["somecolumn"].apply(lambda x: x.upper()})
+\end{enumerate}
+
+\pause
+For today, we assume that our data are a list of strings -- adapt accordingly for pandas.
+\end{frame}
+
+
+\begin{frame}[fragile]{An example says more than 1000 words\ldots}
+\begin{minted}{python}
+# probably read from text file(s) instead, you learned that already...
+data = [ "I <b>really</b> liked this movie! It was great.  ", "  What an awful movie", "Awesome!!!"]
+
+data_stripped = [e.strip() for e in data]
+data_lower = [e.lower() for e in data_stripped]
+data_clean = [e.replace("<b>",").replace("</b>",") for e in data_lower]
+
+# or, more efficient, in one single step:
+data_clean2 = [e.strip().lower().replace("<b>","").replace("</b>","") for e in data]
+\end{minted}
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Two examples says even more:}
+\begin{minted}{python}
+from string import punctuation
+
+# punctuation is just the string '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
+
+text = "This is a test! Let's get rid (of) punct&"
+
+# we make a list of each character in the text but only if it is not
+# a punctuation sign. The, we join the elements of the list directly
+# to each other without anything between it ("")
+cleantext = "".join([c for c in text if c not in punctuation])
+\end{minted}
+\end{frame}
+
+
+\begin{frame}[fragile]{Compine both}
+\begin{minted}{python}
+from string import punctuation
+
+def strip_punctuation(text):
+    return "".join([c for c in text if c not in punctuation])
+
+data_clean3 = [strip_punctuation(e).strip().lower()\
+   .replace("<b>","").replace("</b>","") for e in data]
+    
+\end{minted}
+\end{frame}
+
+
+
+
+\begin{frame}{The toolbox at a glance}
+\begin{block}{Slicing}
+\texttt{mystring[2:5]} to get the characters with indices 2,3,4
+\end{block}
+
+\begin{block}{String methods}
+\begin{itemize}
+	\item \texttt{.lower()} returns lowercased string
+	\item \texttt{.strip()} returns string without whitespace at beginning and end
+	\item \texttt{.find("bla")} returns index of position of substring ``bla'' or -1 if not found
+	\item \texttt{.replace("a","b")} returns string where "a" is replaced by "b"
+	\item \texttt{.count("bla")} counts how often substring ``bla'' occurs
+        \item \texttt{.isdigit()} true if only numbers
+          
+\end{itemize}
+Use tab completion for more!
+\end{block}
+\end{frame}
+
+
+
+
+\begin{frame}[fragile]{From test to large-scale analysis: General approach}
+1. Take a single string and test your idea
+\begin{lstlisting}
+t = "This is a test test test."
+print(t.count("test"))
+\end{lstlisting}
+2a. You'd assume it to return 3. If so, scale it up:
+\begin{lstlisting}
+results = []
+for t in listwithallmytexts:
+    r = t.count("test")
+    print(f"{t} contains the substring {r} times")
+    results.append(r)
+\end{lstlisting}
+
+2b. If you \emph{only} need to get the list of results, a list comprehension is more elegant:
+\begin{lstlisting}
+results = [t.count("test") for t in listwithallmytexts]
+\end{lstlisting}
+
+
+\end{frame}
+
+
+\begin{frame}[fragile]{General approach}
+\Large
+
+\textcolor{red}{Test on a single string, then make a for loop or list comprehension!}
+
+\pause
+
+\normalsize
+
+\begin{alertblock}{Own functions}
+If it gets more complex, you can write your own function and then use it in the list comprehension:
+\begin{lstlisting}
+def mycleanup(t):
+   # do sth with string t here, create new string t2
+   return t2
+  
+results = [mycleanup(t) for t in allmytexts]
+\end{lstlisting}
+\end{alertblock}
+\end{frame}
+
+
+\begin{frame}[fragile]{Pandas string methods as alternative}
+If you select column with strings from a pandas dataframe, pandas offers a collection of string methods (via \texttt{.str.}) that largely mirror standard Python string methods:
+
+\begin{lstlisting}
+df['newcoloumnwithresults'] = df['columnwithtext'].str.count("bla")
+\end{lstlisting} 
+
+
+\pause
+
+\begin{alertblock}{To pandas or not to pandas for text?}
+Partly a matter of taste. 
+
+Not-too-large dataset with a lot of extra columns? Advanced statistical analysis planned? Sounds like pandas.
+
+It's mainly a lot of text? Wanna do some machine learning later on anyway? It's large and (potentially) messy? Doesn't sound like pandas is a good idea.
+\end{alertblock}
+
+\end{frame}
+
