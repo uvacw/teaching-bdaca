@@ -144,26 +144,53 @@ tokens = [d.split() for d in docs]
 \end{frame}
 
 
-\begin{frame}[fragile]{OK, good enough, perfect?}
-	\begin{block}{Tokenizers from the NLTK pacakge}
-		\begin{itemize}
-			\item multiple improved tokenizers that can be used instead of .split()
-			\item e.g., Treebank tokenizer:
-			\begin{itemize}
-				\item split standard contractions ("don't")
-				\item deals with punctuation
-			\end{itemize}			
-		\end{itemize}
-	\end{block}
-\begin{lstlisting}
-from nltk.tokenize import TreebankWordTokenizer
-tokens = [TreebankWordTokenizer().tokenize(d) for d in docs]
-\end{lstlisting}
-\begin{lstlistingoutputtiny}
-[['This', 'is', 'a', 'text'],  ['I', 'have', "n't", 'seen', 'John', "'s", 'derring-do.', 'Second', 'sentence', '!']]
-\end{lstlistingoutputtiny}
-\tiny{Notice the failure to split the \texttt{.} at the end of the first sentence in the second doc. That's because TreebankWordTokenizer expects \emph{sentences} as input. See book for a solution.\\}
+\begin{frame}{OK, good enough, perfect?}
+  \begin{block}{Tokenizers from the NLTK pacakge}
+    \begin{itemize}
+    \item multiple improved tokenizers that can be used instead of .split()
+    \item e.g., Treebank tokenizer:
+      \begin{itemize}
+      \item split standard contractions ("don't")
+      \item deals with punctuation
+      \item BUT: Assumes lists of \emph{sentences}.
+      \end{itemize}
+    \item Solution: Build an own (combined) tokenizer (next slide)!
+    \end{itemize}
+  \end{block}
 \end{frame}
+
+
+\begin{frame}[fragile]{OK, good enough, perfect?}
+\begin{minted}{python}
+import nltk
+import regex
+
+class MyTokenizer:
+    def tokenize(self, text):
+        tokenizer = nltk.tokenize.TreebankWordTokenizer()
+        result = []
+        word = r"\p{letter}"
+        for sent in nltk.sent_tokenize(text):
+            tokens = tokenizer.tokenize(sent)    
+            tokens = [t for t in tokens 
+                      if regex.search(word, t)]
+            result += tokens
+        return result
+        
+mytokenizer = MyTokenizer()
+tokens = [mytokenizer.tokenize(d) for d in docs]
+
+\end{minted}
+
+\begin{lstlistingoutputtiny}
+[['This', 'is', 'a', 'text'], ['I', 'have', "n't", 'seen', 'John', "'s", 'derring-do', 'Second', 'sentence']]
+\end{lstlistingoutputtiny}
+\end{frame}
+
+
+\question{Can you (try to) explain the code?}
+
+
 
 
 \begin{frame}[standout]
@@ -172,14 +199,14 @@ OK, so we can tokenize with a list comprehension (and that's often a good idea!)
 
 
 \begin{frame}[fragile]{OK, good enough, perfect?}
-	\begin{block}{scikit-learn's CountVectorizer (default settings)}
-		\begin{itemize}
-			\item applies lowercasing
-			\item deals with punctuation etc. itself
-			\item minimum word length $>1$
-			\item more technically, tokenizes using this regular expression: \texttt{r"(?u)\textbackslash b\textbackslash w\textbackslash w+\textbackslash b"} \footnote{?u = support unicode, \textbackslash b = word boundary}
-		\end{itemize}
-	\end{block}
+  \begin{block}{scikit-learn's CountVectorizer (default settings)}
+    \begin{itemize}
+    \item applies lowercasing
+    \item deals with punctuation etc. itself
+    \item minimum word length $>1$
+    \item more technically, tokenizes using this regular expression: \texttt{r"(?u)\textbackslash b\textbackslash w\textbackslash w+\textbackslash b"} \footnote{?u = support unicode, \textbackslash b = word boundary}
+    \end{itemize}
+  \end{block}
 \begin{lstlisting}
 from sklearn.feature_extraction.text import CountVectorizer
 cv = CountVectorizer()
@@ -189,19 +216,20 @@ dtm_sparse = cv.fit_transform(docs)
 
 
 \begin{frame}{OK, good enough, perfect?}
-	\begin{block}{CountVectorizer supports more}
-		\begin{itemize}
-			\item stopword removal
-			\item custom regular expression
-			\item or even using an external tokenizer
-			\item ngrams instead of unigrams
-		\end{itemize}
-	\end{block}
-			\tiny{see \url{https://scikit-learn.org/stable/modules/generated/sklearn.feature\_extraction.text.CountVectorizer.html}}
+  \begin{block}{CountVectorizer supports more}
+	  \begin{itemize}
+	  \item stopword removal
+	  \item custom regular expression
+	  \item or even using an external tokenizer
+	  \item ngrams instead of unigrams
+	  \end{itemize}
+  \end{block}
+  \tiny{see \url{https://scikit-learn.org/stable/modules/generated/sklearn.feature\_extraction.text.CountVectorizer.html}}
 
 \pause
 \begin{alertblock}{Best of both worlds}
-\textbf{Use the Count vectorizer with a NLTK-based external tokenizer! (see book)}
+  \textbf{Use the Count vectorizer with the custom NLTK-based external tokenizer we created before!}
+  \texttt{cv = CountVectorizer(tokenizer=mytokenizer.tokenize)}
 \end{alertblock}
 \end{frame}
 
@@ -223,34 +251,8 @@ dtm_sparse = cv.fit_transform(docs)
 
 When using the CountVectorizer, we can simply provide a stopword list. 
 
-But we can also remove stopwords ``by hand'' (next slide):
+But we can also remove stopwords ``by hand'' of course using either a for loop (like we did for punctuation removal) or by modifying the tokennizer (try it!).
 \end{frame}
-
-\begin{frame}[fragile]{Stopword removal}
-\begin{lstlisting}
-from nltk.corpus import stopwords
-mystopwords = stopwords.words("english")
-mystopwords.extend(["test", "this"])
-
-def tokenize_clean(s, stoplist):
-    cleantokens = []
-    for w in TreebankWordTokenizer().tokenize(s):
-        if w.lower() not in stoplist:
-            cleantokens.append(w)
-    return cleantokens
-
-tokens = [tokenize_clean(d, mystopwords) for d in docs]
-\end{lstlisting}
-\begin{lstlistingoutputtiny}
-[['text'], ["n't", 'seen', 'John', 'derring-do.', 'Second', 'sentence', '!']]
-\end{lstlistingoutputtiny}
-
-\begin{alertblock}{You can do more!}
-For instance, in line 8, you could add an \texttt{or} statement to also exclude punctuation.
-\end{alertblock}
-
-\end{frame}
-
 
 
 
@@ -274,7 +276,7 @@ from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 myvectorizer = CountVectorizer(stop_words=mystopwords)
 \end{lstlisting}
 
-CountVectorizer, better tokenization, stopword removal (pay attention that stopword list uses same tokenization!):
+CountVectorizer, other tokenization, stopword removal (pay attention that stopword list uses same tokenization!):
 \begin{lstlisting}
 myvectorizer = CountVectorizer(tokenizer = TreebankWordTokenizer().tokenize, stop_words=mystopwords)
 \end{lstlisting}
@@ -360,13 +362,13 @@ cleaneddocswithoutstopwords = [" ".join([w for w in d.split() if w not in mystop
 \question{How would you do it?}
 
 \begin{frame}[plain]
-I tend to go for Option 2 because
+Sometimes, I go for Option 2 because
 \begin{itemize}
 	\item I like to inspect a sample of the documents
 	\item I can re-use the cleaned docs irrespective of the Vectorizer
 \end{itemize}
 
-But sometimes, I opt of Option 1 instead because
+But at other times, I opt of Option 1 instead because
 \begin{itemize}
 	\item I want to systematically compare the effect of different choices in a machine learning pipeline (then I can simply vary the vectorizer instead of the data)
 	\item I want to use techniques that are geared towards little or no preprocessing (deep learning)

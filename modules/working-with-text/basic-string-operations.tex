@@ -45,7 +45,7 @@ cleantext = "".join([c for c in text if c not in punctuation])
 \end{frame}
 
 
-\begin{frame}[fragile]{Compine both}
+\begin{frame}[fragile]{Combine both}
 \begin{minted}{python}
 from string import punctuation
 
@@ -62,6 +62,7 @@ data_clean3 = [strip_punctuation(e).strip().lower()\
 
 
 \begin{frame}{The toolbox at a glance}
+  \footnotesize
 \begin{block}{Slicing}
 \texttt{mystring[2:5]} to get the characters with indices 2,3,4
 \end{block}
@@ -71,7 +72,7 @@ data_clean3 = [strip_punctuation(e).strip().lower()\
 	\item \texttt{.lower()} returns lowercased string
 	\item \texttt{.strip()} returns string without whitespace at beginning and end
 	\item \texttt{.find("bla")} returns index of position of substring ``bla'' or -1 if not found
-	\item \texttt{.replace("a","b")} returns string where "a" is replaced by "b"
+	\item \texttt{.replace("a","b")} returns string with "a" replaced by "b"
 	\item \texttt{.count("bla")} counts how often substring ``bla'' occurs
         \item \texttt{.isdigit()} true if only numbers
           
