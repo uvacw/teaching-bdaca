@@ -11,10 +11,10 @@ list_w_urls = ["some text with a url http://www.youtube.com... ",
 # option 1: one list
 results = []
 for e in list_w_urls:
-    results.extend(re.findall(r"https?://[\w\.]+", e))
+    results.extend(re.findall(r"https?://[\w\.]+\b|www\.[\w\w.]+\b", e))
 
 print(results)
 
 # option2: nested lists
-results2 = [re.findall(r"https?://[\w\.]+\b", e) for e in list_w_urls]
+results2 = [re.findall(r"https?://[\w\.]+\b|www\.[\w\w.]+\b", e) for e in list_w_urls]
 print(results2)
