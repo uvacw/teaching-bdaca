@@ -36,19 +36,19 @@
 
 
 
-\subsection{(Traditional)) non-SML approaches}
+\subsection{One step back: (Traditional) non-SML approaches}
 
 \begin{frame}{Let's consider three tasks}
-	For a given text (say, a news article, a press release, a review), determine the
-	\begin{description}
-		\item[sentiment] e.g., [positive|neutral|negative]
-		\item[topic] e.g., [sports|economy|politics|entertainment|other]
-		\item[frames] e.g., [economic|human|moral|conflict], or non-exclusive: economic = [0|1], human = [0|1], \ldots
-	\end{description}
+  For a given text (say, a news article, a press release, a review), determine the
+  \begin{description}
+  \item[sentiment] e.g., [positive|neutral|negative]
+  \item[topic] e.g., [sports|economy|politics|entertainment|other]
+  \item[frames] e.g., [economic|human|moral|conflict], or non-exclusive: economic = [0|1], human = [0|1], \ldots
+  \end{description}
 \end{frame}
 
 
-\question{What would be the strengths and weaknesses of different approaches for each of these tasks?}
+\question{What would be the strengths and weaknesses of different approaches from the classification by \cite{Boumans2016} for each of these tasks?}
 
 
 \question{Imagine using a dictionary-based (list of keywords, list of regular expressions, or similar) approach to these tasks. How does the design (length, inclusiveness, etc.) of this list influence precision and recall?}
@@ -80,6 +80,11 @@
       \end{itemize}
     \end{alertblock}
   \end{columns}
+\end{frame}
+
+
+\begin{frame}[standout]
+Let's discuss SML for text with the example of \textcolor{orange}{sentiment analysis}.
 \end{frame}
 
 
@@ -189,8 +194,7 @@
 
 \subsection{Diving into SML}
 
-
-
+% Misschien hier maar wat nieuwere voorbeelden nemen?
 
 \begin{frame}{SML to code frames and topics}
   \begin{block}{Some work by \cite{Burscher2014} and \cite{Burscher2015} }
@@ -296,11 +300,11 @@ print("Recall: {0}".format(metrics.recall_score(actual, predictions, pos_label=1
 \end{frame}
 
 \begin{frame}[fragile]{Playing around with new data}
-\begin{lstlisting}
+\begin{minted}{python}
 newdata=vectorizer.transform(["What a crappy movie! It sucks!", "This is awsome. I liked this movie a lot, fantastic actors","I would not recomment it to anyone.", "Enjoyed it a lot"])
 predictions = nb.predict(newdata)
 print(predictions)
-\end{lstlisting}
+\end{minted}
 This returns, as you would expect and hope:
 \begin{lstlisting} 
 [-1  1 -1  1]
@@ -487,13 +491,16 @@ This returns, as you would expect and hope:
 
 
 
+\begin{frame}{Looking forward: Beyond classic SML}
+Note that classic SML is still based on word frequencies with weights (and hence cannot solve all problems we started off with). State-of-the art approaches like deep learning and transformers address this issue -- but that's for another time.
+  
+\end{frame}
 
 
 
 
 
 
-\section{Summing up}
 
 \question{Any questions?}
 
@@ -503,10 +510,6 @@ This returns, as you would expect and hope:
   \item rough understanding of different techniques and when to use them
   \item evaluation metrics (e.g., precision, recall)
 \end{itemize}
-\end{frame}
-
-\begin{frame}[standout]
-  Let's do an exercise!
 \end{frame}
 
 
