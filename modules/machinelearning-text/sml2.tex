@@ -231,7 +231,7 @@ You could also use a combined approach where you first use a handwritten loop to
 \subsection{A typical case for gridsearch: The regularization parameter C}
 
 
-\begin{frame}{The regularization parameter $\lambda$ (or $C = .5n\lambda$)}
+\begin{frame}{The regularization parameter $\lambda$ (or $C = 1/\lambda$)}
 $$
 %\underset{\boldsymbol{\beta}}{\arg \min }\left[\sum_{i=1}^{n}\left(Y_{i}-\beta_{0}-\sum_{j=1}^{p} \beta_{j} X_{j i}\right)^{2}+\lambda \sum_{j=1}^{p}\left|\beta_{j}\right|^{q}\right]
 \underset{\boldsymbol{\beta}}{\arg \min }\left[\color{blue} \sum_{i=1}^{n}\left(Y_{i}-\beta_{0}-\sum_{j=1}^{p} \beta_{j} X_{j i}\right)^{2}\color{orange} +\lambda \sum_{j=1}^{p}\left|\beta_{j}\right|^{q} \color{black} \right]
@@ -243,7 +243,7 @@ $$
 \color{black}
 \pause
 
-If $\lambda$ is larger, we punish more.
+If $\lambda$ is larger ($C$ is smaller), we punish more.
 
 \tiny{If $q=1$, we call it L1 regularization. If we add the squared coefficients ($q=2$), we call it L2 regularization.}
 \end{frame}
