@@ -1,4 +1,4 @@
-# Potential solution belong to [morning exercise](exercise-morning.md) with data of Vermeer
+# Potential solution belong to [exercise 2](README.md) with data of Vermeer
 
 ```python
 import sys
