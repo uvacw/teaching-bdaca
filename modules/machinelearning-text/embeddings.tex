@@ -42,11 +42,11 @@
 \begin{frame}{GloVe vs Word2Vec}
   There are two popular approaches to training word embeddings: GloVe and word2vec.
   \begin{itemize}
-  \item GloVe is count-based: dimensionality reduction on the co-occurrence counts matrix.
+  \item GloVe is count-based: dimensionality reduction on the co-occurrence count matrix.
   \item Word2Vec is a predictive model: neural network to predict words/contexts
-  \item That means that GloVe takes global context into account, word2vec local context
+  \item That means that GloVe takes \emph{global} context into account, word2vec \emph{local} context
   \item Some technical implications for how training can be implemented 
-  \item \textbf{However, only subtle differences in final result.}
+  \item \textbf{However, often only subtle differences in final result.}
   \end{itemize}
 \end{frame}
 
@@ -92,12 +92,12 @@
 
 
 
-\begin{frame}{``...a word is characterized by the company it keeps...''\cite{Firth1957}}
+\begin{frame}{``...a word is characterized by the company it keeps...''\parencite{Firth1957}}
   \begin{block}{Word embeddings \ldots}
     \begin{itemize}
     \item help capturing the meaning of text
     \item are low-dimensional vector representations that capture semantic meaning
-    \item are state-of-the-art in NLP...
+    \item are very common in NLP...
     \end{itemize}
   \end{block}
 
@@ -118,18 +118,93 @@
 
 \subsection[Improving models]{Using word embeddings to improve models}
 
+\question{What can we use word embeddings for?}
+
 \begin{frame}{In supervised machine learning}
   \begin{itemize}[<+->]
-  \item Modify CountVectorizer or TfIdfVector such that for each term, you do not only count how often it occurs, but also multiply with its embedding vector
+  \item For instance, we could modify our vectorizer such that for each term, you do not only count how often it occurs, but also multiply with its embedding vector
+  \item Aggregate these embeddings (e.g., sum or mean) and represent document with 300 instead of 10,000 dimensions!
   \item Often, pre-trained embeddings (e.g., trained on the whole wikipedia) are used
   \item Thus, our supervised model will be able to deal with synonyms and related words!
   \end{itemize}
+
+
   
   \pause 
   Let's look at an example for using supervised sentiment analysis (i.e., what we did with IMDB-data before).
   
 	
 \end{frame}
+
+
+
+\begin{frame}{In classical SML:}
+\begin{itemize}[<+->]
+\item we represent each document by a vector of word frequencies (or tf$\cdot$ idf scores)
+\item use these vectors to predict the label
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[plain]
+        	\begin{table}[]
+	        	\resizebox{\textwidth}{!}{%
+			\begin{tabular}{lllllllll}
+				& ability & about & above & \ldots & zippered  & zealotry & $\rightarrow$ & \textcolor{orange}{topic} \\
+				text1 & \ding{110}  & \ding{110}  &\ding{110}  & \ldots & \ding{110}  & \ding{110} & $\rightarrow$ &\textcolor{orange}{\ding{110}}  \\
+				text2 & \ding{110}  & \ding{110}   &\ding{110} & \ldots  & \ding{110}  & \ding{110} & $\rightarrow$ &\textcolor{orange}{\ding{110}} \\
+				text3 & \ding{110}  & \ding{110}   &\ding{110} & \ldots & \ding{110}  & \ding{110} & $\rightarrow$ &\textcolor{orange}{\ding{110}} \\
+				text4 & \ding{110}  & \ding{110}  &\ding{110} & \ldots  & \ding{110}  & \ding{110} & $\rightarrow$ &\textcolor{orange}{\ding{110}} \\
+				&&&&&&& \\
+				new case & \ding{110}  & \ding{110}  & \ding{110}  & \ldots & \ding{110}  & \ding{110} & $\rightarrow$ &\textbf{\textcolor{orange}{?}} \\
+			\end{tabular}%
+		}
+		\raggedright	
+		For instance, topic can be [``sports'', ``economy'', ``politics''] and the other entries are word frequencies
+	\end{table}
+\end{frame}
+
+
+
+\begin{frame}{The idea}
+  We modify our vectorizer such that
+  \begin{itemize}[<+->]
+  \item for each word in the document, we look up its embedding
+  \item we then aggregate these embeddings (e.g., mean, max, or sum)
+  \item For each document, we now have a 300-dimensional instead of a 10,000-dimensional vector\footnote{in the case of a 300-dimensional embedding model and a vocabulary size of 10,000 of the traditional CountVectorizer)}
+  \end{itemize}
+\tiny{Example implementation at \url{https://github.com/ccs-amsterdam/embeddingvectorizer}}	
+\end{frame}
+
+
+
+\begin{frame}{What does that mean?}
+	A couple of things:
+	\begin{itemize}[<+->]
+		\item Our model is smaller
+		\item We can use words in the prediction dataset \emph{even if it's not in the training dataset}\footnote{as long as it's in the embedding model, of course}
+		\item We can learn from similar training samples even if they do not use the same words
+		\item But we also may loose some nuance
+	\end{itemize}
+\end{frame}
+
+
+
+
+\begin{frame}{Let's look at an example}
+	As we see, not \emph{all} embedding models are improving downstream tasks -- but good ones can:
+	\url{https://github.com/annekroon/amsterdam-embedding-model}
+	
+	\instruction{explain results in README.md}
+\end{frame}
+
+
+
+
+
+
+
+
 
 
 
@@ -150,6 +225,7 @@
 \end{frame}
 
 
+\subsection{Document similarity}
 
 \begin{frame}{In document similarity calculation}
   \begin{block}{Use cases}
@@ -171,7 +247,7 @@
 
 \begin{frame}[plain]
 	BUT: This only works for literal overlap. What if the writer chooses synonyms?
-	\pause 
+
 	
 	\makebox[\linewidth]{\includegraphics[width=\linewidth,height=\textheight, keepaspectratio]{wmd}}
 	
@@ -218,14 +294,11 @@
 \end{frame}
 
 
-\begin{frame}{An exmaple from our research}
+\begin{frame}{An exmaple from our research \parencite{Kroon2021}}
 	We trained word embeddings on 3.3 million Dutch news articles.
 	
 	Are vector representations of outgroups (Maroccans, Muslims) closer to representations of negative stereotype words than ingroups?
-	\vspace{.5cm}
-	
-	\tiny{Kroon, A.C., Van der Meer, G.L.A., Jonkman, J.G.F., \&Trilling, D. (in press): Guilty by Association: Using Word Embeddings to Measure Ethnic Stereotypes in News Coverage. \emph{Journalism \& Mass
-			Communication Quarterly}}
+
 \end{frame}
 
 
@@ -345,17 +418,10 @@
 	\makebox[\linewidth]{\includegraphics[width=\linewidth,height=\textheight, keepaspectratio]{evaluation_data.png}}
 \end{frame}
 
-%As can be seen, the AEM (= Amsterdam Embedding Model) outperfoms the other models on both syntactic analogies and semantic analogies. 
-
-%\subsection{Illustration}
-\begin{frame}{Illustration}
-	Illustration - Using the Amsterdam Embedding Model
-\end{frame}
-
-%Let's see what the model has learned about Dutch language. Now, we will provide some illustrations of how well the AEM understands the Dutch language. More specifically, we will provide a 2 dimensional visualisation of some random Dutch words in the word vector space..
 
 
-\subsection{}
+
+
 \begin{frame}{}
 	\makebox[\linewidth]{\includegraphics[width=\linewidth,height=\textheight, keepaspectratio]{aem-w2v_300_illustration.png}}
 \end{frame}
@@ -409,12 +475,10 @@
 
 
 
-\section{Downstream tasks}
-
-\subsection{Document comparison}
+\subsection{Downstream tasks}
 
 
-\begin{frame}{An example \parencite{Trilling2021}}
+\begin{frame}{Document comparison: An example \parencite{Trilling2021}}
   Let's say we have a large corpus of news articles and what to find those that are about the same events.
   
 \end{frame}
