@@ -1,0 +1,229 @@
+\section{Multimedia data}
+
+\subsection{Representing multimedia data}
+
+\begin{frame}{Two types of pictures}
+  \begin{block}{Pixel graphics (also called bitmap or raster graphic)}
+    \begin{itemize}
+    \item a matrix of pixels ($\approx$ square dots) of a color
+    \item therefore, loosing quality when scaling (especially  up)
+    \item photos, screenshots, \ldots
+    \item jpg, png, tiff, \ldots
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Two types of pictures}
+  \begin{block}{Vector graphics}
+    \begin{itemize}
+    \item geometric shapes
+    \item therefore, fully scalable
+    \item drawings, plots, \ldots
+    \item svg, eps, \ldots
+    \end{itemize}
+  \end{block}
+  \pause
+
+  \textbf{We can easily convert vector graphics to pixel graphics -- the other way around only approximately (or not at all)}
+\end{frame}
+
+
+\question{Not focus of today, but important: How would you store graphs for a report you want to publish?}
+
+
+
+\begin{frame}{Our focus today}
+  \begin{itemize}
+  \item We focus on pixel graphics
+  \item Note that moving images are just a series of pixel graphics! (traditional movies: 24 per second)
+  \item Hence, the techniques discussed today can be applied to (stills from) films as well
+  \end{itemize}
+\end{frame}
+
+
+\question{If pixel graphics are just a series of colored points, do we need something like the vectorizer we needed to transform words to numbers?}
+
+
+\begin{frame}{Representing pixel graphics}
+  \begin{block}{Grayscale images}
+    \begin{itemize}
+    \item If the picture is $200\times 300$ pixel, we have a two-dimensional matrix with $200\times 300 = 60,000$ pixels
+    \item With a color depth of 1 byte = 8 bit = $2^8=256$, each of these pixels is an integer between 0 and 255
+    \item \textbf{Two dimensions instead of one (for text)} -- but we can \emph{flatten} the matrix to a one-dimensional vector (``vectorize'' it, if you want\ldots) (in this case, of length 60,000)
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}{Representing pixel graphics}
+  \begin{block}{Color images (RGB)}
+    \begin{itemize}
+    \item Per pixel, we now have three color values (Red, Green, Blue) instead of one (Gray)
+    \item Hence, our matrix becomes three-dimensional: $200\times 300\times 3 = 180,000$ integers between 0 and 255
+    \end{itemize}
+  \end{block}
+\end{frame}
+  
+
+\begin{frame}{What can we do with images in Python?}
+  \begin{itemize}
+  \item PIL (Pillow), the Python Image Library, provides many typical image operations (reading, displaying, cropping, color transformations)
+  \item That's cool for batch processing (a for-loop and you can resize thousands of images\ldots)
+  \item But more imporantly: \textbf{It's just a vector/matrix of integers, so we can do machine learning just like we did before!}
+  \end{itemize}
+\end{frame}
+
+  
+
+\subsection{Classic SML}
+
+\begin{frame}{First approach}
+  \begin{itemize}
+  \item If each picture is just a vector of integers, scikit-learn works \emph{exactly the same} as for survey data (Chapter 8) or text (Chapter 11).
+  \item Typical example: recognizing hand-written characters with a Random Forest (Example 14.10) or a Support Vector Machine\footnote{\url{https://scikit-learn.org/stable/auto\_examples/classification/plot\_digits\_classification.html}}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{This is impressive!}
+\begin{lstlistingoutputtiny}
+Classification report for classifier SVC(gamma=0.001):
+              precision    recall  f1-score   support
+
+           0       1.00      0.99      0.99        88
+           1       0.99      0.97      0.98        91
+           2       0.99      0.99      0.99        86
+           3       0.98      0.87      0.92        91
+           4       0.99      0.96      0.97        92
+           5       0.95      0.97      0.96        91
+           6       0.99      0.99      0.99        91
+           7       0.96      0.99      0.97        89
+           8       0.94      1.00      0.97        88
+           9       0.93      0.98      0.95        92
+
+    accuracy                           0.97       899
+   macro avg       0.97      0.97      0.97       899
+weighted avg       0.97      0.97      0.97       899
+\end{lstlistingoutputtiny}
+\tiny{\url{https://scikit-learn.org/stable/auto\_examples/classification/plot\_digits\_classification.html}}
+
+\end{frame}
+
+
+\question{Can you explain why this works?}
+
+
+\begin{frame}{The intuition behind it}
+  If the images are cropped and resized equally (!)\ldots
+
+  \vspace{1cm}
+  
+  \ldots then the pixels in the center should be white for a 0 but dark for a 8.
+\end{frame}
+
+
+\question{Can you name tasks for which you think this would \emph{not} work?}
+
+
+
+
+\subsection{Deep Learning}
+
+\question{Do you remember what the reason for using deep learning in text classification was?}
+
+\begin{frame}{Say we want to recognize whether an image is a cat or a dog\ldots}
+  \begin{itemize}
+  \item Can we really say that the color of a pixel maps directly to the ``catness'' or ``dogness'' of the picture?
+  \item Or should it not rather be about their fur, the shape of the ears, \ldots
+  \item But it seems impossible to engineer these features by hand :-(
+  \end{itemize}
+
+  \pause
+
+  Let's use a deep neural network to learn them!
+\end{frame}
+
+
+\begin{frame}[plain]
+\begin{figure}
+  \centering
+ \begin{neuralnetwork}[height=5]
+        \newcommand{\x}[2]{$x_####2$}
+        \newcommand{\y}[2]{$\hat{y}_####2$}
+        \newcommand{\hfirst}[2]{\small $h^{(1)}_####2$}
+        \newcommand{\hsecond}[2]{\small $h^{(2)}_####2$}
+        \inputlayer[count=5, bias=false, title=Input\\layer, text=\x]
+        \hiddenlayer[count=4, bias=false, title=Hidden\\layer 1, text=\hfirst] \linklayers
+        \hiddenlayer[count=4, bias=false, title=Hidden\\layer 2, text=\hsecond] \linklayers
+        \hiddenlayer[count=4, bias=false, title=Hidden\\layer 3, text=\hsecond] \linklayers
+        \outputlayer[count=1, title=Output\\layer, text=\y] \linklayers
+\end{neuralnetwork}
+\caption{A neural network. \label{fig:hiddenlayers}}
+\end{figure}
+\end{frame}
+
+
+\question{Are you really seriously interested in classifying dogs and cats? There are many tutorials, e.g. here: \tiny{\url{https://machinelearningmastery.com/how-to-develop-a-convolutional-neural-network-to-classify-photos-of-dogs-and-cats/}}}
+
+\begin{frame}{How do we do this?}
+  \begin{itemize}
+  \item For deep learning, we use \texttt{keras} instead of \texttt{scikit-learn}
+  \item You need to specify the \emph{architecture} of the network
+  \item The process is resource-intensive
+  \end{itemize}
+\end{frame}
+
+
+TODO ADD SLIDES OVER DIFFERENT ARCHITECTURES!!!!
+
+TODO ADD EXAMPLE OF SELF-TRAINED NETWORK FROM BOOK
+
+\begin{frame}{Training your own neural network?}
+  If you have a very specific task and an annotated dataset -- sure!
+
+  But:
+  \begin{itemize}
+  \item Can be \emph{very} resource-intensive
+  \item There are so many architectures, and you can't possibly know the best ones without being an expert
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Training your own neural network?}
+  \begin{block}{Solution 1: Using a pre-trained model}
+    TODO HIER IETS OVER RESNET OF ZO/IMAGENET
+  \end{block}
+\end{frame}
+
+\begin{frame}{Training your own neural network?}
+  \begin{block}{Solution 2: Fine-tuning a pre-trained model}
+    TODO HIER IETS TOEVOEGEN
+  \end{block}
+\end{frame}
+
+
+\begin{frame}{Training your own neural network?}
+  \begin{block}{Solution 3: A (commercial) API}
+    (next section)
+  \end{block}
+\end{frame}
+
+
+  
+
+
+
+\subsection{(Commercial) APIs}
+
+
+
+\begin{frame}{}
+  \begin{itemize}
+  \item 
+  \end{itemize}
+\end{frame}
+
+
+% discuss black-box nature
+
+% documentation + python examples cloud vision: https://machinelearningmastery.com/how-to-develop-a-convolutional-neural-network-to-classify-photos-of-dogs-and-cats/
