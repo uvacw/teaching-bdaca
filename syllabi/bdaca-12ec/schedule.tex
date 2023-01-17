@@ -4,59 +4,49 @@ Make sure that you have a working Python environment installed on your computer.
 
 \section*{PART I: Basics of Python and ACA}
 
-\section*{Week 1: What is Computational Social Science, and why Python?}
-\subsection*{Wednesday, 8--2. Lecture.}
+\section*{Week 1: Programming for Computational (Communication\textbar Social) Scientists}
+\subsection*{Wednesday, 8--2. Lecture with exercises.}
 We discuss what Big Data and Computational (Social\textbar Communication) Science are. We talk about challenges and opportunities as well as the implications for the social sciences in general and communication science in particular. We also pay attention to the tools used in CSS, in particular to the use of Python.
 
 Mandatory readings (in advance):  \cite{boyd2012}, \cite{Kitchin2014}, \cite{Hilbert2019}.
 
 Additionally, the journal \textit{Commmunication Methods and Measures} had a special issue (volume 12, issue 2--3) about Computational Communication Science. Read at least the editorial \citep{VanAtteveldt2018a}, but preferably, also some of the articles (you can also do that later in the course).
 
+Towards the end of the lecture, we will make first contact with writing code.
 
-\subsection*{Friday, 1--2. Lab session.}
-\textsc{\ding{52} Chapter 2: Fun with data}\\
 
-During the lab session, we will run our first code. We will showcase some possibilities, and leave the technical background for next week. Also, we will discuss different ways of running Python code. In particular, we will get used to working with classic Jupyter Notebooks and JupyterLab. We will also briefly look at other ways of running Python code. At the end of the session, you should have developed a workflow that works \emph{for you}.
+\subsection*{Friday, 1--2. Lecture with exercises.}
+\textsc{\ding{52} Chapter 3: Programming concepts for data analysis}\\
+\textsc{\ding{52} Chapter 4: How to write code}\\
+
+You will get a very gentle introduction to computer programming. During the lecture, you are encouraged to follow the examples on your own laptop.
+
+We will do our first real steps in Python and do some exercises to get the feeling with writing code.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section*{Week 2: Programming concepts and writing code}
+\section*{Week 2: From files and APIs to lists, dictionaries, or dataframes}
+\textsc{\ding{52} Chapter 5: From file to dataframe and back}\\
+
+We talk about file formats such as \texttt{csv} and \texttt{json}; about encodings; about reading these formats into basic Python structures such as dictionaries and lists as opposed to reading them into dataframes; and about retrieving such data from local files, as parts of packages, and via an API.
 
 \subsection*{Wednesday, 15--2. Lecture.}
-\textsc{\ding{52} Chapter 3: Programming concepts for data analysis}\\
-You will get a very gentle introduction to computer programming. During the lecture, you are encouraged to follow the examples on your own laptop.
+A conceptual overview of different file formats and data sources, and some practical guidance on how to handle such data in basic Python and in Pandas.
 
 
 \subsection*{Friday, 17--2. Lab session.}
-\textsc{\ding{52} Chapter 4: How to write code}\\
-We will do our first real steps in Python and do some exercises to get the feeling.
+We will exercise with the data structures we learned in week 1, as well as with different file formats.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section*{Week 3: From files and APIs to lists, dictionaries, or dataframes}
-We talk about file formats such as \texttt{csv} and \texttt{json}; about encodings; about reading these formats into basic Python structures such as dictionaries and lists as opposed to reading them into dataframes; and about retrieving such data from local files, as parts of packages, and via an API.
-
-
-\subsection*{Wedneday, 22--2. Lecture.}
-\textsc{\ding{52} Chapter 5: From file to dataframe and back}\\
-A conceptual overview of different file formats and data sources, and some practical guidance on how to handle such data in basic Python and in Pandas.
-
-\subsection*{Friday, 24--2. Lab session.}
-\textsc{\ding{52} Chapter 12.1: Using web APIs: from open resources to Twitter}\\
-We will write a script to collect and handle some JSON data.
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\section*{Week 4: Data wrangling and exploratory data analysis}
+\section*{Week 3: Data wrangling and exploratory data analysis}
 Of course, you don't need Python to do statistics. Whether it's R, Stata, or SPSS -- you probably already have a tool that you are comfortable with. But you also do not want to switch to a different environment just for getting a correlation. And you definitly don't want to do advanced data wrangling in SPSS\ldots
 This week, we will discuss different ways of organizing your data (e.g., long vs wide formats) as well as how to do conventional statistical tests and simple plots in Python.
 
 
-\subsection*{Wednesday, 1--3. Lecture}
+\subsection*{Wedneday, 22--2. Lecture.}
 \textsc{\ding{52} Chapter 6: Data wrangling}\\
 \textsc{\ding{52} Chapter 7.1. Simple exploratory data analysis}\\
 \textsc{\ding{52} Chapter 7.2. Visualizing data}\\
@@ -64,53 +54,54 @@ This week, we will discuss different ways of organizing your data (e.g., long vs
 We will learn how to get your data in the right shape and how to get a first understanding of your data, using exploratory analysis and visualization techniques. We will cover data wrangling with pandas: converting between wide and long formats (melting and pivoting), aggregating data, joining datasets, and so on.
 
 
-\subsection*{Friday, 3--3. Lab session.}
+\subsection*{Friday, 24--2. Lab session.}
 We will apply the techniques discussed during the lectures to multiple datasets.
+
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\section*{Week 5: Statistical Modeling and Machine Learning}
+\section*{Week 4: Machine learning basics}
 In this week, we will make the transition from classic statistical modeling as you know it from your previous courses to machine learning. We will discuss how both approaches are related  (or even identical) and where the differences are.
 
 
-\subsection*{Wednesday, 8--3. Lecture.}
-
+\subsection*{Wednesday, 1--3. Lecture}
 \textsc{\ding{52} Chapter 7.3. Clustering and Dimensionality Reduction}\\
 \textsc{\ding{52} Chapter 8: Statistical Modeling and Supervised Machine Learning}\\
 \textsc{\ding{54} (you can skip 8.4 Deep Learning for now)}\\
 
 We will discuss what unsupervised and supervised machine learning are, what they can be used for, and how they can be evaluated.
 
-\subsection*{Friday, 10--3. Lab session.}
+\subsection*{Friday, 3--3. Lab session.}
+
 Departuring from a brief encounter with statsmodels \citep{statsmodels}, a library for statistical modelling, you will learn how to work with scikit-learn \citep{scikit-learn}, one of the most well-known machine learning libraries.
 
 \subsection*{Take-home exam}
-In week 5, the first midterm take-home exam is distributed after the Friday meeting. The answer sheets and all files have to be handed in no later than the day before the next meeting, i.e. Tuesday evening (15--5, 23.59).
+In week 5, the first midterm take-home exam is distributed after the Friday meeting. The answer sheets and all files have to be handed in no later than the day before the next meeting, i.e. Tuesday evening (14--5, 23.59).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
-
-\section*{Week 6: Processing textual data}
+\section*{Week 5: Processing textual data}
 In this week, we will dive into how to deal with textual data. How is text represented, how can we process it, and how can we extract useful information from it?
 Unfortunately, text as written by humans usually is pretty messy.  We will therefore dive  into ways to represent text in a clean(er) way. We will introduce the Bag-of-Words (BOW) representation and show multiple ways of transforming text into matrices.
 
 
-\subsection*{Wedneday, 15--3. Lecture.}
+\subsection*{Wedneday, 8--3. Lecture.}
 \textsc{\ding{52} Chapter 9: Processing text}\\
 \textsc{\ding{52} Chapter 10: Text as data}\\
-\textsc{\ding{52} Chapter 11: Automatic analysis of text}\\
-\textsc{\ding{54} (you can skip 11.4 and 11.5 for now)}\\
+\textsc{\ding{52} Chapter 11, Sections 11.1--11.3: Automatic analysis of text}\\
   
 This lecture will introduce you to techniques and concepts like lemmatization, stopword removal, n-grams, word counts and word co-occurrances, and regular expressions. We then proceed to introducing BOW representations of text.
 
 Additional recommended background reading on stopwords: \cite{Nothman2018}.
 
 
-\subsection*{Friday, 17--3. Lab session.}
+\subsection*{Friday, 10--3. Lab session.}
 You will combine the techiques discussed on Wednesday and write a first automated content analysis script.
 
 
@@ -121,18 +112,32 @@ You will combine the techiques discussed on Wednesday and write a first automate
 
 
 
-\section*{Week 7: Web scraping}
-Reserve some time for exercising in this week. Web scraping can be really hard, because there are so many specifics of specific websites to consider. After all, every website is different, and we need to customize scrapers for every site! At the same time, it is one of the most useful techniques to know, and the majority of students in previous cohorts used web scraping as a part of their final project.
+\section*{Week 6: Supervised Approaches to Text Analysis}
+\textsc{\ding{52} Chapter 11, Section 11.4: Automatic analysis of text}\\
+
+
+\subsection*{Wednesday, 15--3. Lecture.}
+We discuss why and when to choose supervised machine learning approaches as opposed to dictionary- or rule-based approaches, and explore how BOW representations can be used as an input for supervised machine learning.
+
+Mandatory reading: \cite{Boumans2016}.
+
+
+\subsection*{Friday, 17--3. Lab session.}
+Exercises with scikit-learn.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Week 7: Supervised Approaches to Text Analysis II}
 
 
 \subsection*{Wednesday, 22--3. Lecture.}
-\textsc{\ding{52} Chapter 12: Scraping online data}\\
-We will explore techniques to download data from web pages and to extract meaningful information like the text (or a photo, or a headline, or the author) from an article on \url{http://nu.nl}, a review (or a price, or a link) from \url{http://kieskeurig.nl}, or similar.
+We will continue with the topic in week 8, with special attention on how to find the best model using techniques such as crossvalidation and gridsearch.
 
 \subsection*{Friday, 24--3. Lab session.}
-We will exercise with web scraping and parsing.
-
-
+Exercises with scikit-learn.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -147,16 +152,20 @@ We will exercise with web scraping and parsing.
 \section*{PART II: Advanced analyses}
 
 
-\section*{Week 8: Supervised Approaches to Text Analysis}
-\textsc{\ding{52} Chapter 11: Automatic analysis of text}\\
-\textsc{\ding{54} (you can skip 11.5. Unsupervised text analysis: topic modeling for now)}\\
+\section*{Week 8: Beyond Bag-of-Words}
+
+\subsection*{Wednesday, 5--4. Lecture with exercises.}
+\textsc{\ding{52} Chapter 10.3.3. Word Embeddings}\\
+\textsc{\ding{52} Chapter 8.3.5. Neural Networks}\\
+\textsc{\ding{52} Chapter 8.4. Deep Learning}\\
+
+In this week, we will talk about a problem of standard forms of ACA: they treat words as independent from each other, and as either present or absent. For instance, if ``teacher'' is a feature in a specific model, and a text mentions ``instructor'', then this is not captured -- even though it probably should matter, at least to some extend. Word embeddings are a technique to overcome this problem. But also, they can reveal hidden biases in the texts they are trained on. You will also be provided with examples for how to apply a word2vec model and get a short introduction to keras.
+
+Mandatory readings (in advance): \cite{Kusner2015} and \cite{Garg2017}.
 
 
-\subsection*{Wednesday, 5--4. Lecture.}
 
-We discuss why and when to choose supervised machine learning approaches as opposed to dictionary- or rule-based approaches, and explore how BOW representations can be used as an input for supervised machine learning.
 
-Mandatory reading: \cite{Boumans2016}.
 
 \subsection*{Friday, 8--4. No meeting (Good Friday).}
 
@@ -164,49 +173,19 @@ Mandatory reading: \cite{Boumans2016}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section*{Week 9: Supervised Approaches to Text Analaysis II}
+\section*{Week 9: Transformers}
+%\textsc{\ding{52} Chapter XX: (new chapter on BERT etc)}\\
 
 \subsection*{Wednesday, 12--4.}
 
-We will continue with the topic in week 8, with special attention on how to find the best model using techniques such as crossvalidation and gridsearch.
+idea behind transformers
+finetuning
+few-shot, zero-shot, etc.
 
 
-\subsection*{Friday, 14--4. Lab session.}
-Exercises with scikit-learn.
+Mandatory reading (in advance): \cite{Bender2021}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\section*{Week 10: Unsupervised Machine Learning for Text}
-\textsc{\ding{52} Chapter 11.5. Unsupervised text analysis: Topic modeling}\\
-
-\subsection*{Wednesday, 19-4. Lecture.}
-Mandatory readings (in advance): \cite{Maier2018a} and \cite{Tsur2015}.
-
-We will discuss Latent Dirichlet Allication (LDA) topic models. We will contrast them with other unsupervised machine learning approaches such as principal component analysis, k-means clustering, and hiearchical clustering.
-
-
-\subsection*{Friday, 21-4. Lab session.}
-You will apply the techniques discussed on Wednesday using gensim \citep{Rehurek2010}.
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-\section*{Week 11: Beyond Bag-of-Words}
-
-\subsection*{Wednesday, 26--4. Lecture.}
-
-
-\textsc{\ding{52} Chapter 10.3.3. Word Embeddings}\\
-\textsc{\ding{52} Chapter 8.3.5. Neural Networks}\\
-\textsc{\ding{52} Chapter 8.4. Deep Learning}\\
-
-In this week, we will talk about a problem of standard forms of ACA: they treat words as independent from each other, and as either present or absent. For instance, if ``teacher'' is a feature in a specific model, and a text mentions ``instructor'', then this is not captured -- even though it probably should matter, at least to some extend. Word embeddings are a technique to overcome this problem. But also, they can reveal hidden biases in the texts they are trained on.
-
-We will ask whether we still should use BOW approaches at all? Are LDA topic models still a good choice, or do we have to move towards using fancy language models such as BERT? And is that also true for classification tasks?
+%We will ask whether we still should use BOW approaches at all? Are LDA topic models still a good choice, or do we have to move towards using fancy language models such as BERT? And is that also true for classification tasks?
 
 
 %Contextualized Topic Models (CTM), topic models with embeddings and BERT: https://github.com/MilaNLProc/contextualized-topic-models
@@ -216,13 +195,64 @@ We will ask whether we still should use BOW approaches at all? Are LDA topic mod
 %https://github.com/MaartenGr/BERTopic
 
 
-Mandatory readings (in advance): \cite{Kusner2015} and \cite{Garg2017}.
+
+\subsection*{Friday, 14--4. Lab session.}
+
+TODO Some exercise with finetuning transformer model?
 
 
-You will also be provided with examples for how to apply a word2vec model and get a short introduction to keras.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\section*{Week 10: Intermezzo: How to gather online data}
+By now, you know a lot about the analysis of existing data sets -- but the big elephant in the room is, of course: how can you get the data to answer your specific research questions?
+
+Reserve some time for exercising in this week. Web scraping can be really hard, because there are so many specifics of specific websites to consider. After all, every website is different, and we need to customize scrapers for every site! At the same time, it is one of the most useful techniques to know, and the majority of students in previous cohorts used web scraping as a part of their final project.
+
+\subsection*{Wednesday, 19--4. Lecture.}
+\textsc{\ding{52} Chapter 12: APis and web scraping}\\
+
+We first discuss the principles behind so-called application programming interfaces (APIs) and learn how to use them to retrieve JSON data. However, not all data that we may be interested in are available in such a format. Therefore, we move on to explore techniques to download data from web pages and to extract meaningful information like the text (or a photo, or a headline, or the author) from an article on \url{http://nu.nl}, a review (or a price, or a link) from \url{http://kieskeurig.nl}, or similar.
+
+
+
+\subsection*{Friday, 21-4. Lab session.}
+
+Exercises with APIs and/or web scraping.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\section*{Week 11: Unsupervised Machine Learning for Text}
+\textsc{\ding{52} Chapter 11.5. Unsupervised text analysis: Topic modeling and beyond}\\
+%\textsc{\ding{52} Chapter XX: (new chapter on BERT etc)}\\
+
+\subsection*{Wednesday, 26-4. Lecture.}
+
+
+In Part I of this course, we introduced the fundamental distinction between supervised and unsupervised machine learning. Also, when talking about embeddings and transformers, the idea of the unsupervised training on large corpora of text came up again. What we did not discuss so far is the use of unsupervised models for the explorative analysis of text.
+
+A first approach that has historically been employed to do this is to simply apply unsupervised methods such as PCA and k-means clustering on a BOW representation of text -- something that you could actually have done already with your knowledge from Part I. Starting from there, we proceed to discuss a second approach, Latent Dirichlet Allication (LDA), also referred to as (a form of) topic modeling.
+
+Both approaches have been influential for the field, but are less of a silver bullet then many students and researchers seem to think. We will therefore introduce a much more state-of-the-art approach that is build on top of a pre-trained Transformer instead of relying on a BOW representation.
+
+
+Mandatory readings (in advance): \cite{Maier2018a} and  \cite{Grootendorst2022}
 
 \subsection*{Friday, 28--4. Mo meeting - day after Koningsdag.}
+
+%You will apply the techniques discussed on Wednesday using gensim \citep{Rehurek2010}.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 
 \subsection*{Take-home exam}
@@ -252,7 +282,7 @@ We will look beyond text and discuss approaches to the computational analysis of
 
 
 \subsection*{Friday, 12-5. Lab Session}
-Opportunity to exercise with APIs and libraries presented during the lecture.
+Opportunity to exercise with APIs and libraries presented during the lecture and/or previous week.
 
 
 
