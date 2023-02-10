@@ -255,7 +255,8 @@ for buddy in myfriends:
 \end{minted}
 
 \small
-	\begin{block}{The for loop}
+\begin{block}{The for loop}
+  \small
 \begin{enumerate}
 	\item Take the first element from \texttt{myfriends} and call it \texttt{buddy} (like \texttt{buddy = myfriends[0]}) (line 1)
 	\item Execute the indented block (line 2, but could be more lines)
@@ -265,7 +266,8 @@ for buddy in myfriends:
 \end{enumerate}
 	\end{block}
 	
-	\begin{block}{The f-string (\emph{formatted} string)}
+\begin{block}{The f-string (\emph{formatted} string)}
+  \small
 If you prepend a string with an \texttt{f}, you can use curly brackets \texttt{\{\}} to insert the value of a variable
 	\end{block}
 	
@@ -391,7 +393,8 @@ print(myresults)
 \section[Bonus]{Bonus: Python goodies}
 
 \begin{frame}[fragile]{List comprehensions}
-\begin{block}{Structure}
+  \begin{block}{Structure}
+    \small
 A for loop that \texttt{.append()}s to an empty list can be replaced by a one-liner:
 \end{block}
 \begin{minted}{python}
@@ -405,9 +408,8 @@ is equivalent to:
 mynumbers = [2,1,6,5]
 mysquarednumbers = [x**2 for x in mynumbers]
 \end{minted}
-
 \pause 
-Optionally, we can have a condition:
+\small Optionally, we can have a condition:
 \begin{minted}{python}
 mynumbers = [2,1,6,5]
 mysquarednumbers = [x**2 for x in mynumbers if x>3]
@@ -435,8 +437,7 @@ mysquarednumbers = [x**2 for x in mynumbers if x>3]
 \begin{block}{Structure}
 	A lazy for loop (or function) that only generates its next element when it is needed:
 \end{block}
-\footnotesize
-You can create a generator just like a list comprehension (but with \texttt{()} instead of \texttt{[]}):
+\footnotesize You can create a generator just like a list comprehension (with \texttt{()} instead of \texttt{[]}):
 \begin{minted}{python}
 mynumbers = [2,1,6,5]
 squaregen = (x**2 for x in mynumbers)   # these are NOT calculated yet
