@@ -6,10 +6,10 @@
 \begin{document}
 
 \title[Big Data and Automated Content Analysis]{\textbf{Big Data and Automated Content Analysis (12EC)} 
-\\Week 10: »Unsupervised Approaches to Text Analysis: Topic Models«
+\\Week 10: »Web Scraping«
 \\Wednesday}
 \author[Damian Trilling]{Damian Trilling\\ \footnotesize{d.c.trilling@uva.nl, @damian0604 \\}}
-\date{April 20, 2022}
+\date{April 19, 2023}
 \institute[UvA CW]{UvA RM Communication Science}
 
 
@@ -20,36 +20,54 @@
 \begin{frame}{Today}
 	\tableofcontents
 \end{frame}
-\begin{frame}[standout]
-Before we start: Questions from last week?
+
+
+
+\question{Everything clear from last week?}
+
+
+\begin{frame}{Main points from last week}
+
+\begin{alertblock}{I assume that by now, everybody knows:}
+\begin{itemize}
+\item how to work with textual data;
+\item and in particular (for this week) the concept of regular expressions
+\end{itemize}
+\end{alertblock}
 \end{frame}
 
 
 \begin{frame}[standout]
-Today: Unsupervised machine learning for text
+This week, we will learn how to gather non-structured online data.
 \end{frame}
 
 
+\input{../../modules/scraping/scraping.tex}
 
 
 
-\input{../../modules/machinelearning-text/lda.tex}
 
 
+
+
+
+
+
+\question{Any questions?}
 
 \section{Next steps}
 
-\begin{frame}[plain]
+\begin{frame}[standout]
+Make sure you understood all of today's concepts.
 
-  \begin{block}{Friday Exercise}
-    \footnotesize
-  \begin{itemize}
-  \item Have a look at the LDA code examples in the book.
-  \item But most importantly: \textbf{Use a dataset of your choice} and find a suitable topic model. You can also try to compare multiple approaches (e.g., clustering vs LDA). Possible inspiration: \url{https://github.com/annekroon/gesis-ml-learning/blob/master/03wednesday/livecoding.ipynb}
-    \end{itemize}
-\end{block}
+Re-read the chapters.
 
+On Friday, you will write your own scraper. \textcolor{orange}{Prepare} by choosing a website that you want to scrape. It is advisable to select a site without things like cookiewalls or logins.
+\large{\url{https://github.com/uvacw/teaching-bdaca/blob/main/12ec-course/week07/exercises/}}
 \end{frame}
+
+
+
 
 
 \begin{frame}[allowframebreaks,plain]
