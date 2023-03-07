@@ -88,7 +88,7 @@ It depends.
 \begin{frame}{Internal representations}
 \begin{block}{Sparse vs dense matrices}
 \begin{itemize}
-	\item Most are not \emph{not} contained in a given document
+	\item Most terms are not \emph{not} contained in a given document
 	\item $\rightarrow$ tens of thousands of columns (terms), and one row per document
 	\item Filling all cells is inefficient \emph{and} can make the matrix too large to fit in memory (!!!)
 	\item Solution: store only non-zero values with their coordinates! (sparse matrix)
@@ -100,11 +100,11 @@ It depends.
 
 
 \begin{frame}{Internal representations}
-	\begin{alertblock}{Little over-generalizing R vs Python remark}
-		Among R users, it is very common to manually inspect document-term matrices, and many operations are done directly on them. In Python, they are more commonly seen as a means to an end (mostly, as input for machine learning). 
-		
-		Many R modules convert to dense matrices: really problematic for larger datasets!
-	\end{alertblock}
+  \begin{alertblock}{Little over-generalizing R vs Python remark ;-)}
+    Among many R users, it is common to manually inspect document-term matrices, and many operations are done directly on them. In Python, they are more commonly seen as a means to an end (mostly, as input for machine learning).
+          
+    Many R modules\footnote{Things have become a bit better recently} convert to dense matrices: really problematic for larger datasets!
+  \end{alertblock}
 	
 \end{frame}
 

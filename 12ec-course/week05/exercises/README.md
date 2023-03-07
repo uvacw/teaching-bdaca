@@ -28,7 +28,7 @@ You can use the code in Example 11.1 in the book to download and access it, whic
 
 Reproduce Example 11.2 and explain the logic behind the code to a classmate.
 
-*Note that this is **not** how sentiment analysis is typically done nowadays, except maybe as a baseline or in very specific edge cases. You can of course use this approach for counting other things (e.g., names of actors) as well. We will discuss recent approaches to sentiment analysis later in the course.*
+*Note that this is **not** how sentiment analysis is typically done nowadays, except maybe as a baseline or in very specific edge cases. You can of course use this approach for counting other things (e.g., names of actors), for instance. Recent approaches to sentiment analysis instead involve either classical machine learning or deep learning -- we will look into this later.*
 
 
 ## 3. Apply the techniques from the lecture

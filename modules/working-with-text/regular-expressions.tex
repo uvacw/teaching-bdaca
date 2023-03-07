@@ -16,7 +16,8 @@
 \begin{itemize}
 \item We want to remove everything but words from a tweet
 \item We can do so by calling the \texttt{.replace()} method multiple times (for each unwanted character)
-\item But we can better do this with a regular expression instead: \\
+\item We can do so with a join+list comprehension:\\  \texttt{"".join([c for c in tweet if c not in listwithunwantedcharacters])}
+\item But we can also use a regular expression instead: \\
 {\tt{ \lbrack \^{}a-zA-Z\rbrack}}  matches anything that is not a letter
 \end{itemize}
 \end{block}
