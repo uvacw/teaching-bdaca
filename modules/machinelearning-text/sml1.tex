@@ -248,13 +248,15 @@ Let's discuss SML for text with the example of \textcolor{orange}{sentiment anal
 \subsection{An implementation}
 
 \begin{frame}[fragile]{An implementation}
-Let's say we have a list of tuples with movie reviews and their rating:
+Let's say we have two list of tuples with movie reviews and their rating:
 \begin{lstlisting}
-reviews=[("This is a great movie",1),("Bad movie",-1), ... ...]
+reviews_train = ["This is a great movie", "Bad movie", ... ...]
+labels_train = [1,-1, ...]  
 \end{lstlisting}
-And a second list with an identical structure:
+And a second dataset with an identical structure:
 \begin{lstlisting}
-test=[("Not that good",-1),("Nice film",1), ... ...]
+reviews_test = ["Not that good","Nice film", ... ...]
+labels_text = [-1,1, ......]
 \end{lstlisting}
 Both are drawn from the same population, it is pure chance whether a specific review is on the one list or the other.\\
 \tiny{Based on an example from \url{http://blog.dataquest.io/blog/naive-bayes-movies/}}
@@ -269,19 +271,18 @@ from sklearn import metrics
 
 # This is just an efficient way of computing word counts
 vectorizer = CountVectorizer(stop_words='english')
-train_features = vectorizer.fit_transform([r[0] for r in reviews])
-test_features = vectorizer.transform([r[0] for r in test])
+features_train = vectorizer.fit_transform(reviews_train)
+features_test = vectorizer.transform(reviews_test)
 
 # Fit a naive bayes model to the training data.
 nb = MultinomialNB()
-nb.fit(train_features, [r[1] for r in reviews])
+nb.fit(features_train, labels_train)
 
 # Now we can use the model to predict classifications for our test features.
-predictions = nb.predict(test_features)
-actual=[r[1] for r in test]
+predictions = nb.predict(features_test)
 
-print("Precision: {0}".format(metrics.precision_score(actual, predictions, pos_label=1, labels = [-1,1])))
-print("Recall: {0}".format(metrics.recall_score(actual, predictions, pos_label=1, labels = [-1,1])))
+print(f"Precision:\t{metrics.precision_score(labels_test, predictions, pos_label=1, labels = [-1,1]))}"
+print(f"Recall:\t{metrics.recall_score(labels_test, predictions, pos_label=1, labels = [-1,1]))}"
 \end{minted}
 \end{frame}
 
