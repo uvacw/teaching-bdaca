@@ -52,22 +52,15 @@ backgroundcolor=\color[rgb]{0.85,0.90,1}
 
 
 
+
 \title{Big Data and Automated Content Analysis\\ (6 ECTS)\\~\\Course Manual}
-%\author{dr. Damian Trilling \& dr.Anne Kroon \\~\\Graduate School of Communication\\University of Amsterdam\\~\\d.c.trilling@uva.nl | a.c.kroon@uva.nl \\www.damiantrilling.net\\@damian0604 | @annekroon \\~\\Office: REC-C, 8\textsuperscript{th} floor}
 \author{dr. Anne Kroon\\~\\Graduate School of Communication\\University of Amsterdam\\~\\a.c.kroon@uva.nl \\@annekroon \\~\\Office: REC-C, 7\textsuperscript{th} floor}
 
 
-\date{Academic Year 2021/22\\Semester 2, block  2\\ }
-
-%Options: Sonny, Lenny, Glenn, Conny, Rejne, Bjarne, Bjornstrup
-%\usepackage[Bjornstrup]{fncychap}
-
+\date{Academic Year 2022/23\\Semester 2, block  2\\ }
 
 \begin{document}
 \maketitle
-
-%\tableofcontents
-
 
 \chapter{About this course}
 
@@ -78,61 +71,36 @@ This course manual contains general information, guidelines, rules and schedules
 \input{description}
 
 \section{Goals}
+
+
 Upon completion of this course, the following goals are reached:
-\begin{enumerate}[A]
-\item Students can explain the research designs and methods employed in existing research articles on Big Data and automated content analysis.
-\item Students can on their own and in own words critically discuss the pros and cons of research designs and methods employed in existing research articles on Big Data and automated content analysis; they can, based on this, give a critical evaluation of the methods and, where relevant, give advice to improve the study in question.
-\item Students can identify research methods from computer science and computational linguistics which can be used for research in the domain of communication science; they can explain the principles of these methods and describe the value of these methods for communication science research.
-\item Students can on their own formulate a research question and hypotheses for own empirical research in the domain of Big Data.
-\item Students can on their own choose, execute and report on research methods in the domain of Big Data and automatic content analysis.
-\item Students know how to collect data with APIs; they know how to analyze these data and to this end, they have basic knowledge of the programming language Python and know how to use Python-modules for communication science research.
-\item Students can critically discuss strong and weak points of their own research and suggest improvements.
-\item Students participate actively: reading the literature carefully and on time, completing assignments carefully and on time, active participation in discussions, and giving feedback on the work of fellow students give evidence of this.
-\end{enumerate}
+
+
+
+\input{testableobjectives}
 
 \section{Help with practical matters}
 While making your first steps with programming in Python, you will probably have a lot of questions.
-Nevertheless, \url{htttp://google.com} and \url{http://stackoverflow.com} should be your first points of contact. After all, that's how we solve our problems as well\ldots
+Nevertheless, \url{htttps://google.com} and \url{https://stackoverflow.com} should be your first points of contact. After all, that's how we solve our problems as well\ldots
 
 It is also very much encouraged to try to solve problems together with your classmates. A succesful technique can be \emph{pair programming}, where two colleagues sit behind one screen (for an explanation, see \url{https://en.wikipedia.org/wiki/Pair_programming}).
 
 If you really cannot find a solution on your own, you can pose such questions during the Thursday lab sessions. However, keep the remark in Section~\ref{sec:yourcomputer} in mind!
 
-
-
 \chapter{Rules, assignments, and grading}
-The final grade of this course will be composed of the grade of one mid-term take home exam (30\%) and one individual project (70\%).
+\input{grading}
 
-\section{Mid-term take-home exam (30\%)}
-In a mid-term take-home exam, students will show their understanding of the literature and prove they have gained new insights during the lectures and lab sessions. They will be asked to critically assess various approaches to Big Data analysis and make own suggestions for research.
-
-\section{Final individual project (70\%)}
-The final individual project typically consists of the following elements:
-\begin{itemize}
-	\item introduction including references to relevant (course) literature, an overarching research question plus subquestions and/or hypotheses (1–2 pages);
-	\item an overview of the analytic strategy, referring to relevant methods learned in this course;
-	\item carefully collected and relevant dataset of non-trivial size;
-	\item a set of scripts for collecting, preprocessing, and analyzing the data. The scripts should be well-documented and tailored to the specific needs of the own project;
-	\item output files;
-	\item a well-substantiated conclusion with an answer to the RQ and directions for future research.
-\end{itemize}
-
-
-\section{Grading and 2\textsuperscript{nd} try}
-Students have to get a pass (5.5 or higher) for both the mid-term take-home exam and the individual project. If the grade of one of these is lower, an improved version can be handed in within one week after the grade is communicated to the student. If the improved version still is graded lower than 5.5, the course cannot be completed. Improved versions of the final individual project cannot be graded higher than 6.0. 
 
 \section{Presence and participation}
-Attendance is compulsory. Missing more than two of the meetings – for whatever reason – means the course cannot be completed.
+Attendance is compulsory. Missing more than two meetings – for whatever reason – means the course cannot be completed.
 
-Next to attending the meetings, students are also required to prepare the assigned literature and to continue working on the programming tasks after the lab sessions. To successfully finish the course, attending the lab sessions is not enough, but has to go hand-in-hand with continuos self-study.
-
-
+Next to attending the meetings, students are also required to prepare the assigned literature and to continue working on the programming tasks after the lab sessions. To successfully finish the course, attending the lab sessions is not enough, but has to go hand-in-hand with continuous self-study.
 \section{Staying informed}
 It is your responsibility to check the means of communications used for this course (i.e., your email account, but -- if applicable -- also e-learning platforms or any other tool that the lecturer decides to use) on a regular basis, which in most cases means daily.
 
 \section{Plagiarism \& fraud}
 Plagiarism is a serious academic violation. Cases in which students use material such as online sources or any other sources in their written work and present this material as their own original work without citation/referencing, and thus conduct plagiarism, will be reported to the Examencommissie of the Department of Communication without any further negotiation. If the committee comes to the conclusion that a student has indeed committed plagiarism the course cannot be completed.
-General UvA regulations about fraud and plagiarism apply.
+General UvA regulations about fraud and plagiarism apply, see also \url{https://student.uva.nl/en/content/az/plagiarism-and-fraud/plagiarism-and-fraud.html}.
 
 \subsection{Attributing code}
 Plagiarism rules apply to code in the same way as they apply to text. Just like how your writing often builds on other scholars (who you cite), your code often builds on what others have done or are inspired by solutions of others, for instance in communities like Stackoverflow. Analoguous to plagiarism regulations in normal writing, also in your code, it needs to be transparent \emph{what is from you and what is not}. We don't really have something like APA references for code, but you can simply use \texttt{\#comments} for that purpose, such as:
@@ -140,33 +108,41 @@ Plagiarism rules apply to code in the same way as they apply to text. Just like 
 
 Make sure that there is no doubt about what is yours and what is from someone else!
 
+\subsection{Use of AI tools}
+It speaks for itself that -- analogous to the rules outlined above -- the use of AI tools such as ChatGPT or Copilot to generate code is not acceptable. Handing in such code will be considered fraud.
+
 \subsection{Working together}
-The take-home exam as well as the final project are \emph{individual exams}. Collaboration with fellow students is thus considered academic fraud and will be reported and handled accordingly.
+The take-home exams as well as the final project are \emph{individual exams}. Collaboration with fellow students is thus considered academic fraud and will be reported and handled accordingly.
+
 
 In some instances, some overlap between final projects may be unavoidable, for instance when relying on very similar data sources. If in doubt, always discuss with me in advance to avoid problems after you handed in! It is almost always possible to find a solution, if discussed in advance.
 
 \emph{In contrast to these graded assignments, for all \textbf{ungraded} assignments and exercises, collaboration is explicitly encouraged. Experience with this course over the last decade has shown that those students who met regularly with classmates to go over the week's code examples and exercises together enjoyed the course most, and also performed best.}
 
-
 \section{Deadlines and handing in}
 Per assignment, the lecturer will specify whether it has to be handed in via Canvas or via Filesender. If no specific instructions are given, or if there is any issue with submitting an assignment through Canvas, use Filesender. Please send all assignments and papers as a PDF file (and do not use formats like .docx) to ensure that it can be read and is displayed the same way on any device. Multiple files should be compressed and handed in as one .zip file or .tar.gz file. Do not email assignments directly but send them via \url{https://filesender.surf.nl/} to my mail-address. This way, you can also transfer huge files.
 
-Final papers and take-home exams that are not handed in on time, will not be graded and receive the grade 1. This rule also applies for any other assignment that might be given. The deadline is only met when the all files are submitted.
+Final papers and take-home exams that are not handed in on time, will be not be graded and receive the grade 1. This rule also applies for any other assignment that might be given. The deadline is only met when the all files are submitted.
+
 
 \begin{corona}
 \section{Your computer and operating system: your responsibility}	
 \label{sec:yourcomputer}
-Python is a language, not a program, and there are many ways of running Python code. In the past, there were quite some issues as some things work just a little bit different on Windows compared to Linux or MacOS (those two, belong to the UNIX family, are essentially identical for our purposes), which is why we advised students to install a Virtual Machine with Linux, which allows everyone to have the same environment (see the old book at \url{https://github.com/damian0604/bdaca/blob/master/book/bd-aca_book.pdf}). We experimented last year with letting students more freedom in their choice of an environment, and we want to continue to do so.
+Python is a language, not a program, and there are many ways of running Python code. 
 
-But because it is really hard to help with stuff related to your computer, your operating system, your keyboard etc., you need to make sure that the following things apply. Otherwise, you need to fix it -- we won't have room for that during the course. So, do this \textbf{before the course starts}.
+It is really hard to help with stuff related to your computer, your operating system, your keyboard etc. Things may work slightly different on Windows compared to MacOS or Linux; it's your responsibility to take care of these things. For instance, a downloaded file may be put under \texttt{/home/damian/Downloads} on Linux, under \texttt{/Users/damian/Downloads} on MacOS, and under \texttt{c:\textbackslash \textbackslash Users \textbackslash \textbackslash Damian\textbackslash \textbackslash Downloads} on Windows -- or maybe something very different. You are expected to have a sufficiently deep understanding of your own computer to deal with these idiosyncrasies yourself.
+
+Therefore you need to make sure that the following things apply. Otherwise, you need to fix it -- we won't have room for that during the course. So, do this \textbf{before the course starts}.
 
 \begin{itemize}
-	\item You need to have a recent version of a Python interpreter installed, and you need to be able to run Jupyter Notebooks. Chapter 1 of \cite{cssbook} gives instructions (you can skip the part about R, though). You can either use Python natively or use Anaconda (see Chapter 1), or you can also still opt for the Virtual Machine way as outlined in \cite{Trilling2016}. \textbf{It is important that \emph{you} know how to use it on your machine.}
+\item You need to have a recent version of a Python interpreter installed, and you need to be able to run Jupyter Notebooks. Chapter 1 of \cite{cssbook} gives instructions (you can skip the part about R, though). You can either use Python natively or use Anaconda (see Chapter 1).
 	\item You need to be able to install third-party packages (see Chapter 1). Test this by checking whether you can install the package \texttt{shifterator} and then load it with \texttt{import shifterator} without getting an error.
-	\item You need to make sure that your keyboard produces straight quotes \texttt{"} rather than typographical ones when typing. Test that by making sure that you can run \texttt{print("hello world)"} in a Jupyter notebook.
+	\item You need to make sure that your keyboard produces straight quotes \texttt{"} rather than typographical ones when typing. Test that by making sure that you can run \texttt{print("hello world")} in a Jupyter notebook.
 	\item Create a folder for this course at an easy to remember place, such as \texttt{/home/damian/bdaca} (Linux), \texttt{/Users/damian/bdaca} (MacOS), or \texttt{c://Users//damian//bdaca} (Windows). You could potentially also use \texttt{c://Users//damian//Desktop//bdaca} (Win) or \texttt{/Users/damian/Desktop/bdaca} (Mac) or similar. Make sure that you can locate files in that folder in Jupyter Notebook. And remember/write down it's name! Preferably, don't use spaces (can lead to confusion), and Windows users, replace \texttt{\textbackslash} by either a double \texttt{\textbackslash \textbackslash} or by forward slashes (/).
 \end{itemize}
-If -- even after trying -- you do not succeed in any of these steps, ask your classmates. If that does not help, contact me as soon as possible. 
+If -- even after trying -- you do not succeed in any of these steps, ask your classmates. If that also does not help, contact me as soon as possible.
+
+
 \end{corona}
 
 
@@ -179,9 +155,17 @@ If -- even after trying -- you do not succeed in any of these steps, ask your cl
 \input{schedule}
 
 \bibliographystyle{apacite}
-\bibliography{../../bdaca}
+\bibliography{../../resources/literature}
 
 
 
+\end{document}
 
+
+\bibliographystyle{apacite}
+\bibliography{../../resources/literature}
+
+ 
+ 
+ 
 \end{document}
