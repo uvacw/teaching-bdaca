@@ -73,7 +73,7 @@ In short: Validation data to \emph{select} the best approach; test data to get t
 from sklearn.model_selection import cross_val_score
 from sklearn.naive_bayes import MultinomialNB
 nb = MultinomialNB()     # the classifier we trained last week
-scores = cross_val_score(nb,  train_features, [r[1] for r in reviews], cv=10)
+scores = cross_val_score(nb,  train_features, train_labels, cv=10)
 print(scores)
 
 # results in
@@ -288,7 +288,7 @@ If $\lambda$ is larger ($C$ is smaller), we punish more.
 Finding $C$ in a logistic regression using 5-fold cross-validation
 \begin{lstlisting}
 from sklearn.linear_model import LogisticRegressionCV
-logregCV = LogisticRegressionCV(cv=5).fit(train_features, [r[1] for r in reviews])
+logregCV = LogisticRegressionCV(cv=5).fit(train_features, train_labels)
 \end{lstlisting}
 \pause 
 
@@ -353,8 +353,8 @@ vec = TfidfVectorizer()
 clf = LogisticRegressionCV()
 pipe = make_pipeline(vec, clf)
 
-pipe.fit([r[0] for r in reviews], [r[1] for r in reviews])
-predictions = pipe.predict([r[0] for r in test])
+pipe.fit(reviews_train, labels_train)
+predictions = pipe.predict(reviews_test)
 \end{minted}
 \end{frame}
 
