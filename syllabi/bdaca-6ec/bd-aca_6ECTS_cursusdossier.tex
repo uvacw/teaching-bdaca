@@ -1,0 +1,196 @@
+% !TEX encoding = UTF-8 Unicode
+
+\documentclass[a4paper,12pt]{report}
+\usepackage[natbibapa,nosectionbib,tocbib,numberedbib]{apacite}
+\AtBeginDocument{\renewcommand{\bibname}{Literature}}
+
+
+\usepackage[utf8x]{inputenc}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage{url}
+
+\usepackage{booktabs}
+% \usepackage{graphicx}
+
+\usepackage[colorinlistoftodos]{todonotes}
+
+\usepackage{pifont}
+
+\usepackage{lmodern}
+\usepackage{listings}
+\lstset{
+basicstyle=\scriptsize\ttfamily,
+columns=flexible,
+breaklines=true,
+numbers=left,
+%stepsize=1,
+numberstyle=\tiny,
+backgroundcolor=\color[rgb]{0.85,0.90,1}
+}
+
+\usepackage{caption} 
+\captionsetup[table]{skip=10pt}
+
+\let\oldquote\quote
+\let\endoldquote\endquote
+\renewenvironment{quote}{\footnotesize\oldquote}{\endoldquote}
+
+
+
+\title{Big Data and Automated Content Analysis\\ (6 ECTS)\\~\\Cursusdossier}
+\author{dr. Anne Kroon\\~\\Graduate School of Communication\\University of Amsterdam\\~\\a.c.kroon@uva.nl\\~\\Office: REC-C, 7\textsuperscript{th} floor}
+\date{Academic Year 2022/23}
+
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+
+\chapter{Short description of the course}
+
+\input{description}
+
+\chapter{Exit qualifications}
+\input{exitqualifications}
+
+\chapter{Testable objectives}
+\input{testableobjectives}
+
+\chapter{Planning of testing and teaching}
+
+The seminar consists of 14 meetings, two per week. Each week, in the first meeting, the instructor will give short lectures on the key aspects of the week, followed by seminar-style discussions. Theoretical considerations regarding Big Data and Automated Content Analysis are discussed, and techniques for analyzing Big Data are presented. We also discuss examples from the literature, in which these techniques are applied.
+
+
+The second meetings each week are practicum-meetings, in which the students will apply what the techniques they have learned to their own or provided data sets. Here, they can also deepen their understanding of software tools, prepare their individual projects and get hands-on help. While there are in-class assignments as well as occasional assignments for at home (e.g., completing an online-tutorial to prepare for class), these are not graded.
+
+To complete the course, next to active participation, the students have to successfully complete two summative graded assignments: one mid-term take-home exam and an individual project, in which they derive an empirical question from a theoretical starting point, and then conduct an Automated Content Analysis to answer the question. See Chapter 7 for details.
+
+\chapter{Literature}
+
+\input{literature}
+
+\chapter{Specific course timetable}
+
+\input{schedule}
+
+\chapter{Testing}
+An overview of the testing is given in the Test Matrix, displayed in Table \ref{testmatrix}.
+
+\begingroup
+
+\setlength{\tabcolsep}{10pt} % Default value: 6pt
+\renewcommand{\arraystretch}{1.5} % Default value: 1
+
+\begin{table}[hbt!]
+	\centering
+	\caption{Test Matrix}
+	\label{testmatrix}
+	\resizebox{\columnwidth}{!}{%
+	\begin{tabular}{@{}lccc@{}}
+	\toprule
+	 &
+	  \textbf{\begin{tabular}[c]{@{}c@{}}In-class assignments,\\  reviewing work of \\ fellow students,\\  active participation\end{tabular}} &
+	  \textbf{\begin{tabular}[c]{@{}c@{}}Mid-term \\ take home exam\end{tabular}} &
+	  \textbf{\begin{tabular}[c]{@{}c@{}}Final individual \\ project\end{tabular}} \\ \midrule
+	 &
+	  \textit{precondition} &
+	  \textit{30\% of final grade} &
+	  \textit{70\% of final grade} \\
+	\begin{tabular}[c]{@{}l@{}}A. Students can explain fundamental research designs and commonly em-\\ ployed methods in existing research articles on Big Data and automated\\ content analysis\end{tabular} &
+	  X &
+	  X &
+	   \\
+	\begin{tabular}[c]{@{}l@{}}B. Students can on their own and in own words critically discuss the pros and\\ cons of fundamental research designs and methods employed in existing\\ research articles on Big Data and automated content analysis; they can,\\ based on this, give a critical evaluation of the methods and, where relevant,\\ give advice to improve the study in question.\end{tabular} &
+	  X &
+	  X &
+	   \\
+	\begin{tabular}[c]{@{}l@{}}C. Students are able to identify some basic techniques from the field of com-\\ puter science and computer linguistics that are applicable to research in\\ communication science; they can explain the principle of some traditional\\ approaches to text analysis, namely simple rule-based techniques and ba-\\ sic methods of unsupervised and supervised machine learning.\end{tabular} &
+	  X &
+	  X &
+	  X \\
+	\begin{tabular}[c]{@{}l@{}}D. Students can on their own formulate a research question and hypotheses\\ for own empirical research in the domain of Big Data.\end{tabular} &
+	   &
+	   &
+	  X \\
+	\begin{tabular}[c]{@{}l@{}}E. Students can on their own chose, execute and report on fundamental re-\\ search methods in the domain of Big Data and automatic content analysis.\end{tabular} &
+	   &
+	   &
+	  X \\
+	\begin{tabular}[c]{@{}l@{}}F. Students know how to collect data with APIs or read in existing data\\ files; they know how to analyze these data with fundamental automated\\ techniques and to this end, they have basic knowledge of the programming\\ language Python and know how to use fundamental Python-modules for\\ communication science research.\end{tabular} &
+	   &
+	   &
+	  X \\
+	\begin{tabular}[c]{@{}l@{}}G Students can critically discuss strong and weak points of their own research\\ using fundamental techniques from the field of Big Data and Automated\\ Content Analysis, and suggest improvements.\end{tabular} &
+	   &
+	   &
+	  X \\
+	\begin{tabular}[c]{@{}l@{}}H Students participate actively: reading the literature carefully and on time,\\ completing assignments carefully and on time, active participation in dis-\\ cussions, and giving feedback on the work of fellow students give evidence\\ of this.\end{tabular} &
+	  X &
+	   &
+	   \\ \bottomrule
+	\end{tabular}%
+	}
+	\end{table}
+
+\endgroup
+
+\section*{Grading}
+\input{grading}
+
+\chapter{Lecturers' team, including division of responsibilities}
+dr. Anne Kroon
+
+
+\chapter{Calculation of students' study load (in hours)}
+\begin{itemize}
+
+\item Elective total: 6 ECTS = 168 hours
+\item Reading: 
+\begin{itemize}
+\item 10 chapters, 4 articles, average 20 pages: 280 pages. 6 pages per hour, thus 46.6 hours for the literature
+\item Reading and doing tutorials: 40 hours for reading tutorials to acquire skills.
+\item Reading/preparation total: 86.6 hours.
+\end{itemize}
+\item Presence: \\14*2 hours: 28 hours.
+\item Mid-term take-home exam, including preparation: 14 hours
+\item Final individual project, including data collection, analysis, write up: 39.4 hours
+\end{itemize}
+
+Total: 168 hours
+
+
+\chapter{Calculation of lecturers' teaching load (in hours)}
+
+\begin{itemize}
+\item Presence: 28 hours (= 14 * 2 hours)
+\item Preparation of weekly lectures, 7 * 4 hours: 28 hours
+\item Preparation of weekly tutorials, 7 * 4 hours: 28 hours
+\item Assisting students with setting up Virtual Machine, individual help: 40 hours
+\item Feedback and grading take-home exams: 25*45 minutes: 18.75 hours
+\item Feedback and grading final projects, including feedback on proposal and individual counseling: 25* 60 min: 25 hours 
+\item Administration, e-mails, individual appointments: 20 hours
+\end{itemize}
+
+Total: 187 hours
+
+
+\chapter{History of the course}
+In response to the feedback by the test review committee in 2019, the following changes were applied:
+\begin{itemize}
+\item Empasized in the section ``Testable Objectives'' that -- in contrast to the 12 ECTS course -- students should be able to demonstrate, reflect, and apply knowledge about \emph{fundamental} --rather than \emph{advanced} techniques of automated content analysis. Likewise, testing will be based on the extent that students demonstrate knowledge and skills on the level of \emph{fundamental} techniques. This sets the 6ec course apart from Big Data and Automated Content Analysis Part I and Part II, where students take a deeper dive into more advanced and recent techniques for automated content analysis.
+\end{itemize}
+
+In 2022, the course received a thorough update due to the publication of the new textbook \citep{cssbook}.
+
+In 2023, the course was slightly updated to incorporate recent developments in machine learning. Most elements remain the same--as the 6ECTS course focuses on fundamental techniques of automated content analysis. Yet, in week 7, we will discuss state of the art techniques for topic modelling. In addition, an outlook is provided on techniques that are the current becoming dominant in the field of machine learning. 
+
+\bibliographystyle{apacite}
+\bibliography{../../resources/literature}
+
+ 
+ 
+ 
+\end{document}
