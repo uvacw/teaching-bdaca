@@ -324,7 +324,7 @@ allurls = [f"baseurl{i}" for i in range(1,MAXPAGES+1)]
 \end{frame}
 
 
-\begin{frame}{Last remarks}
+\begin{frame}{General remarks}
   \begin{block}{There is often more than one way to specify an XPATH or CSS Selector}
     \begin{enumerate}
     \item It's about finding a description that is not too general (e.g., each H3) tag but also not too specific (the second H3 tag nested in the first div nested in\ldots)
@@ -338,4 +338,43 @@ allurls = [f"baseurl{i}" for i in range(1,MAXPAGES+1)]
 
 \begin{frame}[standout]
 Let's look at the example at \url{https://github.com/uvacw/teaching-bdaca/blob/main/modules/scraping/scraping.ipynb}
+\end{frame}
+
+
+\subsection{Avanced techniques}
+
+\begin{frame}[standout]
+We could talk endlessly about all the following techniques, but it's probably better to just look at them once you need them. But a quick overview is always good!
+\end{frame}
+
+\begin{frame}[standout]
+See especially Chapter 12.3: Authentication, Cookies, and Sessions
+\end{frame}
+
+\begin{frame}{Dynamic vs static pages}
+  \begin{itemize}
+  \item Modern pages often use techniques like JavaScript to load or refresh content -- in this case, the HTML response you got via \texttt{requests} does not contain the final content
+  \item (it cannot -- as you do not use a browser that could run the JavaScript)
+  \item Solution: Literally use a browser (via Selenium)
+  \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Which browser am I (pretending to be)?}
+  \begin{itemize}
+  \item When a HTTP request is made, it contains a header with meta-information
+  \item One is the ``User-Agent'' (name and version of sender)
+  \item You may want to set this specifically to pretend to be a specific browser (maybe even a mobile one!)
+  \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Sessions and Cookies}
+  \begin{itemize}
+  \item Sometimes, it may be necessary to explicitly store and/or set cookies
+  \item You can do this with \emph{Sessions} and \emph{Cookie Jars} in \texttt{requests}
+  \item Or you let your browser handle it via Selenium
+  \end{itemize}
 \end{frame}
