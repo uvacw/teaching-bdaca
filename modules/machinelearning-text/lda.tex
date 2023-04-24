@@ -4,8 +4,26 @@
 \question{Recap: Can you explain the difference between supervised and unsupervised machine learning?}
 
 
-\begin{frame}{Remember the two flavours:}
 
+\begin{frame}{\cite{Boumans2016}: Types of Automated Content Analysis}
+	\makebox[\columnwidth]{	\includegraphics[width=\columnwidth,height=.8\paperheight,keepaspectratio]{boumanstrilling2016}}
+\end{frame}
+
+
+
+\begin{frame}[standout]
+Our goal is to identify topics in texts, but we \emph{do not know the topics in advance}.\\ \textcolor{orange}{If you do have theoretical expectations, use classic SML (or fine-tune a Transformer, maybe with few-/zero-shot learning.) instead.}
+
+\end{frame}
+
+
+
+
+\subsection{A historical overview: PCA, $k$-means, LDA}
+
+
+\begin{frame}{Defining the problem}
+Remember our earlier distinction:
 \begin{enumerate}
 \item Finding similar variables (dimension reduction)
 \item Finding similar cases (clustering)
@@ -15,180 +33,16 @@
 
 Are we more interested in which features ``belong together'' or which cases ``belong together''? 
 
-\end{frame}
-
-
-\begin{frame}{We could use PCA/SCD\ldots}
-  \ldots and try to understand which ``variables'' (== columns == words) cooccur
-
-  Remember:
-\begin{itemize}
-\item Components are ordered (first explains most variance)
-\item Components do \emph{not} necessarily carry a meaningful interpretation
-\end{itemize}
-\end{frame}
-
-
-
-
-\begin{frame}[fragile,plain]{}
-  \begin{minted}{python}
-from sklearn import datasets
-from sklearn.decomposition import TruncatedSVD
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.pipeline import make_pipeline
-
-texts = datasets.fetch_20newsgroups(data_home='rec.autos', remove=('headers', 'footers', 'quotes'), subset='train')['data']
-
-myvec = TfidfVectorizer(max_df=.5, min_df=5, token_pattern='(?u)\\b[a-zA-Z][a-zA-Z]+\\b')
-mysvd = TruncatedSVD(n_components=3)
-mypipe = make_pipeline(myvec, mysvd)
-r = mypipe.fit_transform(texts)
-\end{minted}
-\end{frame}
-
-
-
-
-
-\begin{frame}[fragile]{Plotting the texts according to their component scores}
-\begin{lstlisting}
-import matplotlib.pyplot as plt
-
-fig = plt.figure(figsize=(10,10))
-ax = fig.add_subplot(projection='3d')
-ax.scatter([e[0] for e in r], [e[1] for e in r],  [e[2] for e in r],alpha=.2)
-\end{lstlisting}
-
-\makebox[\linewidth]{\includegraphics[width=\paperwidth,height=.6\paperheight,keepaspectratio]{svd3d}}
-
-\end{frame}
-
-
-
-\begin{frame}[fragile]{Using the scores}
-\begin{lstlisting}
-import pandas as pd
-textscores= pd.DataFrame(r)
-featurescores = pd.DataFrame(mysvd.components_.T, index = myvec.get_feature_names())
-\end{lstlisting}
-
-\makebox[\linewidth]{\includegraphics[width=\paperwidth,height=.6\paperheight,keepaspectratio]{svdscores}}
-
-\end{frame}
-
-
-
-\begin{frame}{Grouping features vs grouping cases}
-  We have a  corpus of a many texts.
-  
-\begin{itemize}
-\item We used SVD to figure out relationships between features
-\item We could now look at the most important features per component (``topic'', ``frame''?) by sorting \texttt{featurescores}
-\item We could see which texts are most representative for each ``topic'' or ``frame'' by sorting \texttt{textscores}
-\end{itemize}
 \pause
 
-$\Rightarrow$ Alternative: Choose the opposite approach and first find out which cases are most similar, \textit{then} describe what features characterize each group of cases
-
-
-\end{frame}
-
-
-
-
-
-\begin{frame}[plain,fragile]
-\begin{minted}{python}
-from sklearn.cluster import KMeans
-
-k = 5
-
-mykm = KMeans(n_clusters=k, init='k-means++', max_iter=100, n_init=1)
-myvec = TfidfVectorizer(max_df=.5, min_df=5, token_pattern='(?u)\\b[a-zA-Z][a-zA-Z]+\\b')
-mypipe = make_pipeline(myvec, mykm)
-
-predictions = mypipe.fit_transform(texts)
-# potentially: textscores = pd.Dataframe(predictions)
-\end{minted}
-
-Of course, you need to determine the appropriate $k$\ldots (see earlier lecture)
-
-
+\textcolor{orange}{Conceptually, we want to know \emph{both} which features (words) belong to each other (=form a topic),  \emph{and} which cases (documents) contain the same topics.}
 
 \end{frame}
 
-
-\begin{frame}[fragile,plain]{Let's get the terms closest to the centroids}
-\begin{lstlisting}
-order_centroids = mykm.cluster_centers_.argsort()[:, ::-1]
-terms = myvec.get_feature_names()
-
-print("Top terms per cluster:")
-
-for i in range(k):
-    print("Cluster {}: ".format(i), end='')
-    for ind in order_centroids[i, :10]:
-        print("{} ".format(terms[ind]), end='')
-    print()
-
-\end{lstlisting}
-\pause
-returns something like:
-
-\begin{lstlisting}
-Top terms per cluster:
-Cluster 0: windows file dos window with on you this have files 
-Cluster 1: you on this was with are have be not they 
-Cluster 2: thanks any me have anyone or please if on this 
-Cluster 3: he was his him not as this but on god 
-Cluster 4: you are be not they as this have if on 
-\end{lstlisting}
-(of course, we could do sth similar with pandas as well)
-\end{frame}
-
-
-
-
-
-
-\begin{frame}{Let's summarize}
-  \begin{itemize}
-  \item Both PCA \parencite[e.g.][]{Greussing2017} and cluster analysis \parencite[e.g.,][]{burscher2016} have been used in the past to identify ``topics'' or ``frames''
-  \item PCA groups features, cluster analysis groups texts
-  \item (but you can then use the component scrores to describe the texts, and the cluster centroids to describe the features)
-  \item Still ocasionally used, but in general considered outdated (for our use case)
-  \end{itemize}
-
-\end{frame}
-
-
-
-
-\section[LDA]{From PCA and Clustering towards Latent Dirichlet Allocation (LDA)}
-
-
-\begin{frame}{Let's assume we want to find out the topics in a large corpus of documents}
-We could either
-\begin{itemize}
-	\item use PCA to find out related features (and interpret those as topics)
-	\item or use clustering to find similar documents (and then look at the words they share to interpret as topics)
-\end{itemize}
-
-\pause
-
-Actually, we have \emph{two} things we want to model:
-
-\begin{enumerate}
-	\item Which topics can we extract from the corpus?
-	\item How present is each of these topics in each text in the corpus?
-\end{enumerate}
-
-\end{frame}
-
-
-\begin{frame}[fragile]{Recap: PCA}
-Document-term matrix
+\begin{frame}[fragile]{Defining the problem}
+We assume a BOW approach like this (as produced by scikit-learn vectorizer):
+    
+\emph{Document-term matrix}
 \begin{lstlisting}
       w1,w2,w3,w4,w5,w6 ...
 text1, 2, 0, 0, 1, 2, 3 ...
@@ -196,44 +50,114 @@ text2, 0, 0, 1, 2, 3, 4 ...
 text3, 9, 0, 1, 1, 0, 0 ...
 ...
 \end{lstlisting}
-{\small{These can be simple counts, but also more advanced metrics, like tf-idf scores (where you weigh the frequency by the number of documents in which it occurs), cosine distances, etc.}}
-\pause
-	\begin{itemize}
-	\item given a term-document matrix, easy to do with any tool
-	\item probably extremely skewed distributions
-	\item some problematic assumptions: \textcolor{red}{does the goal of PCA, to find a solution in which one word loads on \emph{one} component match real life, where a word can belong to several topics or frames?}
+    {\small{raw counts or tf$\cdot$idf scores}}
+
+ \end{frame}
+  
+
+\begin{frame}{Defining the problem}
+  We could then go via two routes:
+  \begin{enumerate}[<+->]
+    \item We run a PCA/SVD to see which features (words) load on the same component; and \emph{then} look at the component scores per document
+    \item We run a $k$-means cluster analysis to see which texts are similar; and \emph{then} look at the most common words per cluster
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{Some considerations}
+  \begin{block}{If we do PCA/SVD\ldots}
+  \begin{itemize}
+  \item Components are ordered (first explains most variance) $\Rightarrow$ We assume that some topics are more important than others
+  \item Components do \emph{not} necessarily carry a meaningful interpretation $\Rightarrow$ But maybe OK in practice?
+  \item We assume that a word belongs to one (not multiple) topics
+  \item We assume that a document has a score for each topic
 \end{itemize}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}{Some considerations}
+  \begin{block}{If we do cluster analysis\ldots}
+  \begin{itemize}
+  \item We assume that (in the case of $k$-means) that topics (are roughly) simiarly sized
+  \item We assume that a \emph{document} belongs to one (not multiple) topics
+  \item We assume that a word \emph{can} belong to multiple topics.
+\end{itemize}
+  \end{block}
+\end{frame}
+
+
+
+\begin{frame}{Both approaches have been used}
+  \begin{itemize}
+  \item Both have different assumptions, implications, and constraints
+  \item Both easy to do with scikit-learn
+  \item Both used in research (for instance, PCA by   \textcite{Leydesdorff2017} or \textcite{Greussing2017}; or $k$-means cluster analysis by \textcite{burscher2016})
+  \item Typically, PCA groups features, cluster analysis groups texts --  (but you can then use the component scrores to describe the texts, and the cluster centroids to describe the features)
+  \item \textcolor{orange}{Still ocasionally used, but in general considered outdated}
+  \end{itemize}
+  
+\end{frame}
+
+
+
+
+\begin{frame}[standout]
+You find some slides with code examples in the appendix.
+\end{frame}
+
+
+
+
+
+
+
+
+
+%\subsection[LDA]{Towards Latent Dirichlet Allocation (LDA)}
+
+
+
+\begin{frame}{Beyond PCA and $k$-means}
+
+  PCA was invented in 1901 (!), and $k$-means is around since the 1950s/1960s.
+
+  There surely must be something newer!
+
+  \pause
+
+  There is: Latent Dirichlet Allocation (LDA) \parencite{Blei2003}.
 
 \end{frame}
 
 
-\begin{frame}{Recap: clustering}
+\begin{frame}[fragile]{LDA solves some problems}
+Actually, we have \emph{two} things we want to model:
+
+\begin{enumerate}
+	\item Which topics can we extract from the corpus?
+	\item How present is each of these topics in each text in the corpus?
+\end{enumerate}
+$\Rightarrow$ LDA does both simultaneously!
+
+It also does not suffer from a few problems:
 \begin{itemize}
-	\item given a term-document matrix, we can easily find clusters of documents that resemble each other
-	\item but also here \textcolor{red}{does the goal of cluster analysis, assigning each document to \emph{one} cluster, match real life?}
+\item  \textcolor{red}{does the goal of PCA, to find a solution in which one word loads on \emph{one} component match real life, where a word can belong to several topics or frames?}
+\item \textcolor{red}{does the goal of cluster analysis, assigning each document to \emph{one} cluster, match real life?}
 \end{itemize}
+
 \end{frame}
 
 
-\begin{frame}{We need other models to}
+\begin{frame}{LDA solves some problems}
+LDA is a model that 
 \begin{enumerate}[<+->]
-	\item model \emph{simultaneously} (a) which topics we find in the whole corpus, and (b) which of these topics are present in which document; while at the same time
+	\item estimates \emph{simultaneously} (a) which topics we find in the whole corpus, and (b) which of these topics are present in which document; while at the same time
 	\item allowing (a) words to be part of multiple topics, and (b) multiple topics to be present in one document; and
 	\item being able to make connections between words ``even if they never actually occured in a document together'' \parencite[p.~96]{Maier2018a}
 \end{enumerate}
-
+\pause
+\textcolor{orange}{Let that last point sink in for a second!}
 \end{frame}
-
-
-
-
-\subsection{An introduction to LDA}
-
-\begin{frame}{}
-	Enter \textbf{topic modeling with Latent Dirichlet Allocation (LDA)}
-\end{frame}
-
-
 
 
 
@@ -350,8 +274,6 @@ It influences the ordering of the words in pyldavis.
 
 
 
-\subsection{Choosing the best (or a good) topic model}
-
 \begin{frame}{Choosing the best (or a good) topic model}
 \begin{itemize}
 \item There is no single best solution (e.g., do you want more coarse of fine-grained topics?)
@@ -435,10 +357,7 @@ Takeaway: Even though you can do \texttt{eta="auto"}, this usually does not help
 \end{frame}
 
 
-% \subsection{Drawbacks of LDA topic models}
 
-
-\subsection{Using topic models}
 
 \begin{frame}{Using topic models}
 
@@ -459,15 +378,252 @@ Example: \cite{Tsur2015}
 
 
 
-\subsection{Other forms of topic models}
 
-\begin{frame}{Other forms of topic models}
+
+
+\subsection{Should one still use LDA?}
+
+
+\begin{frame}{The popularity of LDA}
+In the last decade, LDA has become \emph{extremely} popular in the social sciences due to
+  \begin{itemize}
+  \item easy-to-use R and Python packages
+  \item its promise to not require (a) manual (qual or quant) analysis; (b) annotations for SML; (c) creation of dictionaries etc.
+  \item a bit of a ``cool new technique'' image
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{The popularity of LDA}
+  \textbf{But there is no silver bullet!}
+
+  Unfortunately,
+  \begin{itemize}
+  \item validating topic models is hard -- and many (most) studies don't do it (well);
+  \item there are so many choices and parameters, in combination with no simple and definite evaluation metric, that it is very hard to justify why a particular model is chosen;
+  \item experience shows that it often ``doesn't work'' $\Rightarrow$ it's quite normal to have many uninterpretable or ambigous topics;
+  \item The smaller the dataset, the less likely it is to work
+  \item LDA tends to also pick up pecularities that don't matter and outliers
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Solutions?}
+There are some extensions on classical LDA, in particular:
 \begin{itemize}
 \item Author-topic models
-\item Structural topic models
-\item Non-negative matrix factorization
-\item \ldots
+\item Structural topic models (STM) \parencite{Roberts2014}
+\item Dynamic topic models \parencite{Blei2006}
 \end{itemize}
+
+These allow covariates (e.g., add info on who wrote a text) to improve the model, or allow to account for the changing use of words and topics over time.
+
+Also, there are techniques for validation available (e.g., topic intrusion and/or word intrusion tasks).
+\end{frame}
+
+
+\begin{frame}{Solutions?}
+  But some we can't solve everything.
+
+  \begin{itemize}
+  \item It's still BOW.
+  \item We cannot incorporate any language knowledge from larger, pre-trained datasets (e.g., via embeddings)
+  \end{itemize}
+
+$\Rightarrow$ If we think of the performance leap that we observe with Transformers in other areas, we have all reason to assume that we can do better.
+\end{frame}
+
+
+
+\subsection{State-of-the-art approaches to topic modelling}
+
+\begin{frame}[standout]
+Let's bring in embeddings and Transformers!
+\end{frame}
+
+
+\begin{frame}{Using embeddings and transformers for topic modelling}
+  For example:
+  \begin{itemize}[<+->]
+  \item top2vec \parencite{angelov2020top2vec}, which embeds \emph{topic vectors} in the same space as document vectors and word vectors
+  \item Contextualized Topic models \parencite{bianchi-etal-2021-pre,bianchi-etal-2021-cross}, with a lot of code examples at \url{https://contextualized-topic-models.readthedocs.io/en/latest/introduction.html}
+  \item \ldots
+    \end{itemize}
+ 
+\end{frame}
+
+
+
+\begin{frame}{BERTopic \parencite{Grootendorst2022}}
+%Let's discuss one specific approach: BERTtopic. 
+
+%\begin{block}{A high-level view}
+``In this paper, we introduce BERTopic, a topic model that leverages clustering techniques and a class-based variation of TF-IDF to generate coherent topic representations. More specifically, we first create document embeddings using a pretrained language model to obtain document-level information. Second, we first reduce the dimensionality of document embeddings before creating semantically similar clusters of documents that each represent a distinct topic. Third, to overcome the centroid-based perspective, we develop a classbased version of TF-IDF to extract the topic representation from each topic. These three independent steps allow for a flexible topic model that can be used in a variety of use-cases, such as dynamic topic modeling.''
+%\end{block}
+
+\tiny{(for details, read the paper)}
+
+\end{frame}
+
+
+
+
+\begin{frame}{BERTopic \parencite{Grootendorst2022}}
+  Let's look at specific examples, for instance:
+  \url{https://maartengr.github.io/BERTopic/getting_started/quickstart/quickstart.html}
+
+  but also the visualization capabilites:
+  \url{https://maartengr.github.io/BERTopic/getting_started/visualization/visualization.html#visualize-topics-per-class}
+\end{frame}
+
+
+
+
+\begin{frame}{Much more coherent topics than LDA!}
+  \makebox[\columnwidth]{	\includegraphics[width=\columnwidth,height=.8\paperheight,keepaspectratio]{grootendorst2022}}
+  (And no need to set $k$! And there is a dedicated ``outlier topic'' called $-1$!)
+\end{frame}
+
+
+\begin{frame}{Are there downsides?}
+
+  Of course!
+
+  \begin{itemize}
+  \item By definiton, much more ``black-box''-y than BOW approaches
+  \item Risk of biases introduced by LLM
+  \item Much more resource-hungry (you probably want to do this with a GPU (e.g., on CoLab)
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}[standout]
+To conclude: PCA, $k$-means, LDA are interesting starting points -- but if I were to start an unsupervised topic analysis model now, I'd go for BERTopic.
+
+\end{frame}
+
+
+
+
+
+
+\section[Appendix]{Appendix: Code examples}
+
+
+\begin{frame}[fragile,plain]{}
+  \begin{minted}{python}
+from sklearn import datasets
+from sklearn.decomposition import TruncatedSVD
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.pipeline import make_pipeline
+
+texts = datasets.fetch_20newsgroups(data_home='rec.autos', remove=('headers', 'footers', 'quotes'), subset='train')['data']
+
+myvec = TfidfVectorizer(max_df=.5, min_df=5, token_pattern='(?u)\\b[a-zA-Z][a-zA-Z]+\\b')
+mysvd = TruncatedSVD(n_components=3)
+mypipe = make_pipeline(myvec, mysvd)
+r = mypipe.fit_transform(texts)
+\end{minted}
+\end{frame}
+
+
+
+
+
+\begin{frame}[fragile]{Plotting the texts according to their component scores}
+\begin{lstlisting}
+import matplotlib.pyplot as plt
+
+fig = plt.figure(figsize=(10,10))
+ax = fig.add_subplot(projection='3d')
+ax.scatter([e[0] for e in r], [e[1] for e in r],  [e[2] for e in r],alpha=.2)
+\end{lstlisting}
+
+\makebox[\linewidth]{\includegraphics[width=\paperwidth,height=.6\paperheight,keepaspectratio]{svd3d}}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Using the scores}
+\begin{lstlisting}
+import pandas as pd
+textscores= pd.DataFrame(r)
+featurescores = pd.DataFrame(mysvd.components_.T, index = myvec.get_feature_names())
+\end{lstlisting}
+
+\makebox[\linewidth]{\includegraphics[width=\paperwidth,height=.6\paperheight,keepaspectratio]{svdscores}}
+
+\end{frame}
+
+
+
+\begin{frame}{Grouping features vs grouping cases}
+  We have a  corpus of a many texts.
+  
+\begin{itemize}
+\item We used SVD to figure out relationships between features
+\item We could now look at the most important features per component (``topic'', ``frame''?) by sorting \texttt{featurescores}
+\item We could see which texts are most representative for each ``topic'' or ``frame'' by sorting \texttt{textscores}
+\end{itemize}
+\pause
+
+$\Rightarrow$ Alternative: Choose the opposite approach and first find out which cases are most similar, \textit{then} describe what features characterize each group of cases
+
+
+\end{frame}
+
+
+
+
+
+\begin{frame}[plain,fragile]
+\begin{minted}{python}
+from sklearn.cluster import KMeans
+
+k = 5
+
+mykm = KMeans(n_clusters=k, init='k-means++', max_iter=100, n_init=1)
+myvec = TfidfVectorizer(max_df=.5, min_df=5, token_pattern='(?u)\\b[a-zA-Z][a-zA-Z]+\\b')
+mypipe = make_pipeline(myvec, mykm)
+
+predictions = mypipe.fit_transform(texts)
+# potentially: textscores = pd.Dataframe(predictions)
+\end{minted}
+
+Of course, you need to determine the appropriate $k$\ldots (see earlier lecture)
+
+
+
+\end{frame}
+
+
+\begin{frame}[fragile,plain]{Let's get the terms closest to the centroids}
+\begin{lstlisting}
+order_centroids = mykm.cluster_centers_.argsort()[:, ::-1]
+terms = myvec.get_feature_names()
+
+print("Top terms per cluster:")
+
+for i in range(k):
+    print("Cluster {}: ".format(i), end='')
+    for ind in order_centroids[i, :10]:
+        print("{} ".format(terms[ind]), end='')
+    print()
+
+\end{lstlisting}
+\pause
+returns something like:
+
+\begin{lstlisting}
+Top terms per cluster:
+Cluster 0: windows file dos window with on you this have files 
+Cluster 1: you on this was with are have be not they 
+Cluster 2: thanks any me have anyone or please if on this 
+Cluster 3: he was his him not as this but on god 
+Cluster 4: you are be not they as this have if on 
+\end{lstlisting}
+(of course, we could do sth similar with pandas as well)
 \end{frame}
 
 
