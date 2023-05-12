@@ -1,0 +1,512 @@
+\input{../../resources/preamble}
+\addbibresource{../../resources/literature.bib}
+\graphicspath{{../../resources/img/}}
+
+
+\begin{document}
+
+\title[Big Data and Automated Content Analysis]{\textbf{Big Data and Automated Content Analysis (12EC)} 
+\\Week 13: »Looking back and forward«
+\\Wednesday}
+\author[Damian Trilling]{Damian Trilling\\ \footnotesize{d.c.trilling@uva.nl, @damian0604 \\}}
+\date{Friday, May 12, 2022}
+\institute[UvA CW]{UvA RM Communication Science}
+
+
+\begin{frame}{}
+	\titlepage
+\end{frame}
+
+\begin{frame}{Today}
+	\tableofcontents
+\end{frame}
+%\begin{frame}[standout]
+%Before we start: Questions from last week?
+%\end{frame}
+
+
+\begin{frame}[standout]
+Today: Looking forward
+\end{frame}
+
+
+
+
+\section{Looking back}
+\subsection{Putting the pieces together}
+
+
+\begin{frame}{Steps of a CSS project}
+We learned techniques for:
+\begin{itemize}
+\item retrieving data
+\item processing data
+\item analyzing data
+\item visualising data
+\end{itemize}
+	
+\end{frame}
+
+\begin{frame}[plain]
+	\begin{tikzpicture}[node distance = 3cm, auto]
+	\node [cloud] (retrieve) {retrieve};
+	\node [cloud, right of=retrieve] (process) {process and/or enrich};
+	\node [cloud, right of=process] (analyze) {analyze\\ explain\\ predict};
+	\node [cloud, right of=analyze] (visualize) {communi-cate};
+	
+	
+	\path [pijltje] (retrieve)--(process);
+	\path [pijltje] (process)--(analyze);
+	\path [pijltje] (analyze)--(visualize);
+	
+	
+	\node [block, below of = retrieve] (retrievetech) {files\\ APIs\\ scraping};
+	\node [block, below of= process] (processtech) {NLP\\ LDA\\ SML};
+	\node [block, below of=analyze] (analyzetech) {group comparisons; statistical tests and models};
+	\node [block, below of=visualize] (visualizetech) {visualizations and summary tables};
+	
+	
+	
+	\path [pijltje] (retrievetech)--(processtech);
+	\path [pijltje] (processtech)--(analyzetech);
+	\path [pijltje] (analyzetech)--(visualizetech);
+	
+	
+	\node [block, below of = retrievetech, fill=green!20] (retrievepython) {glob\\ json \& csv\\ requests\\ lxml\\ \ldots};
+	
+	\node [block, below of = processtech, fill=green!20] (processpython) {nltk\\ gensim\\ scikit-learn\\ spacy\\  keras\\  \ldots};
+	
+	\node [block, below of = analyzetech, fill=green!20] (analyzepython) {numpy/scipy\\ pandas\\ statsmodels\\ \ldots};
+	
+	\node [block, below of = visualizetech, fill=green!20] (visualizepython) {pandas\\ matplotlib\\ seaborn\\ pyldavis\\ \ldots};
+	
+	
+	
+	
+	
+	\path [line, dashed] (retrieve)--(retrievetech);
+	\path [line, dashed] (process)--(processtech);
+	\path [line, dashed] (analyze)--(analyzetech);
+	\path [line, dashed] (visualize)--(visualizetech);
+	
+	
+	
+	\path [line, dashed] (retrievetech)--(retrievepython);
+	\path [line, dashed] (processtech)--(processpython);
+	\path [line, dashed] (analyzetech)--(analyzepython);
+	\path [line, dashed] (visualizetech)--(visualizepython);
+	\end{tikzpicture}
+\end{frame}
+
+\subsection{A good workflow}
+
+
+
+
+\begin{frame}{The big picture}
+	\begin{block}{Start with pen and paper}
+		\begin{enumerate}[<+->]
+			\item Draw the Big Picture
+			\item Then work out what components you need
+		\end{enumerate}
+	\end{block}
+\end{frame}
+
+
+
+
+\begin{frame}{Develop components separately}
+	\begin{block}{One script for downloading the data, one script for analyzing}
+		\begin{itemize}[<+->]
+			\item Avoids waste of resources (e.g., unnecessary downloading multiple times)
+			\item Makes it easier to re-use your code or apply it to other data
+		\end{itemize}
+	\end{block}
+	\pause
+	\begin{block}{Start small, then scale up}
+		\begin{itemize}[<+->]
+			\item Take your plan (see above) and solve \textit{one} problem at a time (e.g., parsing a review page; or getting the URLs of all review pages)
+			\item (for instance, by using functions [next slides])
+		\end{itemize}
+	\end{block}
+	
+\end{frame}	
+
+
+\begin{frame}{Develop components separately}
+	\begin{block}{If you copy-paste code, you are doing something wrong}
+		\begin{itemize}[<+->]
+			\item Write loops!
+			\item If something takes more than a couple of lines, write a function!
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}[plain, fragile]
+Copy-paste approach\\ (ugly, error-prone, hard to scale up)
+\begin{minted}{python}
+allreviews = []
+
+response = requests.get('http://xxxxx')
+tree =  fromstring(response.text)
+reviewelements = tree.xpath('//div[@class="review"]')
+reviews = [e.text for e in reviewelements]
+allreviews.extend(reviews)
+
+response = requests.get('http://yyyyy')
+tree =  fromstring(response.text)
+reviewelements = tree.xpath('//div[@class="review"]')
+reviews = [e.text for e in reviewelements]
+allreviews.extend(reviews)
+\end{minted}
+\end{frame}
+
+
+\begin{frame}[plain, fragile]
+Better: for-loop\\ (easier to read, less error-prone, easier to scale up (e.g., more URLs, read URLs from a file or existing list)))
+\begin{minted}{python}
+allreviews = []
+
+urls = ['http://xxxxx', 'http://yyyyy']
+
+for url in urls:
+    response = requests.get(url)
+    tree =  fromstring(response.text)
+    reviewelements = tree.xpath('//div[@class="review"]')
+    reviews = [e.text for e in reviewelements]
+    allreviews.extend(reviews)
+\end{minted}
+\end{frame}
+
+
+
+
+\begin{frame}[plain, fragile]
+Even better: for-loop with functions\\ (main loop is easier to read, function can be re-used in multiple contexts)
+\begin{minted}{python}
+def getreviews(url):
+   response = requests.get(url)
+   tree =  fromstring(response.text)
+   reviewelements = tree.xpath('//div[@class="review"]')
+   return [e.text for e in reviewelements]
+
+
+urls = ['http://xxxxx', 'http://yyyyy']
+
+allreviews = []
+for url in urls:
+   allreviews.extend(getreviews(url))
+\end{minted}
+\end{frame}
+
+
+
+
+
+\begin{frame}[plain, fragile]
+And you can always do even better: including a docstring, use list comprehension
+\begin{minted}{python}
+def getreviews(url):
+    '''scrapes all reviews from a given URL and returns a list of strings'''
+    response = requests.get(url)
+    tree =  fromstring(response.text)
+    reviewelements = tree.xpath('//div[@class="review"]')
+    return [e.text for e in reviewelements]
+
+
+urls = ['http://xxxxx', 'http://yyyyy']
+
+allreviews = [getrieviews(url) for url in urls]
+\end{minted}
+\end{frame}
+
+
+\question{Can we do \emph{even} better? Maybe make it more robust?}
+
+
+
+\begin{frame}[plain, fragile]
+Directly append to a JSON-lines file so that we don't loose data if sth goes wrong
+\begin{minted}{python}
+import json
+from tqdm import tqdm   # provides a progress bar
+
+with open("reviews.json", mode="w") as f:
+   for url in tqdm(urls):
+       f.write(json.dumps({"url":url, "reviews": getreviews(url)})
+       f.write("\n")
+\end{minted}
+\end{frame}
+
+
+
+
+\begin{frame}{Scaling up}
+	If you continue working in this field, look into aspects like code style, re-usability, scalability
+	\begin{itemize}
+		\item Use functions and classes (we didn't cover the latter\ldots) to make code more readable and re-usable
+		\item Avoid re-calculating values
+		\item Think about how to minimize memory usage (e.g., generators)
+		\item Think about writing/reading data on-the-fly (generators, again)
+		\item Do not hard-code values, file names, etc., but take them as arguments
+	\end{itemize}	
+\end{frame}
+
+
+
+
+\begin{frame}{Make it robust}
+	You cannot foresee every possible problem.\\
+	Most important: Make sure your program does not fail and loose all data just because something goes wrong at case 997/1000.
+	\begin{itemize}
+		\item Use \texttt{try/except} to explicitly tell the program how to handle errors
+		\item Write data to files (or database) in between
+		\item Use \texttt{assert len(x) == len(y}) for sanity checks
+	\end{itemize}	
+\end{frame}
+
+
+
+
+\section{Looking forward}
+\subsection{Techniqes we did not cover (or only briefly)}
+
+
+
+\begin{frame}[plain]
+	\begin{tikzpicture}[node distance = 3cm, auto]
+	\node [cloud] (retrieve) {retrieve};
+	\node [cloud, right of=retrieve] (process) {process and/or enrich};
+	\node [cloud, right of=process] (analyze) {analyze\\ explain\\ predict};
+	\node [cloud, right of=analyze] (visualize) {communi-cate};
+	
+	
+	\path [pijltje] (retrieve)--(process);
+	\path [pijltje] (process)--(analyze);
+	\path [pijltje] (analyze)--(visualize);
+	
+	
+	\node [block, below of = retrieve] (retrievetech) {?};
+	\node [block, below of= process] (processtech) {?};
+	\node [block, below of=analyze] (analyzetech) {?};
+	\node [block, below of=visualize] (visualizetech) {?};
+	
+	
+	
+	\path [pijltje] (retrievetech)--(processtech);
+	\path [pijltje] (processtech)--(analyzetech);
+	\path [pijltje] (analyzetech)--(visualizetech);
+	
+	
+	\node [block, below of = retrievetech, fill=green!20] (retrievepython) {?};
+	
+	\node [block, below of = processtech, fill=green!20] (processpython) {?};
+	
+	\node [block, below of = analyzetech, fill=green!20] (analyzepython) {?};
+	
+	\node [block, below of = visualizetech, fill=green!20] (visualizepython) {?};
+	
+	
+	
+	
+	
+	\path [line, dashed] (retrieve)--(retrievetech);
+	\path [line, dashed] (process)--(processtech);
+	\path [line, dashed] (analyze)--(analyzetech);
+	\path [line, dashed] (visualize)--(visualizetech);
+	
+	
+	
+	\path [line, dashed] (retrievetech)--(retrievepython);
+	\path [line, dashed] (processtech)--(processpython);
+	\path [line, dashed] (analyzetech)--(analyzepython);
+	\path [line, dashed] (visualizetech)--(visualizepython);
+	\end{tikzpicture}
+\end{frame}
+
+
+
+\begin{frame}{Retrieve}
+	\begin{block}{Webscraping with Selenium}
+		\begin{itemize}
+			\item 	If content is dynamically loaded (e.g., with JavaScript), our approach doesn't work (because we don't have a browser).
+			\item 	Solution: Have Python literally open a browser and literally click on things
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+
+
+\begin{frame}{Retrieve}
+	\begin{block}{Use of databases \parencite{Guenther2018}}
+		We did not discuss how to actually store the data
+		\begin{itemize}
+			\item We basically stored our data in files (often, one CSV or JSON file)
+			\item But that's not very efficient if we have large datasets; especially if we want to select subsets later on
+			\item SQL-databases to store tables (e.g., MySQL)
+			\item NoSQL-databases to store less structured data (e.g., JSON with unknown keys) (e.g., MongoDB, ElasticSearch)
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+
+
+
+
+\begin{frame}{Storing data}
+	\makebox[\linewidth]{
+		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{guentheretal_fig1}}
+\end{frame}
+
+
+
+
+\begin{frame}{From retrieved data to enriched data}
+	\makebox[\linewidth]{
+		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{guentheretal_fig3}}
+\end{frame}
+
+\begin{frame}{Process and/or enrich}
+	\begin{block}{Advanced NLP}
+        		We did a lot of BOW (and some part-of-speech (POS) tagging and named entity recognition (NER)), but we can do much more, such as 
+		\begin{itemize}
+			\item State-of-the-art Dependency Parsing to find out exact relationships
+			$\Rightarrow$  spacy, stanza (stanford NLP)
+                        \item \ldots
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+
+ 
+\begin{frame}{Analyze/explain/predict}
+	\begin{block}{More advanced modelling}
+		We only did some basic statistical tests
+		\begin{itemize}
+			\item There are more advanced regression techniques and dimension-reduction techniques tailored to data that are, e.g., large-scale, sparse, have a lot of features, \ldots
+			\item $\Rightarrow$ scikit-learn, statsmodels
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+
+ 
+\begin{frame}{Analyze/explain/predict}
+	\begin{block}{Really go into deep learning}
+        \begin{itemize}
+		\item We only got a brief intro to keras and to different archtectures -- there is a lot to learn here.
+                \item There is much more to learn about transformer-based models -- check out huggingface.
+        \end{itemize}
+                \end{block}
+\end{frame}
+
+
+\begin{frame}{Some links about transformers}
+\begin{itemize}
+\item \url{https://nlp.seas.harvard.edu/2018/04/03/attention.html}
+\item \url{http://jalammar.github.io/illustrated-transformer/}
+\end{itemize}
+\end{frame}
+
+
+\section{Final project}
+
+\begin{frame}[standout]
+Talk to me about your plans!
+\end{frame}
+
+\begin{frame}{How will the grade be determined?}
+Grading of the final project: 30\% for the report and the documentation of the notebook; 70\% for data, code, and analysis
+
+\pause
+
+\begin{block}{Report and documentation}
+(see also syllabus)
+\footnotesize
+\begin{itemize}
+\item Completeness and comprehensiveness
+\item Quality of argumentation
+\item Clear and correct presentation of and relevant selection of results
+\item Correctness and appropriateness of conclusion and suggestions for future research
+\item Outward appearance
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+
+
+\begin{frame}{How will the grade be determined?}
+Grading of the final project: 30\% for the report and the documentation of the notebook; 70\% for data, code, and analysis
+
+
+\begin{block}{Data, code, and analysis}
+(see also syllabus)
+\footnotesize
+\begin{itemize}
+\item Covers techniques from most weeks
+\item Coding style and efficiency
+\item Follows best practices as you know \emph{at the end} of the course (i.e., if you learned a better technique later, you typically should use (also) the better technique)
+\item Data quality and size (should be non-trivial; i.e., must make sense to use automated approach for it)
+\item Correctness of analysis and decisions
+\item Creativity, smart solutions and ideas, \ldots
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+\begin{frame}[standout]
+Being able to conduct all steps of your own computational social science research project is one of the main learning goals of this course. This gives you a lot of freedom, but also inevitably means that many of you will end up doing very different things -- and that reproducing some recipe is not what is tested and graded.
+\end{frame}
+
+\begin{frame}{Let's try to put some numbers on it}
+Some hypothetical scenario's (as an \textbf{indication}):
+\footnotesize
+
+\begin{itemize}[<+>]
+\item Existing dataset downloaded from Kaggle, limited NLP, simple basic LDA: $<5.0$
+\item Existing dataset, but good and extensive NLP, extensive machine learning approaches; yet, not all best practices followed: $6-7$
+\item Data aquired via APIs or webscraping, multiple NLP techniques applied, SML including extensive comparisons, hyperparameter tuning, visualizations of results, advanced models, maybe some statistical tests for comparisons after enriching: $7-8$
+\item Next to fulfilling all criteria, the projct solves a complex task that is going clearly beyond the specific examples used in class and/or in the take-home assignments (e.g., develops a complex web scraper for the data collection stage): $8+$
+\end{itemize}
+(all of this assuming that the methods are suitable to answer the RQ, otherwise the grade is of course lower)
+\end{frame}
+
+
+\begin{frame}[standout]
+Rules of thumb: The more its mere replication, the lower the grade. The more you cover \emph{each} of the steps (today's slides) extensively, the higher the grade.
+
+\end{frame}
+
+
+
+
+
+\begin{frame}[standout]
+Your questions?
+\end{frame}
+
+
+
+
+
+\begin{frame}[standout]
+GOOD LUCK!
+\end{frame}
+
+
+\begin{frame}[standout]
+
+Next week, open lab if you have questions.
+
+\end{frame}
+
+
+
+\begin{frame}[allowframebreaks,plain]
+\printbibliography
+\end{frame}
+
+
+
+\end{document}
