@@ -1,4 +1,4 @@
 # Exercises week 1
 
-Make sure you have completed these [exercises](../../modules/basics-exercises) before the next class (13/4).
+Try out these [exercises](../../modules/basics-exercises) at home if you like.
 
