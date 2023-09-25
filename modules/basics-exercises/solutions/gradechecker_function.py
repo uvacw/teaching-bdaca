@@ -18,4 +18,4 @@ def check_grade(grade):
 
 
 for grade in grades:
-    print(grade,'is',check_grade(grade))
+    print(f"{grade} is {check_grade(grade)}")

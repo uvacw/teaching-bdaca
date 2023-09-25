@@ -6,14 +6,14 @@ for grade in grades:
     try:
         grade_float = float(grade)
         if grade_float >10:
-            print(grade_float,'is an invalid grade')
+            print(f"{grade_float} is an invalid grade")
         elif grade_float <1:
-            print(grade_float,'is an invalid grade')
+            print(f"{grade_float} is an invalid grade")
         elif grade_float >= 5.5:
-            print(grade,'is a PASS')
+            print(f"{grade} is a PASS")
         else:
-            print(grade,'is a FAIL')
+            print(f"{grade} is a FAIL")
 
     except:
-        print('I do not understand what',grade,'means')
+        print(f"I do not understand what {grade} means")
 
