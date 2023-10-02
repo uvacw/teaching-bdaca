@@ -1,0 +1,188 @@
+\input{../../resources/preamble}
+\addbibresource{../../resources/literature.bib}
+\graphicspath{{../../resources/img/}}
+
+
+\begin{document}
+
+\title[Big Data and Automated Content Analysis]{\textbf{Big Data and Automated Content Analysis (6EC)} 
+\\Week 5: »Unsupervised machine learning«
+\\Monday}
+\author[Anne Kroon]{Anne Kroon\\ \footnotesize{a.c.kroon@uva.nl, @annekroon \\}}
+\date{October 2, 2023}
+\institute[UvA CW]{UvA RM Communication Science}
+
+
+\begin{frame}{}
+	\titlepage
+\end{frame}
+
+\begin{frame}{Today}
+	\tableofcontents
+\end{frame}
+
+\question{Everything clear from previous weeks? Questions?}
+
+\begin{frame}[standout]
+This week, we will get a general overview of working with textual data. Due to a lack of time, I will introduce you to some of the basic concepts, point you to resources, and give you a practical, hands-on introduction. 
+\end{frame}
+
+\begin{frame}{\cite{Boumans2016}: Types of Automated Content Analysis}
+	\makebox[\columnwidth]{	\includegraphics[width=\columnwidth,height=.8\paperheight,keepaspectratio]{boumanstrilling2016}}
+\end{frame}
+
+\begin{frame}{Bottom-up vs. top-down}
+\begin{block}{Bottom-up}
+	\begin{itemize}
+		\item Count most frequently occurring words 
+		\item Maybe better: Count combinations of words $\Rightarrow$ Which words co-occur together?
+	\end{itemize}
+	We \emph{don't} specify what to look for in advance	
+\end{block}
+
+\onslide<2>{
+	\begin{block}{Top-down}
+		\begin{itemize}
+			\item Count frequencies of pre-defined words
+			\item Maybe better: patterns instead of words
+		\end{itemize}
+		We \emph{do} specify what to look for in advance	
+	\end{block}
+}
+
+\end{frame}
+
+\begin{frame}[fragile]{A simple bottom-up approach}
+
+\begin{minted}[%
+	breaklines,
+	linenos,
+	fontsize=\scriptsize,
+	frame=single,
+	xleftmargin=0pt,]
+	{python}
+from collections import Counter
+texts = ["Communication in the Digital Society is a very very complex phenomenon", "I like to study it"]
+bottom_up = []
+for t in texts:
+    bottom_up.append(Counter(t.lower().split()).most_common(3))
+    print(bottom_up)
+\end{minted}
+\pause
+This results in:
+\begin{minted}[fontsize=\scriptsize]{python}
+[('very', 2), ('Communication', 1), ('in', 1)]
+[('I', 1), ('like', 1), ('to', 1)]
+\end{minted}
+\textcolor{red}{\footnotesize{\emph{Please note that you can also write this like:}}}
+\pause
+\begin{minted}[%
+	breaklines,
+	linenos,
+	fontsize=\scriptsize,
+	frame=single,
+	xleftmargin=0pt,]
+	{python}
+bottom_up = [Counter(t.split()).most_common(3) for t  in texts]
+\end{minted}
+\begin{itemize}
+	\tiny{
+		\item This is \emph{exactly} the same, just shorter (and faster). 
+		\item You do \emph{not} have to use list comprehensions, but it helps if you can read them. }
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{A simple top-down approach}
+\begin{minted}[%
+	breaklines,
+	linenos,
+	fontsize=\scriptsize,
+	frame=single,
+	xleftmargin=0pt,]
+	{python}
+texts = ["Communication in the Digital Society is a very very complex phenomenon", "I like to study it"]
+features = ["communication", "digital", "study"]
+for t in texts:
+    print(f"\nAnalyzing '{t}':")
+    for f in features:
+        print(f"{f} occurs {t.lower().count(f)} times")
+\end{minted}
+\pause
+\begin{minted}[fontsize=\tiny]{python}
+Analyzing 'Communication in the Digital Society is a very very complex phenomenon':
+communication occurs 1 times
+digital occurs 1 times
+study occurs 0 times
+	
+Analyzing 'I like to study it':
+communication occurs 0 times
+digital occurs 0 times
+study occurs 1 times	
+\end{minted}
+\end{frame}
+
+\question{When would you use which approach?}
+
+\begin{frame}{Some considerations}
+\begin{itemize}[<+->]
+	\item Both can have a place in your workflow (e.g., bottom-up as first exploratory step)
+	\item You have a clear theoretical expectation? Bottom-up makes little sense.
+	\item But in any case: you need to transform your text into something ``countable''.
+\end{itemize}
+\end{frame}
+
+\section{Unsupervised Machine Learning for Text Classification}
+
+
+\begin{frame}{Supervised vs Unsupervised}
+	\begin{columns}[t]
+		\column{.5\textwidth}
+		
+		\begin{block}<1-4>{Supervised machine learning}
+			You have a dataset with both predictor and outcome (independent and dependent variables; features and labels) --- a \emph{labeled} dataset.
+			\onslide<2>{
+				\footnotesize{Think of regression: You measured \texttt{x1}, \texttt{x2}, \texttt{x3} and you want to predict \texttt{y}, which you also measured}}
+		\end{block}
+		
+		\column{.5\textwidth}
+		
+		\begin{block}<3->{Unsupervised machine learning}
+			You have no labels. \onslide<4>{(\footnotesize{You did not measure \texttt{y})}}\\
+			\onslide<5>{\textbf{You might already know \emph{some} techniques to figure out whether \texttt{x1}, \texttt{x2},\ldots \texttt{x\_i} co-occur} \begin{itemize}
+					\item Principal Component Analysis (PCA) and Singular Value Decomposition (SVD)
+					\item Cluster analysis
+					\item Topic modelling (Non-negative matrix factorization and Latent Dirichlet Allocation)
+					\item \ldots
+			\end{itemize}}
+		\end{block}
+		
+	\end{columns}
+	
+\end{frame}
+
+
+\input{../../modules/machinelearning-text/lda.tex}
+
+
+
+\question{Any questions?}
+
+\section{Next steps}
+
+\begin{frame}[standout]
+Take-home exam: you have time until Thursday 5th, end of the day
+
+An example notebook with code for running LDA models can be found here:
+\large{\url{https://github.com/uvacw/teaching-bdaca/blob/main/6ec-course/week06/exercises/}}
+\end{frame}
+
+
+
+\begin{frame}[allowframebreaks,plain]
+	\printbibliography
+\end{frame}
+
+
+
+\end{document}
