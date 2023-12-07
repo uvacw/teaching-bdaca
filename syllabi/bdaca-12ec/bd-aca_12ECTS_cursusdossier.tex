@@ -3,7 +3,9 @@
 \documentclass[a4paper,12pt]{report}
 \usepackage[natbibapa,nosectionbib,tocbib,numberedbib]{apacite}
 \AtBeginDocument{\renewcommand{\bibname}{Literature}}
-
+\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
+\renewcommand{\labelenumiii}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}}
+\renewcommand{\labelenumiv}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}.\arabic{enumiv}}
 
 \usepackage[utf8x]{inputenc}
 \usepackage{graphicx}
@@ -34,8 +36,8 @@ backgroundcolor=\color[rgb]{0.85,0.90,1}
 
 
 \title{Big Data and Automated Content Analysis\\ Part I+II (12 ECTS)\\~\\Cursusdossier}
-\author{dr. Damian Trilling\\~\\Graduate School of Communication\\University of Amsterdam\\~\\d.c.trilling@uva.nl\\www.damiantrilling.net\\@damian0604\\~\\Office: REC-C, 8\textsuperscript{th} floor}
-\date{Academic Year 2022/23}
+\author{dr. Felicia Loecherbach\\~\\Graduate School of Communication\\University of Amsterdam\\~\\f.loecherbach@uva.nl\\www.felicialoecherbach.com\\~\\Office: REC-C, 8\textsuperscript{th} floor}
+\date{Academic Year 2023/24}
 
 
 \begin{document}
@@ -54,81 +56,59 @@ backgroundcolor=\color[rgb]{0.85,0.90,1}
 \emph{(Note: In this chapter``advanced research designs and methods'' in the following refers to techniques of computational communication science as covered in Part I (basic text processing, data retrieval from web sources) and Part II (supervised machine laring, and unsupervised machine learning) of this course).}
 
 
-The course contributes to the following three exit qualifications of the Research Master in Communication Science:
+The course contributes to the following three exit qualifications of the Research Master in Communication Science:\\
 
 
-\textit{Expertise in empirical research}
+\noindent\textit{Expertise in empirical research}
+\begin{enumerate}
+	\setcounter{enumi}{2}
+	\item{\textbf{Knowledge and Understanding:} Have in-depth knowledge and a thorough understanding of advanced research designs and methods} 
+	\item{\textbf{Skills and Abilities:} Are able, independently and on their own, to set up, conduct, report and interpret advanced academic research.}
+\end{enumerate}	
 
+\noindent\textit{Academic abilities and attitudes}
+\begin{enumerate}
+	\setcounter{enumi}{5}
+	\item{\textbf{Attitude:} Accept that scientific knowledge is always 'work in progress' and that arguments must be considered and conclusions drawn on the basis of empirical results and valid criticism.}
+\end{enumerate}	
 
-	3.	Knowledge and Understanding: Have in-depth knowledge and a thorough understanding of advanced research designs and methods
-
-
-	4.	Skills and abilities: Are able, independently and on their own, to set up, conduct, report and interpret advanced academic research.
-
-
-\textit{Academic abilities and attitudes}
-
-
-	6.	Attitude: Accept that scientific knowledge is always 'work in progress' and that arguments must be considered and conclusions drawn on the basis of empirical results and valid criticism.
-
-
-The exit qualifications are elaborated in the following 11 specifications:
-3. Knowledge and Understanding: Have in-depth knowledge and a thorough understanding of advanced research designs and methods. 
-
-
-3.1. Have in-depth knowledge and a thorough understanding of advanced research designs and methods, including their value and limitations.
-
-
-3.2.	Have in-depth knowledge and a thorough understanding of advanced techniques for data analysis.
-
-
-4. Skills and abilities: Are able, independently and on their own, to set up, conduct, report and interpret advanced academic research.
-
-
-4.1	Are able to formulate research questions and hypotheses for advanced empirical studies
-
-
-4.2	Are able to develop a research plan, choose appropriate and suitable research designs and methods for advanced empirical studies, and justify the underlying choices. 
-
-
-4.3	Are able to assess the validity and reliability of advanced empirical research, and to judge the scientific and professional value of findings from advanced empirical research.
-
-
-4.4	Are able to apply advanced empirical research methods.
-
-
-6. Academic attitudes
-
-
-6.1 	Regularly asses their own assumptions, strengths and weaknesses critically.
-
-
-6.2	Accept that scientific knowledge is always 'work in progress' and that something regarded as 'true' may be proven to be false, and vice-versa.
-
-
-6.3 	Are keen to acquire new knowledge, skills and abilities. 
-
-
-6.4 	Are willing to share and discuss arguments, results and conclusions, including submitting one's own work to peer review. 
-
-
-6.5 	Are convinced that academic debates should not be conducted on the basis of rhetorical qualities but that arguments must be considered and conclusions drawn on the basis of empirical results and valid criticism.
-
-
-
-
+\noindent The exit qualifications are elaborated in the following 11 specifications:
+\begin{enumerate}
+	\setcounter{enumi}{2}
+	\item{\textbf{Knowledge and Understanding:} Have in-depth knowledge and a thorough understanding of advanced research designs and methods}
+	\begin{enumerate}
+		\item{Have in-depth knowledge and a thorough understanding of advanced research designs and methods, including their value and limitations.}
+		\item{Have in-depth knowledge and a thorough understanding of advanced techniques for data analysis.}
+	\end{enumerate}
+	\item{\textbf{Skills and abilities:} Are able, independently and on their own, to set up, conduct, report and interpret advanced academic research.}
+	\begin{enumerate}
+		\item{Are able to formulate research questions and hypotheses for advanced empirical studies}
+		\item{Are able to develop a research plan, choose appropriate and suitable research designs and methods for advanced empirical studies, and justify the underlying choices.}
+		\item{Are able to assess the validity and reliability of advanced empirical research, and to judge the scientific and professional value of findings from advanced empirical research.}
+		\item{Are able to apply advanced empirical research methods.} 
+	\end{enumerate}
+	\setcounter{enumi}{5}
+	\item{\textbf{Attitude:} Accept that scientific knowledge is always 'work in progress' and that arguments must be considered and conclusions drawn on the basis of empirical results and valid criticism.}
+	\begin{enumerate}
+		\item{Regularly asses their own assumptions, strengths and weaknesses critically.}
+		\item{Accept that scientific knowledge is always 'work in progress' and that something regarded as 'true' may be proven to be false, and vice-versa.}
+		\item{Are keen to acquire new knowledge, skills and abilities.}
+		\item{Are willing to share and discuss arguments, results and conclusions, including submitting one's own work to peer review.}
+		\item{Are convinced that academic debates should not be conducted on the basis of rhetorical qualities but that arguments must be considered and conclusions drawn on the basis of empirical results and valid criticism.}
+	\end{enumerate}
+\end{enumerate}
 
 \chapter{Testable objectives}
 
 {\footnotesize{
-3. Knowledge and Understanding: Have in-depth knowledge and a thorough understanding of advanced research designs and methods. 
-
-
-3.1. Have in-depth knowledge and a thorough understanding of advanced research designs and methods, including their value and limitations.
-
-
-3.2.	Have in-depth knowledge and a thorough understanding of advanced techniques for data analysis.
-
+	\begin{enumerate}
+		\setcounter{enumi}{2}
+		\item{\textbf{Knowledge and Understanding:} Have in-depth knowledge and a thorough understanding of advanced research designs and methods}
+		\begin{enumerate}
+			\item{Have in-depth knowledge and a thorough understanding of advanced research designs and methods, including their value and limitations.}
+			\item{Have in-depth knowledge and a thorough understanding of advanced techniques for data analysis.}
+		\end{enumerate}
+	\end{enumerate}
 }}
 
 \begin{enumerate}[A]
@@ -138,17 +118,16 @@ The exit qualifications are elaborated in the following 11 specifications:
 \end{enumerate}
 
 {\footnotesize{
-4.1	Are able to formulate research questions and hypotheses for advanced empirical studies
-
-
-4.2	Are able to develop a research plan, choose appropriate and suitable research designs and methods for advanced empirical studies, and justify the underlying choices. 
-
-
-4.3	Are able to assess the validity and reliability of advanced empirical research, and to judge the scientific and professional value of findings from advanced empirical research.
-
-
-4.4	Are able to apply advanced empirical research methods.
-
+	\begin{enumerate}
+		\setcounter{enumi}{3}
+	\item{\textbf{Skills and abilities:} Are able, independently and on their own, to set up, conduct, report and interpret advanced academic research.}
+	\begin{enumerate}
+		\item{Are able to formulate research questions and hypotheses for advanced empirical studies}
+		\item{Are able to develop a research plan, choose appropriate and suitable research designs and methods for advanced empirical studies, and justify the underlying choices.}
+		\item{Are able to assess the validity and reliability of advanced empirical research, and to judge the scientific and professional value of findings from advanced empirical research.}
+		\item{Are able to apply advanced empirical research methods.} 
+	\end{enumerate}
+\end{enumerate}
  }}
 
 \begin{enumerate}[A]
@@ -160,23 +139,17 @@ The exit qualifications are elaborated in the following 11 specifications:
 
 
 {\footnotesize{
-6. Academic attitudes
-
-6.1 	Regularly asses their own assumptions, strengths and weaknesses critically.
-
-
-6.2	Accept that scientific knowledge is always 'work in progress' and that something
-regarded as 'true' may be proven to be false, and vice-versa.
-
-
-6.3 	Are keen to acquire new knowledge, skills and abilities. 
-
-
-6.4 	Are willing to share and discuss arguments, results and conclusions, including submitting one's own work to peer review. 
-
-
-6.5 	Are convinced that academic debates should not be conducted on the basis of rhetorical qualities but that arguments must be considered and conclusions drawn on the basis of empirical results and valid criticism.
-
+\begin{enumerate}
+	\setcounter{enumi}{5}
+	\item{\textbf{Attitude:} Accept that scientific knowledge is always 'work in progress' and that arguments must be considered and conclusions drawn on the basis of empirical results and valid criticism.}
+	\begin{enumerate}
+		\item{Regularly asses their own assumptions, strengths and weaknesses critically.}
+		\item{Accept that scientific knowledge is always 'work in progress' and that something regarded as 'true' may be proven to be false, and vice-versa.}
+		\item{Are keen to acquire new knowledge, skills and abilities.}
+		\item{Are willing to share and discuss arguments, results and conclusions, including submitting one's own work to peer review.}
+		\item{Are convinced that academic debates should not be conducted on the basis of rhetorical qualities but that arguments must be considered and conclusions drawn on the basis of empirical results and valid criticism.}
+	\end{enumerate}
+\end{enumerate}
  }}
 
 \begin{enumerate}[A]
@@ -286,7 +259,7 @@ Students have to get a pass (5.5 or higher) for both mid-term take-home exams an
 
 
 \chapter{Lecturers' team, including division of responsibilities}
-dr. Damian Trilling
+dr. Felicia Loecherbach
 
 
 \chapter{Calculation of students' study load (in hours)}
@@ -314,7 +287,7 @@ Total: 337 hours
 \item Presence: 56 hours (= 28 * 2 hours)
 \item Preparation of weekly lectures, 14 * 4 hours: 56 hours
 \item Preparation of weekly tutorials, 14 * 4 hours: 56 hours
-\item Assisting students with setting up Virtual Machine, individual help: 20 hours
+\item Assisting students with setting up Python environment, individual help: 20 hours
 \item Feedback and grading take-home exams: 25x20 minutes x 2 exams: 17 hours
 \item Feedback and grading final projects, including feedback on proposal and individual counseling: 25* 60 min: 25 hours 
 \item Administration, e-mails, individual appointments: 10 hours
