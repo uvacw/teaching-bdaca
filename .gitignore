@@ -13,6 +13,7 @@
 *.toc
 *.bak
 *#
+*-tentamens/
 .ipynb_checkpoints/
 _minted*
 .DS_Store

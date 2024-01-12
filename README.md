@@ -1,7 +1,7 @@
 # teaching-bdaca
 Teaching materials for BDACA and related courses
 
-This repository contains all teaching materials for the courses "Big Data and Automated Content Analysis" (6 EC) and "Big Data and Automated Content Analysis Part I and II" (12 EC), taught by Anne Kroon and/or Damian Trilling. 
+This repository contains all teaching materials for the courses "Big Data and Automated Content Analysis" (6 EC) and "Big Data and Automated Content Analysis Part I and II" (12 EC), taught by Anne Kroon, Felicia Loecherbach and/or Damian Trilling. 
 
 The courses are based on the [book](https://cssbook.net/), *Computational Analysis of Communication: A practical introduction to the analysis of texts, networks, and images with code examples in Python and R* by Wouter van Atteveldt, Damian Trilling, and Carlos Arcila Calderon, and are taught in Python.
 

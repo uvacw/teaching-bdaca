@@ -104,7 +104,7 @@ You will combine the techiques discussed on Wednesday and write a first automate
 
 
 \subsection*{Take-home exam}
-In week 5, the first midterm take-home exam is distributed after the Friday meeting. The answer sheets and all files have to be handed in no later than the day before the next meeting, i.e. Tuesday evening (14--3, 23.59).
+In week 5, the first midterm take-home exam is distributed after the Friday meeting. The answer sheets and all files have to be handed in no later than the day before the next meeting, i.e. Tuesday evening (12--3, 23.59).
 
 
 
@@ -134,7 +134,7 @@ Exercises with scikit-learn.
 
 
 \subsection*{Wednesday, 20--3. Lecture.}
-We will continue with the topic in week 8, with special attention on how to find the best model using techniques such as crossvalidation and gridsearch.
+We will continue with the topic we discussed last week, with special attention on how to find the best model using techniques such as crossvalidation and gridsearch.
 
 \subsection*{Friday, 22--3. Lab session.}
 Exercises with scikit-learn.
@@ -154,12 +154,12 @@ Exercises with scikit-learn.
 
 \section*{Week 8: Beyond Bag-of-Words}
 
-\subsection*{Wednesday, 3--4. Lecture with exercises.}
+\subsection*{Wednesday, 3--4. Lecture}
 \textsc{\ding{52} Chapter 10.3.3. Word Embeddings}\\
 \textsc{\ding{52} Chapter 8.3.5. Neural Networks}\\
 \textsc{\ding{52} Chapter 8.4. Deep Learning}\\
 
-In this week, we will talk about a problem of standard forms of ACA: they treat words as independent from each other, and as either present or absent. For instance, if ``teacher'' is a feature in a specific model, and a text mentions ``instructor'', then this is not captured -- even though it probably should matter, at least to some extend. Word embeddings are a technique to overcome this problem. But also, they can reveal hidden biases in the texts they are trained on. You will also be provided with examples for how to apply a word2vec model and get a short introduction to keras.
+In this week, we will talk about a problem of standard forms of ACA: they treat words as independent from each other, and as either present or absent. For instance, if ``teacher'' is a feature in a specific model, and a text mentions ``instructor'', then this is not captured -- even though it probably should matter, at least to some extend. Word embeddings are a technique to overcome this problem. But also, they can reveal hidden biases in the texts they are trained on. 
 
 Mandatory readings (in advance): \cite{Kusner2015} and \cite{Garg2017}.
 
@@ -167,8 +167,8 @@ Mandatory readings (in advance): \cite{Kusner2015} and \cite{Garg2017}.
 
 
 
-\subsection*{\textcolor{red}{Friday, 5--4. No meeting (Good Friday).}}
-
+\subsection*{Friday, 5--4. Lab session.}
+Exercises with different deep learning architectures.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -176,7 +176,7 @@ Mandatory readings (in advance): \cite{Kusner2015} and \cite{Garg2017}.
 \section*{Week 9: Transformers}
 %\textsc{\ding{52} Chapter XX: (new chapter on BERT etc)}\\
 
-\subsection*{Wednesday, 10--4.}
+\subsection*{Wednesday, 10--4}
 In this lecture, we will introduce Transformer models such as BERT.  These models have revolutionized the field in many ways. On the one hand, they have lead to large perfomance increases for many tasks, and they make impressive applications like ChatGPT possible. On the other hand, they form a black box and require extraordinary resources to create. We will discuss the idea behind transformers, introduce the concept of \emph{finetuning} such a pre-trained model, and briefly mention few-shot and zero-shot learning.
 
 Mandatory reading (in advance): \cite{Lin2023} and \cite{Bender2021}.
@@ -202,19 +202,19 @@ By now, you know a lot about the analysis of existing data sets -- but the big e
 Reserve some time for exercising in this week. Web scraping can be really hard, because there are so many specifics of specific websites to consider. After all, every website is different, and we need to customize scrapers for every site! At the same time, it is one of the most useful techniques to know, and the majority of students in previous cohorts used web scraping as a part of their final project.
 
 \subsection*{Wednesday, 17--4. Lecture.}
-\textsc{\ding{52} Chapter 12: APis and web scraping}\\
+\textsc{\ding{52} Chapter 12: APIs and web scraping}\\
 
 We first discuss the principles behind so-called application programming interfaces (APIs) and learn how to use them to retrieve JSON data. However, not all data that we may be interested in are available in such a format. Therefore, we move on to explore techniques to download data from web pages and to extract meaningful information like the text (or a photo, or a headline, or the author) from an article on \url{http://nu.nl}, a review (or a price, or a link) from \url{http://kieskeurig.nl}, or similar.
 
 
 
-\subsection*{Friday, 19-4. Lab session.}
+\subsection*{Friday, 19-4. No meeting - practice at home}
 
-Exercises with APIs and/or web scraping.
+Practice the usage of APIs and web scraping on your own -- either already for your project or for something else you are interested in. Scraping takes time, so there will be no in-person meeting, we will discuss common challenges next week. 
 
 
 \subsection*{Take-home exam}
-In week 10, the second midterm take-home exam is distributed after the Friday meeting. The answer sheets and all files have to be handed in no later than the day before the next meeting, i.e. Tuesday evening (25--4, 23.59).
+In week 10, the second midterm take-home exam is distributed after the Friday meeting. The answer sheets and all files have to be handed in no later than the day before the next meeting, i.e. Tuesday evening (23--4, 23.59).
 
 
 
@@ -222,18 +222,41 @@ In week 10, the second midterm take-home exam is distributed after the Friday me
 
 
 
-\section*{Week 11: Unsupervised Machine Learning for Text}
+\section*{Week 11: Multimedia data}
+\textsc{\ding{52} Chapter 14 Multimedia data}\\
+
+\subsection*{Wednesday, 24--4. Lecture.}
+We will look beyond text and discuss approaches to the computational analysis of multimedia data.
+
+
+\subsection*{Friday, 26--4. Lab session.}
+
+Exercises with multimedia data (pictures, videos, audio).
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section*{Week 12: No Teaching (UvA Teaching Free Week)}
+
+%\noindent \textsc{\ding{52} Chapter 13 Network data}\\
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section*{Week 13: Unsupervised Machine Learning for Text}
 \textsc{\ding{52} Chapter 11.5. Unsupervised text analysis: Topic modeling and beyond}\\
 %\textsc{\ding{52} Chapter XX: (new chapter on BERT etc)}\\
 
-\subsection*{Wednesday, 24--4. Lecture.}
-
+\subsection*{Wednesday, 8--5. Lecture and exercises}
 
 In Part I of this course, we introduced the fundamental distinction between supervised and unsupervised machine learning. Also, when talking about embeddings and transformers, the idea of the unsupervised training on large corpora of text came up again. What we did not discuss so far is the use of unsupervised models for the explorative analysis of text.
 
 A first approach that has historically been employed to do this is to simply apply unsupervised methods such as PCA and k-means clustering on a BOW representation of text -- something that you could actually have done already with your knowledge from Part I. Starting from there, we proceed to discuss a second approach, Latent Dirichlet Allication (LDA), also referred to as (a form of) topic modeling.
 
-Both approaches have been influential for the field, but are less of a silver bullet then many students and researchers seem to think. We will therefore introduce a much more state-of-the-art approach that is build on top of a pre-trained Transformer instead of relying on a BOW representation.
+Both approaches have been influential for the field, but are less of a silver bullet then many students and researchers seem to think. We will therefore introduce a much more state-of-the-art approach that is build on top of a pre-trained Transformer instead of relying on a BOW representation. We will briefly discuss the code to set up such approaches. 
 
 
 Mandatory readings (in advance): \cite{Maier2018a} and  \cite{Grootendorst2022}
@@ -244,37 +267,6 @@ Mandatory readings (in advance): \cite{Maier2018a} and  \cite{Grootendorst2022}
 %https://towardsdatascience.com/interactive-topic-modeling-with-bertopic-1ea55e7d73d8
 
 %https://github.com/MaartenGr/BERTopic
-
-
-
-\subsection*{\textcolor{red}{Friday, 26--4. No meeting - day after Koningsdag.}}
-
-%You will apply the techniques discussed on Wednesday using gensim \citep{Rehurek2010}.
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-
-
-
-\section*{Week 12: No Teaching (UvA Teaching Free Week)}
-
-%\noindent \textsc{\ding{52} Chapter 13 Network data}\\
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-\section*{Week 13: Multimedia data}
-
-\subsection*{Wednesday, 8--5. Lecture}
-\textsc{\ding{52} Chapter 14 Multimedia data}\\
-We will look beyond text and discuss approaches to the computational analysis of multimedia data.
 
 
 \subsection*{Friday, 10--5. No meeting - day after Ascension Day}
@@ -288,8 +280,6 @@ Opportunity to exercise with APIs and libraries presented during the lecture and
 
 \subsection*{Friday, 17--5. Open Lab.}
 Open meeting with the possibility to ask last (!) questions regarding the final project.
-
-
 
 
 \subsection*{Final project}
