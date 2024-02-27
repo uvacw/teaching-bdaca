@@ -2,7 +2,7 @@
 
 ## 1. Working with CSV files
 
-1. Take a dataset of your choice - something from your own work maybe. If it is not a CSV file (but, for instance, an Excel sheet or an SPSS file), export it as CSV. Inspect the file in a text editor of your choice (such as the ones available at https://www.sublimetext.com/, https://notepad-plus-plus.org, or https://atom.io) and check:
+1. Take a dataset of your choice - something from your own work maybe. If it is not a CSV file (but, for instance, an Excel sheet or an SPSS file), export it as CSV. Inspect the file in a text editor of your choice (such as the ones available at https://www.sublimetext.com/, https://notepad-plus-plus.org, or https://atom.io or https://code.visualstudio.com) and check:
 - the encoding
 - the line ending style
 - the delimiter
