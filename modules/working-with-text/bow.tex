@@ -88,7 +88,7 @@ It depends.
 \begin{frame}{Internal representations}
 \begin{block}{Sparse vs dense matrices}
 \begin{itemize}
-	\item Most terms are not \emph{not} contained in a given document
+	\item Most terms are \emph{not} contained in a given document
 	\item $\rightarrow$ tens of thousands of columns (terms), and one row per document
 	\item Filling all cells is inefficient \emph{and} can make the matrix too large to fit in memory (!!!)
 	\item Solution: store only non-zero values with their coordinates! (sparse matrix)
@@ -163,17 +163,17 @@ tokens = [d.split() for d in docs]
 \begin{frame}[fragile]{OK, good enough, perfect?}
 \begin{minted}{python}
 import nltk
-import regex
+import re
 
 class MyTokenizer:
     def tokenize(self, text):
         tokenizer = nltk.tokenize.TreebankWordTokenizer()
         result = []
-        word = r"\p{letter}"
+        word = r"\w"
         for sent in nltk.sent_tokenize(text):
             tokens = tokenizer.tokenize(sent)    
             tokens = [t for t in tokens 
-                      if regex.search(word, t)]
+                      if re.search(word, t)]
             result += tokens
         return result
         

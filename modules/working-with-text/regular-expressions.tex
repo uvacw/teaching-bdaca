@@ -136,7 +136,8 @@ for fn in filenames:
       artikel = fi.read()
       artikel = artikel.replace('\n',' ')
       
-      counts1.append(len(re.findall('Israel.*(minister|politician.*|[Aa]uthorit)',artikel)))
+      counts1.append(len(re.findall(
+         'Israel.*(minister|politician.*|[Aa]uthorit)',artikel)))
       counts2.append(len(re.findall('[Pp]alest',artikel)))
       
 output=zip(filenames, counts1, counts2)
@@ -184,6 +185,9 @@ over een saneringsfonds voor banken. Daarmee staat de laatste
 (first develop it for a single string, then scale up)
 
 More tips:
-\huge{\url{http://www.pyregex.com/}}
+
+\large{\url{http://www.pyregex.com/}}
+
+\large{\url{http://www.regexcrossword.com/}}
 \end{frame}
 
