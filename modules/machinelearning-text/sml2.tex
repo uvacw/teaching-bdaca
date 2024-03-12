@@ -110,7 +110,7 @@ Note that a simple 50:50 train/validation split is identical to setting $k=2$
     \begin{itemize}
     \item If $k=10$ (the most typical value), in each iteration, we use 90\% of the data for training.
     \item We even use \emph{all} data (except test set, of course) for training at least once.
-    \item With train/validation split, we probably need a larger validation set to be sure (e.g., 80/30)
+    \item With train/validation split, we probably need a larger validation set to be sure (e.g., 70/30)
     \item Especially relevant when annotation is expensive.
     \end{itemize}
   \end{block}
@@ -146,7 +146,7 @@ Note that a simple 50:50 train/validation split is identical to setting $k=2$
 	\end{itemize}
 \end{block}
 
-\pause
+
 \begin{alertblock}{Also a nice example for changing standards in the field}
 A couple of years ago, you could get away with just doing a train/test split in your paper. Nowadays, chances are high a reviewer will reject this (if you try to publish your Master's thesis, for instance).
 \end{alertblock}
@@ -180,7 +180,7 @@ In other words: wether you have or create a train/validation/test or use cross-v
 
 \begin{frame}{Hyperparameter optimization with grid search}
 \begin{block}{General idea}
-	Rather than arbitrary trying some configurations, let's systematically test and compare.
+	Rather than arbitrarily trying some configurations, let's systematically test and compare.
 \end{block}
 First idea: Use a for-loop! (Example 11.4 in the book)
 \end{frame}
@@ -334,7 +334,7 @@ This means that \emph{any} parameter that the classifier or vectorizer takes can
 
 
 \begin{frame}{The pipeline notation in scikit learn}
-You might have notived the Pipeline construct in the last example.
+You might have noticed the Pipeline construct in the last example.
 \begin{itemize}
 \item Machine learning involves multiple steps (e.g., preprocessing $\rightarrow$ vectorizer $\rightarrow$ classification)
 \item We did all of them seperately before
@@ -426,7 +426,7 @@ Let's see what happens if we plot False Positives against True Positives (ROC-cu
 \begin{frame}{So, how to we determine the exact value? }
 See notebook
 
-\url{https://github.com/damian0604/bdaca/blob/master/12ec/week10/Determining\%20the\%20cutoff-point\%20in\%20logistic\%20regression.ipynb}
+\url{https://github.com/uvacw/teaching-bdaca/blob/master/12ec-course/week07/Determining_the_cutoffpoint_in_logistic_regression.ipynb}
 \end{frame}
 
 
