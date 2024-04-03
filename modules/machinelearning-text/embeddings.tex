@@ -50,24 +50,45 @@
   \end{itemize}
 \end{frame}
 
+\begin{frame}{GloVe}
+  Example sentence: ``the cat sat on the mat''
+  \begin{table}[]
+    \begin{tabular}{llllll}
+        & the & cat & sat & on & mat \\
+    the & 0   & 1   & 0   & 1  & 1   \\
+    cat & 1   & 0   & 1   & 0  & 0   \\
+    sat & 0   & 1   & 0   & 1  & 0   \\
+    on  & 0   & 0   & 1   & 0  & 0   \\
+    mat & 1   & 0   & 0   & 0  & 0  
+    \end{tabular}
+    \end{table}
+    Apply dimensionality reduction (such as Singular Value Decomposition) to obtain dense vectors
+\end{frame}
 
 
 \begin{frame}{Word2Vec: Continous Bag of Words (CBOW) vs skipgram}
-  Example sentence: ``the quick brown fox jumped over the lazy dog''
+  Example sentence: ``the cat sat on the mat''
+  Let's assume window size 2
   \begin{block}{CBOW: Predict a word given its context}
-    Dataset:
-    
-    \texttt{([the, brown], quick), ([quick, fox], brown), ([brown, jumped], fox), ...}
+    "The" => (["cat", "sat"], "The") \\
+    "cat" => (["The", "sat", "on"], "cat")\\
+    "sat" => (["The", "cat", "on", "the"], "sat")\\
+    "on" => (["cat", "sat", "the", "mat"], "on")\\
+    "the" => (["sat", "on", "mat"], "the")\\
+    "mat" => (["on", "the"], "mat")\\
   \end{block}
+\end{frame}
   
-  \pause
-  
-  
+  \begin{frame}{Word2Vec: Continous Bag of Words (CBOW) vs skipgram}
+  Example sentence: ``the cat sat on the mat''
   \begin{block}{skipgram: Predict the context given the word}	
-    \texttt{(quick, the), (quick, brown), (brown, quick), (brown, fox), ...}
+    "The" => [("The", "cat"), ("The", "sat")]\\
+    "cat" => [("cat", "The"), ("cat", "sat"), ("cat", "on")]\\
+    "sat" => [("sat", "The"), ("sat", "cat"), ("sat", "on"), ("sat", "the")]\\
+    "on" => [("on", "cat"), ("on", "sat"), ("on", "the"), ("on", "mat")]\\
+    "the" => [("the", "sat"), ("the", "on"), ("the", "mat")]\\
+    "mat" => [("mat", "on"), ("mat", "the")]\\
   \end{block}
-  
-  \tiny{Example taken from here: \url{https://medium.com/explore-artificial-intelligence/word2vec-a-baby-step-in-deep-learning-but-a-giant-leap-towards-natural-language-processing-40fe4e8602ba}}
 \end{frame}
 
 %window sizes
@@ -77,8 +98,9 @@
   \begin{itemize}
   \item CBOW is faster
   \item skipgram works better for infrequent words
+  \item corpus size: smaller corpus CBOW is better
   \item Both are often used
-  \item Usually, we use larger window sizes (e.g, 5)
+  \item Usually, we use larger window sizes (e.g, 5; (smaller: precise syntactic relationships; larger: broader semantic relationships))
   \item We need to specify the number of dimensions (typically 100--300)
   \end{itemize}
   \pause
@@ -294,8 +316,8 @@
 \end{frame}
 
 
-\begin{frame}{An exmaple from our research \parencite{Kroon2021}}
-	We trained word embeddings on 3.3 million Dutch news articles.
+\begin{frame}{An example from communication science research \parencite{Kroon2021}}
+	They trained word embeddings on 3.3 million Dutch news articles.
 	
 	Are vector representations of outgroups (Maroccans, Muslims) closer to representations of negative stereotype words than ingroups?
 
@@ -342,7 +364,7 @@
 
 %\subsection{The Amsterdam Embedding Model}
 \begin{frame}{Project's Aim}
-	\begin{block}{Aim of the current project} 
+	\begin{block}{Aim of the Amsterdam Embedding Model project} 
 		\begin{enumerate}
 			\item Develop and evaluate a high-quality embedding model
 			\item Assess performance in downstream tasks of interest to Communication Science (such as topic classification of newspaper data).
@@ -501,7 +523,7 @@
   \item theoretical nonsensical
   \end{itemize}
   
-  \begin{block}{Our solution}
+  \begin{block}{Their solution}
     \begin{itemize}
     \item Three-day moving window (but ``chaining'' possible)
     \item  Saturday/Sunday merged into one day
@@ -515,7 +537,7 @@
 
 \begin{frame}{Step 2: Get similarity scores}
   How to determine similarity between articles?
-  \begin{block}{Our solution}
+  \begin{block}{Their solution}
   Compare combinations of 
   \begin{itemize}
   \item different measures (in particular, $tf\cdot idf$ cosine similarity vs. softcosine similarity
@@ -530,7 +552,7 @@
 
   After experimenting \emph{a lot}:
 	
-  \begin{block}{Our final solution}
+  \begin{block}{Their final solution}
     \begin{itemize}
     \item One network for all (instead of one per window)
     \item Articles are nodes, similarity scores = edge weights
@@ -570,7 +592,7 @@
   \begin{itemize}
   \item Use a high threshold!
   \item Soft-cosine finds some more events, leaves less articles unassigned (good), but that comes at the expense of slightly lower precision
-  \item Example from our data: Because soft-cosine ``understands'' that Nike and Puma are both sports brands, it incorrectly assigned economic coverage about the two to one event.
+  \item Example from their data: Because soft-cosine ``understands'' that Nike and Puma are both sports brands, it incorrectly assigned economic coverage about the two to one event.
   \end{itemize}
 \end{frame}
 
@@ -578,7 +600,7 @@
 
 
 \begin{frame}[fragile]{How correct are the events?}
-  We manually checked $6 \times 100$ events, qualitatively (not shown) and quantitatively:
+  They manually checked $6 \times 100$ events, qualitatively (not shown) and quantitatively:
   \begin{table}
     \begin{tabular}{lrrrr}
       \footnotesize
