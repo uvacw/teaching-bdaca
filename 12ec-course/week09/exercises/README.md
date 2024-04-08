@@ -18,6 +18,7 @@ Take a look at this video made by Moritz Laurer (former VU PhD, now working at H
 In-between these videos there are often additional Q&A's, you do not have to watch those (but of course you can if you think it might help you). All the materials he is using you can find here [GitHub Transformers](https://github.com/MoritzLaurer/summer-school-transformers-2023). I do not recommend running all the code yourself as some of it takes a lot of resources/time to run, rather follow along with him in the video. 
 
 The rest of the video has the following sections (you can watch them if interested but it is NOT required)
+
 2:32:30 - 2:54:00 Fine-tuning Bert-NLI \
 3:02:30 - 3:19:00 Data centric AI \
 3:24:00 - 3:41 Annotation with Argilla \
