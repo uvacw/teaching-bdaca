@@ -1,9 +1,10 @@
-# Web scraping
+# Multimedia data
 
-Write a scraper for a website of your choice. To make things not too complicated, choose a site without cookie walls, login function, etc.
+There are two things you can do
 
-Some hints:
+(1) Work with the examples in Chapter 14 in the book. First reproduce them, then
+see whether you can use your own images!
 
-- First start by parsing one single page
-- Only then, try to extend to multiple pages
-- Be nice! Avoid unnecessary `request`s -- don't re-download the page when trying different parsing options.
+(2) Use the notebook [images_as_data.ipynb](../../week10/images_as_data.ipynb)to
+get an overview of image loading, processing, and classifying (supervised). You
+should run this notebook in Google Colab
