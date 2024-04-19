@@ -10,8 +10,8 @@
 \\Week 14: »Looking back and forward«
 \\Wednesday}
 \author[Felicia Loecherbach]{Felicia Loecherbach\\ \footnotesize{f.loecherbach@uva.nl \\}}
-\date{May 18, 2022}
-\institute[UvA CW]{UvA Research Master Communication Science}
+\date{Friday, May 15, 2024}
+\institute[UvA CW]{UvA RM Communication Science}
 
 
 \begin{frame}{}
@@ -31,37 +31,10 @@ Today: Looking forward
 \end{frame}
 
 
-\begin{frame}[standout]
-Guest Lecture Luna De Bruyne
-(PhD on Sentiment Analysis, Universiteit Gent)
-\end{frame}
-
-
-
-
-
-
-
-
 
 
 \section{Looking back}
 \subsection{Putting the pieces together}
-
-
-\begin{frame}{Computational Social Science \parencite{Shah2015}}
-	``It is an approach to social inquiry defined by (1) the use of large, complex datasets, often—though not always— measured in terabytes or petabytes; (2) the frequent involvement of “naturally occurring” social and digital media sources and other electronic databases; (3) the use of computational or algorithmic solutions to generate patterns and inferences from these data; and (4) the applicability to social theory in a variety of domains from the study of mass opinion to public health, from examinations of political events to social movements''
-\end{frame}
-
-
-
-
-
-\begin{frame}{Computational Social Science \parencite{Kitchin2014}}
-	``[\ldots] the computational social sciences employ the scientific method, complementing descriptive statistics with inferential statistics that seek to identify associations and causality. In other words, they are underpinned by an epistemology wherein the aim is to produce sophisticated statistical models that explain, simulate and predict human life.''
-\end{frame}
-
-
 
 
 \begin{frame}{Steps of a CSS project}
@@ -261,7 +234,7 @@ from tqdm import tqdm   # provides a progress bar
 
 with open("reviews.json", mode="w") as f:
    for url in tqdm(urls):
-       f.write(json.dumps({"url":url, "reviews": getreviews(url)})
+       f.write(json.dumps({"url":url, "reviews": getreviews(url)}))
        f.write("\n")
 \end{minted}
 \end{frame}
@@ -394,28 +367,9 @@ with open("reviews.json", mode="w") as f:
 		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{guentheretal_fig3}}
 \end{frame}
 
-%
-%
-%
-%\begin{frame}{Process and/or enrich}
-%	\begin{block}{Word embeddings}
-%	We did not really consider the \emph{meaning} of words
-%		\begin{itemize}
-%		\item Word embeddings can be trained on large corpora (e.g., whole wikipedia or a couple of years of newspaper coverage) 
-%		\item The trained model allows you to calculate with words (hence, word vectors): $king-man+woman = ?$ 
-%		\item You can find out whether documents are similar \emph{even if they do not use the same words} (Word Mover Distance)
-%		\item $\Rightarrow$ word2vec (in gensim!), glove
-%		\end{itemize}
-%	\end{block}
-%\end{frame}
-%
-%
-
-
-
 \begin{frame}{Process and/or enrich}
 	\begin{block}{Advanced NLP}
-		We did a lot of BOW (and some part-of-speech (POS) tagging and named entity recognition (NER)), but we can do much more, such as 
+        		We did a lot of BOW (and some part-of-speech (POS) tagging and named entity recognition (NER)), but we can do much more, such as 
 		\begin{itemize}
 			\item State-of-the-art Dependency Parsing to find out exact relationships
 			$\Rightarrow$  spacy, stanza (stanford NLP)
@@ -440,22 +394,15 @@ with open("reviews.json", mode="w") as f:
  
 \begin{frame}{Analyze/explain/predict}
 	\begin{block}{Really go into deep learning}
-		We only got a brief intro to keras and to different archtectures -- there is a lot to learn here.
+        \begin{itemize}
+		\item We only got a brief intro to keras and to different archtectures -- there is a lot to learn here.
+                \item There is much more to learn about transformer-based models -- check out huggingface.
+        \end{itemize}
                 \end{block}
 \end{frame}
 
 
-
-
-
-
-\subsection{Transformers}
-
-\begin{frame}[standout]
-If there is one thing that is really hot (as also mentioned in week 12 and by Luna today), then that's transformer models. Look into \texttt{huggingface} to get started!
-\end{frame}
-
-\begin{frame}{Some links}
+\begin{frame}{Some links about transformers}
 \begin{itemize}
 \item \url{https://nlp.seas.harvard.edu/2018/04/03/attention.html}
 \item \url{http://jalammar.github.io/illustrated-transformer/}
@@ -520,7 +467,7 @@ Some hypothetical scenario's (as an \textbf{indication}):
 \begin{itemize}[<+>]
 \item Existing dataset downloaded from Kaggle, limited NLP, simple basic LDA: $<5.0$
 \item Existing dataset, but good and extensive NLP, extensive machine learning approaches; yet, not all best practices followed: $6-7$
-\item Data aquired via APIs or webscraping, multiple NLP techniques applied, SML including extensive comparisons, hyperparameter tuning, visualizations of results, maybe some statistical tests for comparisons after enriching: $7-8$
+\item Data aquired via APIs or webscraping, multiple NLP techniques applied, SML including extensive comparisons, hyperparameter tuning, visualizations of results, advanced models, maybe some statistical tests for comparisons after enriching: $7-8$
 \item Next to fulfilling all criteria, the projct solves a complex task that is going clearly beyond the specific examples used in class and/or in the take-home assignments (e.g., develops a complex web scraper for the data collection stage): $8+$
 \end{itemize}
 (all of this assuming that the methods are suitable to answer the RQ, otherwise the grade is of course lower)
@@ -549,6 +496,11 @@ GOOD LUCK!
 \end{frame}
 
 
+\begin{frame}[standout]
+
+On Friday, open lab if you have questions.
+
+\end{frame}
 
 
 
