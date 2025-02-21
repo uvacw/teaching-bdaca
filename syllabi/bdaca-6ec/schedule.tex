@@ -5,12 +5,10 @@
 Make sure that you have a working Python environment installed on your computer. You cannot start the course if you have not done so.
 
 \section*{Week 1: Programming for Computational (Communication\textbar Social) Scientists}
-\subsection*{Monday, 4--9. Lecture with exercises.}
-
+\subsection*{Monday, 31--3. Lecture with exercises.}
 
 \textsc{\ding{52}  \cite{Kitchin2014}} \\
 \textsc{\ding{52} \cite{Hilbert2019}}
-
 
 We discuss what Big Data and Computational (Social\textbar Communication) Science are. We talk about challenges and opportunities as well as the implications for the social sciences in general and communication science in particular. We also pay attention to the tools used in CSS, in particular to the use of Python.
 
@@ -18,7 +16,7 @@ Additionally, the journal \textit{Commmunication Methods and Measures} had a spe
 
 Towards the end of the lecture, we will make first contact with writing code.
 
-\subsection*{Thursday, 7--9. Lecture with exercises.}
+\subsection*{Thursday, 3--4. Lecture with exercises.}
 \textsc{\ding{52} Chapter 3: Programming concepts for data analysis}\\
 \textsc{\ding{52} Chapter 4: How to write code}\\
 
@@ -34,14 +32,13 @@ We will do our first real steps in Python and do some exercises to get the feeli
 We talk about file formats such as \texttt{csv} and \texttt{json}; about encodings; about reading these formats into basic Python structures such as dictionaries and lists as opposed to reading them into dataframes; and about retrieving such data from local files, as parts of packages, and via an API.
 
 
-\subsection*{Monday 11--9. Lecture.}
+\subsection*{Monday 7--4. Lecture.}
 
 A conceptual overview of different file formats and data sources, and some practical guidance on how to handle such data in basic Python and in Pandas.
 
-\subsection*{Thursday 14--9. Lab session.}
+\subsection*{Thursday 10--4. Lab session.}
 
 We will exercise with the data structures we learned in week 1, as well as with different file formats.
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -50,14 +47,14 @@ We will exercise with the data structures we learned in week 1, as well as with 
 Of course, you don't need Python to do statistics. Whether it's R, Stata, or SPSS -- you probably already have a tool that you are comfortable with. But you also do not want to switch to a different environment just for getting a correlation. And you definitly don't want to do advanced data wrangling in SPSS\ldots
 This week, we will discuss different ways of organizing your data (e.g., long vs wide formats) as well as how to do conventional statistical tests and simple plots in Python.
 
-\subsection*{Monday, 18--9. Lecture.}
+\subsection*{Monday, 14--4. Lecture.}
 \textsc{\ding{52} Chapter 6: Data wrangling}\\
 \textsc{\ding{52} Chapter 7.1. Simple exploratory data analysis}\\
 \textsc{\ding{52} Chapter 7.2. Visualizing data}\\
 
 We will learn how to get your data in the right shape and how to get a first understanding of your data, using exploratory analysis and visualization techniques. We will cover data wrangling with pandas: converting between wide and long formats (melting and pivoting), aggregating data, joining datasets, and so on.
 
-\subsection*{Thursday, 21--9. Lab session.}
+\subsection*{Thursday, 17--4. Lab session.}
 We will apply the techniques discussed during the lectures to multiple datasets.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -66,67 +63,70 @@ We will apply the techniques discussed during the lectures to multiple datasets.
 In this week, we will dive into how to deal with textual data. How is text represented, how can we process it, and how can we extract useful information from it?
 Unfortunately, text as written by humans usually is pretty messy.  We will therefore dive  into ways to represent text in a clean(er) way. We will introduce the Bag-of-Words (BOW) representation and show multiple ways of transforming text into matrices.
 
-\subsection*{Monday, 25--9. Lecture.}
+\subsection*{Monday, 21--4. No Lecture: Easter Monday}
+\subsection*{Thursday, 24--4. Lecture}
+
 \textsc{\ding{52} Chapter 9: Processing text}\\
 \textsc{\ding{52} Chapter 10: Text as data}\\
 \textsc{\ding{52} Chapter 11, Sections 11.1--11.3: Automatic analysis of text}\\
 
 Additional recommended background reading on stopwords: \cite{Nothman2018}.
-  
+
 This lecture will introduce you to techniques and concepts like lemmatization, stopword removal, n-grams, word counts and word co-occurrances, and regular expressions. We then proceed to introducing BOW representations of text.
 
+As an exercise, we will write a first automated content analysis script.
 
+\subsection*{Take home exam}
 
-\subsection*{Thursday, 28--9. Lab session.}
-You will combine the techiques discussed on Monday and write a first automated content analysis script.
+In week 4, the  midterm take-home exam is distributed after the Thursday meeting (24--4). The answer sheets and all files have to be handed in no later than Sunday evening (27--4, 23.59).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\section*{Week 5: Education free week}
+\subsection*{Monday, 28--4. No Lecture}
+\subsection*{Thursday, 1--5. No lab session}
 
-\section*{Week 5: Unsupervised approaches to text analysis}
+\section*{Week 6: Unsupervised approaches to text analysis}
 In this week, we will make the transition from classic statistical modeling as you know it from your previous courses to machine learning. We will discuss how both approaches are related  (or even identical) and where the differences are.
 
-\subsection*{Monday, 2--10. Lecture.}
+\subsection*{Monday, 5--5. No lecture: Liberation day}
+\subsection*{Thursday, 8--5. Shorter lecture combind with exercises.}
+
 \textsc{\ding{52} Chapter 11.5. Unsupervised text analysis: Topic modeling and beyond}\\
-\textsc{\ding{52}  \cite{Maier2018a} }
+\textsc{\ding{52}  \cite{Maier2018a} }  \\
+\textsc{\ding{52} \cite{kroon_advancing_2024}} Read the section \textit{Limitations of Traditional Content Analysis Techniques} (pp. 144–152, up to and including Table 1).  \\
+
 
 We will discuss the use of unsupervised models for the explorative analysis of text.
 A first approach that has historically been employed to do this is to simply apply unsupervised methods such as PCA and k-means clustering on a BOW representation of text -- something that you could actually have done already with your knowledge from Part I. Starting from there, we proceed to discuss a second approach, Latent Dirichlet Allication (LDA), also referred to as (a form of) topic modeling.
 Both approaches have been influential for the field, but are less of a silver bullet then many students and researchers seem to think. We will therefore introduce a much more state-of-the-art approach that is build on top of a pre-trained Transformer instead of relying on a BOW representation.
 
-We will discuss what unsupervised and supervised machine learning are, what they can be used for, and how they can be evaluated.
+As we do not a have a lecture on Monday, we will provide a short introduction into unsupervised machine learning, what it is used for, and how they can be evaluated. In addition, we will provide some hands-on excersises to start experimenting with topic modelling. 
 
-\subsection*{Thursday, 5--10. Lab session.}
-
-During this lab session, we will experiment with different approaches to topic modelling. 
-
-\subsection*{Take home exam}
-
-In week 5, the  midterm take-home exam is distributed after the Monday meeting (2--10). The answer sheets and all files have to be handed in no later than Wednesday evening (4--10, 23.59).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Week 6: Supervised approaches to text analysis}
+\section*{Week 7: Supervised approaches to text analysis}
 
 During this week, we will discuss the basics of machine learning. You will be introduced to scikit-learn \citep{scikit-learn}, one of the most well-known machine learning libraries. We do not have the time to discuss machine learning techniques in depth. Rather, a practical and hands-on introduction is provided. 
 
-\subsection*{Monday, 9--10. Lecture}
+\subsection*{Monday, 12--5. Lecture}
 \textsc{\ding{52} Chapter 8: Statistical Modeling and Supervised Machine Learning}\\
 \textsc{\ding{54} (you can skip 8.4 Deep Learning)}\\
 \textsc{\ding{52} \cite{Boumans2016}}
 
 We will discuss the basics of supervised machine learning, and how its performance can be evaluated. 
 
-\subsection*{Thursday, 12--10. Lab session}
+\subsection*{Thursday, 15--5. Lab session}
 Exercises with scikit-learn.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Week 7: Wrapping up}
+\section*{Week 8: Wrapping up}
 
-\subsection*{Monday, 16--10. Open Lab.}
+\subsection*{Monday, 19--5. Open Lab.}
 Open meeting with the possibility to ask last (!) questions regarding the final project.
 
 \subsection*{Final project}
-Deadline for handing in: Wednesday, 25--10, 23.59.
+Deadline for handing in: Friday, 23--5, 23.59.
 
