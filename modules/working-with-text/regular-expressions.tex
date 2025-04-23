@@ -94,13 +94,6 @@ Maximum points: 25
 
 
 
-
-
-
-
-
-
-
 \begin{frame}{Possible applications}
 \begin{block}{Data preprocessing}
 \begin{itemize}
@@ -125,28 +118,35 @@ Maximum points: 25
 
 \begin{frame}[fragile,plain]{Example 1: Counting actors}
 \begin{minted}{python}
-import re, csv
+import re
+import csv
 from glob import glob
-counts1=[]
-counts2=[]
-filenames = glob("/home/felicia/articles/*.txt")
+import os
 
-for fn in filenames:
-   with open(fn) as fi:
-      artikel = fi.read()
-      artikel = artikel.replace('\n',' ')
+filenames = glob("/home/articles/*.txt")
+results = []
+
+for filepath in filenames:
+   with open(filepath, encoding="utf-8") as f:
+      text = f.read().replace('\n', ' ')  # Read file + replace newlines with spaces
       
-      counts1.append(len(re.findall(
-         'Israel.*(minister|politician.*|[Aa]uthorit)',artikel)))
-      counts2.append(len(re.findall('[Pp]alest',artikel)))
+      israel_mentions = len(re.findall(
+         r'Israel.*?(minister|politician|authority)', text, re.IGNORECASE))
+      palestine_mentions = len(re.findall(r'palest', text, re.IGNORECASE))
       
-output=zip(filenames, counts1, counts2)
-with open("results.csv", mode='w',encoding="utf-8") as fo:
-    writer = csv.writer(fo)
-    writer.writerows(output)
+      results.append((
+         os.path.basename(filepath),
+         israel_mentions,
+         palestine_mentions
+      ))
+
+with open("results.csv", mode="w", encoding="utf-8", newline='') as f_out:
+   writer = csv.writer(f_out)
+   writer.writerow(["filename", "israel_mentions", "palestine_mentions"])
+   writer.writerows(results)
 \end{minted}
 \end{frame}
-
+   
 
 
 \begin{frame}[fragile,plain]{Example 2: Parsing semi-structured data}
@@ -186,7 +186,7 @@ over een saneringsfonds voor banken. Daarmee staat de laatste
 
 More tips:
 
-\large{\url{http://www.pyregex.com/}}
+\large{\url{https://regex101.com/}}
 
 \large{\url{http://www.regexcrossword.com/}}
 \end{frame}
