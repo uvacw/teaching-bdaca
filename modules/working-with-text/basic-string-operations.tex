@@ -14,17 +14,18 @@ For today, we assume that our data are a list of strings -- adapt accordingly fo
 
 
 \begin{frame}[fragile]{An example says more than 1000 words\ldots}
-\begin{minted}{python}
+  \begin{minted}{python}
 # probably read from text file(s) instead, you learned that already...
 data = [ "I <b>really</b> liked this movie! It was great.  ", "  What an awful movie", "Awesome!!!"]
 
 data_stripped = [e.strip() for e in data]
 data_lower = [e.lower() for e in data_stripped]
-data_clean = [e.replace("<b>",").replace("</b>",") for e in data_lower]
+data_clean = [e.replace("<b>", "").replace("</b>", "") for e in data_lower]
 
 # or, more efficient, in one single step:
 data_clean2 = [e.strip().lower().replace("<b>","").replace("</b>","") for e in data]
 \end{minted}
+
 \end{frame}
 
 
@@ -38,10 +39,10 @@ from string import punctuation
 text = "This is a test! Let's get rid (of) punct&"
 
 # we make a list of each character in the text but only if it is not
-# a punctuation sign. The, we join the elements of the list directly
+# a punctuation sign. Then, we join the elements of the list directly
 # to each other without anything between it ("")
 cleantext = "".join([c for c in text if c not in punctuation])
-\end{minted}
+\end{minted}    
 \end{frame}
 
 
@@ -52,12 +53,14 @@ from string import punctuation
 def strip_punctuation(text):
     return "".join([c for c in text if c not in punctuation])
 
-data_clean3 = [strip_punctuation(e).strip().lower()\
-   .replace("<b>","").replace("</b>","") for e in data]
-    
-\end{minted}
+# assuming 'data' is a list of strings
+data_clean3 = [
+    strip_punctuation(e).strip().lower()
+    .replace("<b>", "").replace("</b>", "")
+    for e in data
+]
+\end{minted}    
 \end{frame}
-
 
 
 
