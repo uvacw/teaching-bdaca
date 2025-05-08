@@ -7,10 +7,10 @@
 \begin{document}
 
 \title[Big Data and Automated Content Analysis]{\textbf{Big Data and Automated Content Analysis (6EC)} 
-\\Week 6: »Supervised Approaches to Text Analysis«
-\\Monday}
-\author[Anne Kroon]{Anne Kroon\\ \footnotesize{a.c.kroon@uva.nl, @annekroon \\}}
-\date{October 9, 2023}
+\\Week 6: »Unsupervised machine learning«
+\\Thursday}
+\author[Felicia Loecherbach]{Felicia Loecherbach\\ \footnotesize{f.loecherbach@uva.nl \\}}
+\date{May 8, 2025}
 \institute[UvA CW]{UvA RM Communication Science}
 
 
@@ -22,87 +22,140 @@
 	\tableofcontents
 \end{frame}
 
-\question{Everything clear from last week?}
-
+\question{Everything clear from previous weeks? Questions?}
 
 \begin{frame}[standout]
 This week, we will get a general overview of working with textual data. Due to a lack of time, I will introduce you to some of the basic concepts, point you to resources, and give you a practical, hands-on introduction. 
 \end{frame}
 
-
-\section{Supervised Machine Learning for Text Classification}
-
-\subsection{You have done it before!}
-\begin{frame}{You have done it before!}
-	\begin{block}{Regression}<2->
-		\begin{enumerate}
-			\item<3-> Based on your data, you estimate some regression equation 	$y_i = \alpha + \beta_1 x_{i1} + \cdots + \beta_p x_{ip} + \varepsilon_i$
-			\item<4-> Even if you have some \emph{new unseen data}, you can estimate your expected outcome $\hat{y}$!
-			\item<5-> Example: You estimated a regression equation where $y$ is newspaper reading in days/week: $y = -.8 + .4 \times man + .08 \times age$
-			\item<6-> You could now calculate $\hat{y}$ for a man of 20 years and a woman of 40 years -- \emph{even if no such person exists in your dataset}: \\
-			$\hat{y}_{man20} = -.8 + .4 \times 1 + .08 \times 20 = 1.2$ \\
-			$\hat{y}_{woman40} = -.8 + .4 \times 0 + .08 \times 40 = 2.4$
-		\end{enumerate}
-	\end{block}	
-	
+\begin{frame}{\cite{Boumans2016}: Types of Automated Content Analysis}
+	\makebox[\columnwidth]{	\includegraphics[width=\columnwidth,height=.8\paperheight,keepaspectratio]{boumanstrilling2016}}
 \end{frame}
 
-\begin{frame}{}
-	\huge{This is\\ Supervised Machine Learning!}
-\end{frame}
-
-\begin{frame}{\ldots but\ldots}
+\begin{frame}{Bottom-up vs. top-down}
+\begin{block}{Bottom-up}
 	\begin{itemize}
-		\item<1-> We will only use \emph{half} {\tiny{(or another fraction)}} of our data to estimate the model, so that we can use the other half to check if our predictions match the manual coding (``labeled data'',``annotated data'' in SML-lingo)
+		\item Count most frequently occurring words 
+		\item Maybe better: Count combinations of words $\Rightarrow$ Which words co-occur together?
+	\end{itemize}
+	We \emph{don't} specify what to look for in advance	
+\end{block}
+
+\onslide<2>{
+	\begin{block}{Top-down}
 		\begin{itemize}
-			\item<2->e.g., 2000 labeled cases, 1000 for training, 1000 for testing --- if successful, run on 100,000 unlabeled cases
+			\item Count frequencies of pre-defined words
+			\item Maybe better: patterns instead of words
 		\end{itemize}
-		\item<3-> We use many more independent variables (``features'')
-		\item<4-> Typically, IVs are word frequencies (often weighted, e.g. tf$\times$idf) ($\Rightarrow$BOW-representation)
-	\end{itemize}
+		We \emph{do} specify what to look for in advance	
+	\end{block}
+}
+
 \end{frame}
 
+\begin{frame}[fragile]{A simple bottom-up approach}
 
-\subsection{From regression to classification}
+\begin{minted}[%
+	breaklines,
+	linenos,
+	fontsize=\scriptsize,
+	frame=single,
+	xleftmargin=0pt,]
+	{python}
+from collections import Counter
+texts = ["Communication in the Digital Society is a very very complex phenomenon", "I like to study it"]
+bottom_up = []
+for t in texts:
+    bottom_up.append(Counter(t.lower().split()).most_common(3))
+    print(bottom_up)
+\end{minted}
+\pause
+This results in:
+\begin{minted}[fontsize=\scriptsize]{python}
+[('very', 2), ('Communication', 1), ('in', 1)]
+[('I', 1), ('like', 1), ('to', 1)]
+\end{minted}
+\textcolor{red}{\footnotesize{\emph{Please note that you can also write this like:}}}
+\pause
+\begin{minted}[%
+	breaklines,
+	linenos,
+	fontsize=\scriptsize,
+	frame=single,
+	xleftmargin=0pt,]
+	{python}
+bottom_up = [Counter(t.split()).most_common(3) for t  in texts]
+\end{minted}
+\begin{itemize}
+	\tiny{
+		\item This is \emph{exactly} the same, just shorter (and faster). 
+		\item You do \emph{not} have to use list comprehensions, but it helps if you can read them. }
+\end{itemize}
 
-\begin{frame}[standout]
-	In the machine learning world, predicting some continous value is referred to as a \textcolor{orange}{regression} task. If we want to predict a binary or categorical variable, we call it a \textcolor{orange}{classification} task.
+\end{frame}
+
+\begin{frame}[fragile]{A simple top-down approach}
+\begin{minted}[%
+	breaklines,
+	linenos,
+	fontsize=\scriptsize,
+	frame=single,
+	xleftmargin=0pt,]
+	{python}
+texts = ["Communication in the Digital Society is a very very complex phenomenon", "I like to study it"]
+features = ["communication", "digital", "study"]
+for t in texts:
+    print(f"\nAnalyzing '{t}':")
+    for f in features:
+        print(f"{f} occurs {t.lower().count(f)} times")
+\end{minted}
+\pause
+\begin{minted}[fontsize=\tiny]{python}
+Analyzing 'Communication in the Digital Society is a very very complex phenomenon':
+communication occurs 1 times
+digital occurs 1 times
+study occurs 0 times
 	
-	(quite confusingly, even if we use a logistic regression for the latter)
+Analyzing 'I like to study it':
+communication occurs 0 times
+digital occurs 0 times
+study occurs 1 times	
+\end{minted}
 \end{frame}
 
+\question{When would you use which approach?}
 
-\begin{frame}{Classification tasks}
-	For many computational approaches, we are actually not that interested in predicting a continous value. Typical questions include:
-	\begin{itemize}
-		\item Is this article about topic A, B, C, D, or E?
-		\item Is this review positive or negative?
-		\item Does this text contain frame F?
-		\item Is this satire? 
-		\item Is this misinformation?
-		\item Given past behavior, can I predict the next click?
-	\end{itemize}
+\begin{frame}{Some considerations}
+\begin{itemize}[<+->]
+	\item Both can have a place in your workflow (e.g., bottom-up as first exploratory step)
+	\item You have a clear theoretical expectation? Bottom-up makes little sense.
+	\item But in any case: you need to transform your text into something ``countable''.
+\end{itemize}
 \end{frame}
 
+\section{Unsupervised Machine Learning for Text Classification}
 
 
-\begin{frame}[plain]
-	\begin{columns}[]
+\begin{frame}{Supervised vs Unsupervised}
+	\begin{columns}[t]
 		\column{.5\textwidth}
 		
-		{\tiny{http://commons.wikimedia.org/wiki/File:Precisionrecall.svg}}
-		\makebox[\linewidth]{
-			\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{../../resources/img/precisionrecall.png}}
+		\begin{block}<1-4>{Supervised machine learning}
+			You have a dataset with both predictor and outcome (independent and dependent variables; features and labels) --- a \emph{labeled} dataset.
+			\onslide<2>{
+				\footnotesize{Think of regression: You measured \texttt{x1}, \texttt{x2}, \texttt{x3} and you want to predict \texttt{y}, which you also measured}}
+		\end{block}
 		
 		\column{.5\textwidth}
-		\begin{block}{Some measures}
-			\begin{itemize}
-				\item Accuracy
-				\item Recall
-				\item Precision
-				\item $\text{F1}=2\cdot \frac{\text{precision}\cdot \text{recall}}{\text{precision}+\text{recall}}$
-				\item AUC (Area under curve) $[0,1]$, $0.5=$ random guessing
-			\end{itemize}
+		
+		\begin{block}<3->{Unsupervised machine learning}
+			You have no labels. \onslide<4>{(\footnotesize{You did not measure \texttt{y})}}\\
+			\onslide<5>{\textbf{You might already know \emph{some} techniques to figure out whether \texttt{x1}, \texttt{x2},\ldots \texttt{x\_i} co-occur} \begin{itemize}
+					\item Principal Component Analysis (PCA) and Singular Value Decomposition (SVD)
+					\item Cluster analysis
+					\item Topic modelling (Non-negative matrix factorization and Latent Dirichlet Allocation)
+					\item \ldots
+			\end{itemize}}
 		\end{block}
 		
 	\end{columns}
@@ -110,20 +163,21 @@ This week, we will get a general overview of working with textual data. Due to a
 \end{frame}
 
 
-\input{../../modules/machinelearning-text/sml1.tex}
+\input{../../modules/machinelearning-text/lda.tex}
+
+
 
 \question{Any questions?}
 
 \section{Next steps}
 
 \begin{frame}[standout]
-I prepared exercises to work on \emph{during} the Thursday meeting (alone or in teams):
-\large{\url{https://github.com/uvacw/teaching-bdaca/blob/main/6ec-course/week07/exercises/}}
-\end{frame}
 
-\begin{frame}[standout]
-Next monday: time for your individual questions about the final project. 
-Sign up via Canvas!
+Example notebooks with code for running LDA models and BERTopic models can be found here:
+\large{\url{https://github.com/uvacw/teaching-bdaca/blob/main/6ec-course/week06/exercises/}
+
+Note: I would advise to run the BERTopic model on Google Colab so you have access to a GPU. If there is time, we 
+can discuss this together in class. }
 \end{frame}
 
 
