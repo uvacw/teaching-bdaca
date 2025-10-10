@@ -9,7 +9,11 @@
 \AtBeginDocument{\renewcommand{\bibname}{Literature}}
 
 
-\usepackage[utf8x]{inputenc}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\DeclareUnicodeCharacter{2011}{\nobreakdash-}
+
 \usepackage{graphicx}
 \usepackage{enumerate}
 \usepackage{url}
@@ -56,16 +60,10 @@ backgroundcolor=\color[rgb]{0.85,0.90,1}
 	dr. Anne Kroon\\
 	Graduate School of Communication\\
 	University of Amsterdam\\
-	a.c.kroon@uva.nl
-	\and
-	dr. Felicia Loecherbach\\
-	Graduate School of Communication\\
-	University of Amsterdam\\
-	f.loecherbach@uva.nl
-}
+	a.c.kroon@uva.nl}
 
 
-\date{Academic Year 2024/25\\Semester 2, block  2\ }
+\date{Academic Year 2025/26\\Semester 1, block  2\ }
 
 \begin{document}
 \maketitle
@@ -87,9 +85,9 @@ Upon completion of this course, the following goals are reached:
 
 \section{Help with practical matters}
 While making your first steps with programming in Python, you will probably have a lot of questions.
-Nevertheless, \url{htttps://google.com} and \url{https://stackoverflow.com} should be your first points of contact. After all, that's how we solve our problems as well\ldots
+Nevertheless, \url{https://google.com} and \url{https://stackoverflow.com} should be your first points of contact. After all, that's how we solve our problems as well\ldots
 
-It is also very much encouraged to try to solve problems together with your classmates. A succesful technique can be \emph{pair programming}, where two colleagues sit behind one screen (for an explanation, see \url{https://en.wikipedia.org/wiki/Pair_programming}).
+It is also very much encouraged to try to solve problems together with your classmates. A successful technique can be \emph{pair programming}, where two colleagues sit behind one screen (for an explanation, see \url{https://en.wikipedia.org/wiki/Pair_programming}).
 
 If you really cannot find a solution on your own, you can pose such questions during the Thursday lab sessions. However, keep the remark in Section~\ref{sec:yourcomputer} in mind!
 
@@ -109,17 +107,24 @@ Plagiarism is a serious academic violation. Cases in which students use material
 General UvA regulations about fraud and plagiarism apply, see also \url{https://student.uva.nl/en/content/az/plagiarism-and-fraud/plagiarism-and-fraud.html}.
 
 \subsection{Attributing code}
-Plagiarism rules apply to code in the same way as they apply to text. Just like how your writing often builds on other scholars (who you cite), your code often builds on what others have done or are inspired by solutions of others, for instance in communities like Stackoverflow. Analoguous to plagiarism regulations in normal writing, also in your code, it needs to be transparent \emph{what is from you and what is not}. We don't really have something like APA references for code, but you can simply use \texttt{\#comments} for that purpose, such as:
+Plagiarism rules apply to code in the same way as they apply to text. Just like how your writing often builds on other scholars (who you cite), your code often builds on what others have done or are inspired by solutions of others, for instance in communities like Stackoverflow. Analogous to plagiarism regulations in normal writing, also in your code, it needs to be transparent \emph{what is from you and what is not}. We don't really have something like APA references for code, but you can simply use \texttt{\#comments} for that purpose, such as:
 \texttt{\# The following function is copied from https://stackoverflow.com/XXXXX/XXXXX} for (almost) literal copy-pasting, or \texttt{\# The code in this cell is inspired by https://...; I modified Y and Z}. 
 
 Make sure that there is no doubt about what is yours and what is from someone else!
 
 \subsection{Use of AI tools}
-It speaks for itself that -- analogous to the rules outlined above -- the use of AI tools such as ChatGPT or Copilot to generate code is not acceptable. Handing in such code will be considered fraud.
+
+We encourage you to develop your own analytical and research skills throughout this course.
+
+\begin{itemize}
+	\item Do not use AI tools to generate, write, or substantially complete any assignments or projects that you submit for assessment. Doing so will be treated as academic misconduct.
+	\item You may use AI tools responsibly to clarify concepts, review methodologies, or help debug analyses that you have conducted yourself. The final work you submit must be authored by you and fully understood by you.
+	\item Prefer using UvA AI Chat for privacy and data protection. Be cautious with third‑party tools and do not share sensitive or personal data.
+	\item If you use AI, disclose and cite the tool and briefly describe how you used it. Normal plagiarism and fraud rules apply.
+\end{itemize}
 
 \subsection{Working together}
 The take-home exams as well as the final project are \emph{individual exams}. Collaboration with fellow students is thus considered academic fraud and will be reported and handled accordingly.
-
 
 In some instances, some overlap between final projects may be unavoidable, for instance when relying on very similar data sources. If in doubt, always discuss with me in advance to avoid problems after you handed in! It is almost always possible to find a solution, if discussed in advance.
 
@@ -166,10 +171,6 @@ If -- even after trying -- you do not succeed in any of these steps, ask your cl
 
 
 \end{document}
-
-
-\bibliographystyle{apacite}
-\bibliography{../../resources/literature}
 
  
  
