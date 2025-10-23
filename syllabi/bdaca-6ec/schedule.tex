@@ -26,16 +26,19 @@ We will do our first real steps in Python and do some exercises to get the feeli
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section*{Week 2: From files and APIs to lists, dictionaries, or dataframes}
-\textsc{\ding{52} Chapter 5: From file to dataframe and back}\\
-\textsc{\ding{52}  \cite{freelon_computational_2018}}
 
 We talk about file formats such as \texttt{csv} and \texttt{json}; about encodings; about reading these formats into basic Python structures such as dictionaries and lists as opposed to reading them into dataframes; and about retrieving such data from local files, as parts of packages, and via an API.
 
-\subsection*{Monday 03--11. Lecture.}
+\subsection*{Monday, 03--11. Lecture.}
+
+\textsc{\ding{52} Chapter 5: From file to dataframe and back}\\
+\textsc{\ding{52} \cite{freelon_computational_2018}}\\
+
 A conceptual overview of different file formats and data sources, and some practical guidance on how to handle such data in basic Python and in Pandas.
 
-\subsection*{Thursday 06--11. Lab session.}
-We will exercise with the data structures we learned in week 1, as well as with different file formats.
+\subsection*{Thursday, 06--11. Lab session.}
+
+We will exercise with the data structures we learned in Week 1, as well as with different file formats.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -51,50 +54,47 @@ This week, we will discuss different ways of organizing your data (e.g., long vs
 
 We will learn how to get your data in the right shape and how to get a first understanding of your data, using exploratory analysis and visualization techniques. We will cover data wrangling with pandas: converting between wide and long formats (melting and pivoting), aggregating data, joining datasets, and so on.
 
-\subsection*{Thursday, 13--11. Lab session.}
-We will apply the techniques discussed during the lectures to multiple datasets.
+\subsection*{Thursday, 13--11. Lab session and short lecture.}
+We will apply the techniques discussed during the previous lectures to multiple datasets. In addition, we will start exploring the topic of next week: processing textual data. This short lecture will introduce key ideas about how text can be represented and analyzed using computational methods. We will discuss different approaches to representing textual data (such as tokenization and Bag-of-Words models) and experiment with some simple examples in Python.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section*{Week 4: Processing textual data}
-In this week, we will dive into how to deal with textual data. How is text represented, how can we process it, and how can we extract useful information from it?
-Unfortunately, text as written by humans usually is pretty messy.  We will therefore dive  into ways to represent text in a clean(er) way. We will introduce the Bag-of-Words (BOW) representation and show multiple ways of transforming text into matrices.
 
-\subsection*{Monday, 17--11. Lecture}
+In this week, we will dive into how to work with textual data. How is text represented, how can we process it, and how can we extract useful information from it? 
+Because text as written by humans is often quite messy, we will explore ways to represent it in a cleaner and more structured way. We will introduce the Bag-of-Words (BOW) representation and demonstrate several ways of transforming text into matrices that can be analyzed quantitatively.
+
+\subsection*{Monday, 17--11. Short lecture and lab session.}
+
 \textsc{\ding{52} Chapter 9: Processing text}\\
 \textsc{\ding{52} Chapter 10: Text as data}\\
 \textsc{\ding{52} Chapter 11, Sections 11.1--11.3: Automatic analysis of text}\\
 
 Additional recommended background reading on stopwords: \cite{Nothman2018}.
 
-This lecture will introduce you to techniques and concepts like lemmatization, stopword removal, n-grams, word counts and word co-occurrances, and regular expressions. We then proceed to introducing BOW representations of text.
+This session combines a short lecture with a hands-on exercise. We will further explore techniques such as lemmatization, stopword removal, n-grams, word counts and word co-occurrences, and regular expressions. Building on Thursday’s introduction, we will implement these methods in Python and continue developing our first automated content analysis script, combining our knowledge of data structures and programming concepts with introductory text-processing techniques.
 
-\subsection*{Thursday, 20--11. No class; time to work on your take-home exam}
-We will practice with writing our first automated content analysis script.
+\subsection*{Thursday, 20--11. No class; time to work on your take-home exam.}
 
-\subsection*{Take home exam}
-In week 4, the  midterm take-home exam is distributed on Monday (17--1). The answer sheets and all files have to be handed in no later than Friday evening (21--11, 23.59).
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+You can use this time to continue working on your take-home exam and apply the concepts discussed in the lectures. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section*{Week 5: Unsupervised approaches to text analysis}
-In this week, we will make the transition from classic statistical modeling as you know it from your previous courses to machine learning. We will discuss how both approaches are related  (or even identical) and where the differences are.
 
-\subsection*{Monday, 24--11. Lecture.}
-\textsc{\ding{52} Chapter 11.5. Unsupervised text analysis: Topic modeling and beyond}\\
-\textsc{\ding{52}  \cite{Maier2018a} }  \\
-\textsc{\ding{52} \cite{kroon_advancing_2024}} Read the section \textit{Limitations of Traditional Content Analysis Techniques} (pp. 144–152, up to and including Table 1).  \\
+In this week, we will make the transition from traditional statistical models to modern unsupervised machine learning techniques for text analysis. We will discuss how these approaches relate to earlier methods such as topic modeling and how recent advances in transformer-based language models have reshaped exploratory text analysis.
 
-\subsection*{Thursday, 27--11. Lab session with exercises.}
+\subsection*{Monday, 24--11. Lecture: From topic models to embeddings.}
 
-We will discuss the use of unsupervised models for the exploratory analysis of text.
-A first approach that has historically been employed is to apply unsupervised methods such as PCA and k-means clustering to a bag-of-words (BOW) representation of text. Building on this, we will then examine a second approach: Latent Dirichlet Allocation (LDA), also known as a form of topic modeling.
+\textsc{\ding{52} Chapter 11.5: Unsupervised text analysis — Topic modeling and beyond}\\
+\textsc{\ding{52} \cite{kroon_advancing_2024}}\\
+\textsc{\ding{52} \cite{Maier2018a}}\\
 
-Both approaches have been influential in the field, but they are far from the silver bullet that many students and researchers assume. We will therefore introduce a more state-of-the-art method, which builds on top of a pre-trained Transformer rather than relying on a BOW representation.
+In this lecture, we will examine the logic of unsupervised text modeling and contrast traditional approaches such as LDA with modern embedding-based techniques. We will introduce the concept of BERTopic as an example of how transformer models can uncover themes in large text collections without manual coding.
 
-We will also provide a brief introduction to unsupervised machine learning, its applications, and how such models can be evaluated. In addition, we will complete hands-on exercises to begin experimenting with topic modeling.
+\subsection*{Thursday, 27--11. Lab session}
+
+In this lab session, we will apply BERTopic to textual data, experimenting with how clustering emerges from contextual embeddings. We will compare its output to simpler unsupervised approaches and discuss strengths, limitations, and interpretability. We will also provide guidance on evaluating unsupervised models and integrating them into computational communication research.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Week 6: Supervised approaches to text analysis}
