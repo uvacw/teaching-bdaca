@@ -13,13 +13,13 @@
 - Any other improvements?
 
 
-
-
 # Exercise 2: Working with dictionaries
+
+*if you like, you can use the toy data [here](https://github.com/uvacw/teaching-bdaca/blob/main/modules/basics-exercises/toydata_exercises.md) if these exercises*
 
 
 - Create a program that takes lists of corresponding data (a list of first names, a list of last names, a list of phone numbers) and converts them into a dictionary. You may assume that the lists are ordered correspondingly. To loop over two lists at the same time, you can do sth like this: (of course, you later on do not want to print but to put in a dictionary instead):
-```
+```python
 for i, j in zip(list1, list):
    print(i,j)
 ```
