@@ -195,12 +195,37 @@ df[df.loc[:, 'gender']==0]    # select all rows with females
 
 
 
-\begin{frame}{Subsetting and slicing}
-  The difference is between creating a copy and referring to \emph{exactly} the same object itself:
-\makebox[\linewidth]{
-\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{pandas-loc-vs-iloc.png}}
+\begin{frame}[fragile]{Subsetting and slicing}
+
+\textbf{Copy vs. reference:}  
+The key difference is between creating a \textit{copy} and referring to the \textit{same object} in memory.
+
+\begin{minted}[fontsize=\scriptsize, bgcolor=gray!5]{python}
+# Wrong way — chained indexing creates a copy
+df[df['gender']==0]['radio'] = 0
+\end{minted}
+
+\begin{block}{Warning output}
+\begin{minted}[fontsize=\scriptsize, bgcolor=yellow!5]{text}
+SettingWithCopyWarning:
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+\end{minted}
+\end{block}
+
+\begin{minted}[fontsize=\scriptsize, bgcolor=gray!5]{python}
+# Correct way — modifies the original DataFrame
+df.loc[df['gender']==0, 'radio'] = 0
+\end{minted}
+
 \end{frame}
 
+
+%\begin{frame}{Subsetting and slicing}
+%  The difference is between creating a copy and referring to \emph{exactly} the same object itself:
+%\makebox[\linewidth]{
+%\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{pandas-loc-vs-iloc.png}}
+%\end{frame}
 
 
 
@@ -298,12 +323,17 @@ Main question: What do you want to do with keys that exist only in one of the  d
 \end{frame}
 
 
-\begin{frame}{.agg()}
+\begin{frame}{\texttt{.agg()}}
 \begin{itemize}[<+->]
-	\item Very useful after a \texttt{.groupby()}
-	\item Takes a function as argument: \\	\texttt{df2 = df.groupby('region').agg(sum)}
-	\item Or multiple functions: \\ \texttt{df2 = df.groupby('region').agg([sum, np.mean])}
-	\item $\rightarrow$ yes, you could do \texttt{.describe()}, but \texttt{.agg()} is more flexible	
+  \item Very useful after a \texttt{.groupby()}.
+  \item Takes a function (or list of functions) as argument:
+  \begin{itemize}
+    \item Single function: \\
+      \texttt{df2 = df.groupby('region').agg('sum')}
+    \item Multiple functions: \\
+      \texttt{df2 = df.groupby('region').agg(['sum', 'mean'])}
+  \end{itemize}
+  \item $\rightarrow$ You could use \texttt{.describe()}, but \texttt{.agg()} is more flexible.
 \end{itemize}
 \end{frame}
 
@@ -316,7 +346,7 @@ import numpy as np
 df.groupby("gender")['internet'].describe()
 
 # ... or select specific aggregation functions
-df.groupby("gender")['internet'].agg([np.mean, np.std])
+df.groupby("gender")['internet'].agg(['mean', 'std'])
 \end{minted}
 \end{frame}
 
