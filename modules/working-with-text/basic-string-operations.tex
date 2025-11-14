@@ -14,20 +14,25 @@ For today, we assume that our data are a list of strings -- adapt accordingly fo
 
 
 \begin{frame}[fragile]{An example says more than 1000 words\ldots}
-  \begin{minted}{python}
-# probably read from text file(s) instead, you learned that already...
-data = [ "I <b>really</b> liked this movie! It was great.  ", "  What an awful movie", "Awesome!!!"]
+\begin{minted}{python}
+# In reality you'd read this from a file...
+data = [
+    "I <b>really</b> liked this movie! It was great.  ",
+    "  What an awful movie",
+    "Awesome!!!"
+]
+# Step-by-step cleaning
+data_stripped = [e.strip() for e in data]                # remove spaces
+data_lower    = [e.lower() for e in data_stripped]       # lowercase
+data_clean    = [e.replace("<b>", "").replace("</b>", "") 
+                 for e in data_lower]                    # remove simple HTML
 
-data_stripped = [e.strip() for e in data]
-data_lower = [e.lower() for e in data_stripped]
-data_clean = [e.replace("<b>", "").replace("</b>", "") for e in data_lower]
-
-# or, more efficient, in one single step:
-data_clean2 = [e.strip().lower().replace("<b>","").replace("</b>","") for e in data]
+# Or all in one step:
+data_clean2 = [e.strip().lower()
+                  .replace("<b>", "").replace("</b>", "")
+                for e in data]
 \end{minted}
-
 \end{frame}
-
 
 
 \begin{frame}[fragile]{Two examples says even more:}
