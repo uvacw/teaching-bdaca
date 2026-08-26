@@ -1,70 +1,89 @@
-
 \section*{Before the course starts: Prepare your computer.}
 
 \textsc{\ding{52} Chapter 1: Introduction}\\
-Make sure that you have a working Python environment installed on your computer. You cannot start the course if you have not done so.
+Make sure that you have a working Python environment installed on your computer before the course begins. Detailed installation instructions will be provided in advance. Students are responsible for bringing a laptop with a functioning Python environment to every meeting.
+
+\section*{Assessment overview}
+
+The course assessment consists of three components:
+\begin{itemize}
+    \item a supervised individual practical assessment in Week 4 (25\%);
+    \item an individual project pitch, structured peer feedback, and a short reflection in Week 7 (15\%);
+    \item an individual final project, due during Week 8 / the assessment week (60\%).
+\end{itemize}
+
+The Week 4 practical assessment establishes individual competence in reading, debugging, adapting, and interpreting basic Python and data-analysis workflows. Generative-AI use is not permitted during this supervised assessment, subject to the applicable examination arrangements.
+
+The final project assesses students' ability to conduct and report an independent computational communication-science analysis. Where generative AI is used in preparing the final project, students must disclose material use and remain responsible for the correctness, appropriateness, documentation, and interpretation of all submitted work.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section*{Week 1: Programming for Computational (Communication\textbar Social) Scientists}
-\subsection*{Monday, 27--10. Lecture.}
 
-\textsc{\ding{52}  \cite{Kitchin2014}} \\
+\subsection*{Monday, 26--10. Lecture, 15:00--17:00}
+
+\textsc{\ding{52} \cite{Kitchin2014}}\\
 \textsc{\ding{52} \cite{Hilbert2019}}
 
-We discuss what Big Data and Computational (Social\textbar Communication) Science are. We talk about challenges and opportunities as well as the implications for the social sciences in general and communication science in particular. We also pay attention to the tools used in CSS, in particular to the use of Python.
+We discuss what Big Data and Computational (Social\textbar Communication) Science are. We consider their opportunities and challenges, including implications for social-scientific research. We also introduce the tools used in Computational Social Science, particularly Python.
 
-Additionally, the journal \textit{Commmunication Methods and Measures} had a special issue (volume 12, issue 2--3) about Computational Communication Science. Read at least the editorial \citep{VanAtteveldt2018a}, but preferably, also some of the articles (you can also do that later in the course).
+Additionally, the journal \textit{Communication Methods and Measures} published a special issue (volume 12, issue 2--3) on Computational Communication Science. Read at least the editorial \citep{VanAtteveldt2018a}; other articles can be read later in the course.
 
-Towards the end of the lecture, we will make first contact with writing code.
+Towards the end of the lecture, we will make first contact with writing and running Python code. We will also discuss expectations concerning reproducibility, responsible use of external code and AI tools, and active participation in the course.
 
-\subsection*{Thursday, 30--10. Lecture with exercises.}
+\subsection*{Thursday, 29--10. Lab session, 15:00--17:00}
+
 \textsc{\ding{52} Chapter 3: Programming concepts for data analysis}\\
 \textsc{\ding{52} Chapter 4: How to write code}\\
 
-You will get a very gentle introduction to computer programming. During the lecture, you are encouraged to follow the examples on your own laptop.
-We will do our first real steps in Python and do some exercises to get the feeling with writing code.
+You will receive a gentle introduction to computer programming. During the lab, you are encouraged to follow examples on your own laptop. We will take the first steps in Python and complete exercises on variables, data types, control flow, functions, and debugging.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section*{Week 2: From files and APIs to lists, dictionaries, or dataframes}
 
-We talk about file formats such as \texttt{csv} and \texttt{json}; about encodings; about reading these formats into basic Python structures such as dictionaries and lists as opposed to reading them into dataframes; and about retrieving such data from local files, as parts of packages, and via an API.
+We discuss file formats such as \texttt{csv} and \texttt{json}; encodings; reading files into basic Python structures such as dictionaries and lists; reading data into dataframes; and retrieving data from local files, packages, and APIs. We also consider data provenance and the practical limits of data access.
 
-\subsection*{Monday, 03--11. Lecture.}
+\subsection*{Monday, 02--11. Lecture, 15:00--17:00}
 
 \textsc{\ding{52} Chapter 5: From file to dataframe and back}\\
 \textsc{\ding{52} \cite{freelon_computational_2018}}\\
 
-A conceptual overview of different file formats and data sources, and some practical guidance on how to handle such data in basic Python and in Pandas.
+This lecture provides a conceptual overview of different file formats and data sources, alongside practical guidance on handling data in basic Python and pandas. We introduce APIs as a means of data collection and discuss why documentation, metadata, and collection decisions matter for later analysis.
 
-\subsection*{Thursday, 06--11. Lab session.}
+\subsection*{Thursday, 05--11. Lab session, 15:00--17:00}
 
-We will exercise with the data structures we learned in Week 1, as well as with different file formats.
+We will practise using the data structures introduced in Week 1 and work with different file formats. Exercises include inspecting data, handling encodings, reading nested JSON structures, and extracting information from a provided API response.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section*{Week 3: Data wrangling and exploratory data analysis}
 
-Of course, you don't need Python to do statistics. Whether it's R, Stata, or SPSS -- you probably already have a tool that you are comfortable with. But you also do not want to switch to a different environment just for getting a correlation. And you definitly don't want to do advanced data wrangling in SPSS\ldots
-This week, we will discuss different ways of organizing your data (e.g., long vs wide formats) as well as how to do conventional statistical tests and simple plots in Python.
+You do not need Python to conduct conventional statistics. However, using a single environment for data acquisition, cleaning, analysis, and visualisation makes a workflow more transparent and reproducible. This week, we discuss how to organise data, including long and wide formats, and how to conduct exploratory analyses and create simple visualisations in Python.
 
-\subsection*{Monday, 10--11. Lecture.}
+\subsection*{Monday, 09--11. Lecture, 15:00--17:00}
+
 \textsc{\ding{52} Chapter 6: Data wrangling}\\
-\textsc{\ding{52} Chapter 7.1. Simple exploratory data analysis}\\
-\textsc{\ding{52} Chapter 7.2. Visualizing data}\\
+\textsc{\ding{52} Chapter 7.1: Simple exploratory data analysis}\\
+\textsc{\ding{52} Chapter 7.2: Visualising data}\\
 
-We will learn how to get your data in the right shape and how to get a first understanding of your data, using exploratory analysis and visualization techniques. We will cover data wrangling with pandas: converting between wide and long formats (melting and pivoting), aggregating data, joining datasets, and so on.
+We will learn how to prepare data for analysis and develop a first understanding of a dataset through exploratory analysis and visualisation. We cover data wrangling with pandas, including filtering, aggregating, reshaping between long and wide formats, joining datasets, and handling missing values.
 
-\subsection*{Thursday, 13--11. Lab session and short lecture.}
-We will apply the techniques discussed during the previous lectures to multiple datasets. In addition, we will start exploring the topic of next week: processing textual data. This short lecture will introduce key ideas about how text can be represented and analyzed using computational methods. We will discuss different approaches to representing textual data (such as tokenization and Bag-of-Words models) and experiment with some simple examples in Python.
+\subsection*{Thursday, 12--11. Lab session and short lecture, 15:00--17:00}
+
+We will apply the techniques from the previous lectures to multiple datasets. The session also prepares students for the supervised practical assessment in Week 4. We conclude with a short introduction to text as data, including tokenisation and Bag-of-Words representations.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section*{Week 4: Processing textual data}
+\section*{Week 4: Individual practical assessment and introduction to textual data}
 
-In this week, we will dive into how to work with textual data. How is text represented, how can we process it, and how can we extract useful information from it? 
-Because text as written by humans is often quite messy, we will explore ways to represent it in a cleaner and more structured way. We will introduce the Bag-of-Words (BOW) representation and demonstrate several ways of transforming text into matrices that can be analyzed quantitatively.
+\subsection*{Monday, 16--11. Supervised individual practical assessment, 15:00--17:00}
 
-\subsection*{Monday, 17--11. Short lecture and lab session.}
+This individual, on-campus practical assessment covers the foundations from Weeks 1--3. Students will work with a small dataset, a data dictionary, and a starter notebook. Tasks may include reading and inspecting data, identifying and correcting code errors, transforming data, producing a descriptive output, and interpreting results and limitations.
+
+The assessment focuses on students' ability to read, adapt, debug, and explain code rather than reproduce extensive code from memory. It contributes 25\% to the final grade.
+
+\subsection*{Thursday, 19--11. Lab session: Processing textual data, 15:00--17:00}
 
 \textsc{\ding{52} Chapter 9: Processing text}\\
 \textsc{\ding{52} Chapter 10: Text as data}\\
@@ -72,54 +91,73 @@ Because text as written by humans is often quite messy, we will explore ways to 
 
 Additional recommended background reading on stopwords: \cite{Nothman2018}.
 
-This session combines a short lecture with a hands-on exercise. We will further explore techniques such as lemmatization, stopword removal, n-grams, word counts and word co-occurrences, and regular expressions. Building on Thursday’s introduction, we will implement these methods in Python and continue developing our first automated content analysis script, combining our knowledge of data structures and programming concepts with introductory text-processing techniques.
+This session introduces text processing as a measurement problem. We explore tokenisation, lemmatisation, stopword removal, n-grams, word counts, word co-occurrences, and regular expressions. We implement selected techniques in Python and discuss how preprocessing choices affect the validity of automated content analysis.
 
-\subsection*{Thursday, 20--11. No class; time to work on your take-home exam.}
-
-You can use this time to continue working on your take-home exam and apply the concepts discussed in the lectures. 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section*{Week 5: Unsupervised approaches to text analysis}
 
-In this week, we will make the transition from traditional statistical models to modern unsupervised machine learning techniques for text analysis. We will discuss how these approaches relate to earlier methods such as topic modeling and how recent advances in transformer-based language models have reshaped exploratory text analysis.
+This week, we transition from transparent frequency-based text representations to unsupervised machine-learning approaches. We discuss how traditional topic models relate to embedding-based methods and how these approaches can support exploratory text analysis.
 
-\subsection*{Monday, 24--11. Lecture: From topic models to embeddings.}
+\subsection*{Monday, 23--11. Lecture: From topic models to embeddings, 15:00--17:00}
 
-\textsc{\ding{52} Chapter 11.5: Unsupervised text analysis — Topic modeling and beyond}\\
+\textsc{\ding{52} Chapter 11.5: Unsupervised text analysis --- Topic modelling and beyond}\\
 \textsc{\ding{52} \cite{kroon_advancing_2024}}\\
 \textsc{\ding{52} \cite{Maier2018a}}\\
 
-In this lecture, we will examine the logic of unsupervised text modeling and contrast traditional approaches such as LDA with modern embedding-based techniques. We will introduce the concept of BERTopic as an example of how transformer models can uncover themes in large text collections without manual coding.
+We examine the logic of unsupervised text modelling and contrast traditional approaches such as LDA with modern embedding-based approaches. We introduce BERTopic as an example of a workflow that uses embeddings, dimensionality reduction, clustering, and topic descriptions.
 
-\subsection*{Thursday, 27--11. Lab session}
+We emphasise that model outputs are candidate patterns rather than established findings: they require substantive interpretation, inspection of representative documents, and evaluation of their robustness and limitations.
 
-In this lab session, we will apply BERTopic to textual data, experimenting with how clustering emerges from contextual embeddings. We will compare its output to simpler unsupervised approaches and discuss strengths, limitations, and interpretability. We will also provide guidance on evaluating unsupervised models and integrating them into computational communication research.
+\subsection*{Thursday, 26--11. Lab session, 15:00--17:00}
+
+We apply an unsupervised text-analysis workflow to a textual dataset. We compare output from simpler approaches with embedding-based clustering and discuss interpretation, outliers, parameter choices, reproducibility, and limits of automated topic descriptions.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section*{Week 6: Supervised approaches to text analysis}
 
-During this week, we will discuss the basics of machine learning. You will be introduced to scikit-learn \citep{scikit-learn}, one of the most well-known machine learning libraries. We do not have the time to discuss machine learning techniques in depth. Rather, a practical and hands-on introduction is provided. 
+This week introduces the logic of supervised machine learning for automated content analysis. We focus on classification tasks, evaluation, and the difference between a technically functioning model and a valid measurement of a communication-science construct.
 
-\subsection*{Monday, 01--12. Lecture}
+\subsection*{Monday, 30--11. Lecture, 15:00--17:00}
+
 \textsc{\ding{52} Chapter 8: Statistical Modeling and Supervised Machine Learning}\\
-\textsc{\ding{54} (you can skip 8.4 Deep Learning)}\\
+\textsc{\ding{54} Students may skip Section 8.4: Deep Learning}\\
 \textsc{\ding{52} \cite{Boumans2016}}
 
-We will discuss the basics of supervised machine learning, and how its performance can be evaluated. 
+We discuss supervised machine learning, labelled data, training and test data, classification, and performance evaluation. We consider accuracy, precision, recall, F1, and the importance of inspecting model errors. We also discuss how dictionary methods, conventional classifiers, embedding-based approaches, and LLM-assisted classification can be compared and validated.
 
-\subsection*{Thursday, 04--12. Lab session}
-Exercises with scikit-learn.
+\subsection*{Thursday, 03--12. Lab session, 15:00--17:00}
+
+We work with scikit-learn to construct and evaluate a basic text classifier. Students will compare automated outputs with manually coded examples, inspect errors, and discuss what evidence would be needed to support a substantive interpretation.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Week 7: Wrapping up}
 
-\subsection*{Monday, 08--12. Presentations of Final Projects}
-During this meeting, everybody will shortly pitch their final projects. This way, you will be able to recieve some feedback on your plans. 
+\section*{Week 7: Project pitches, peer feedback, and consultation}
 
-\subsection*{Thursday, 11--12. Individual consultation}
-During this meeting, you can consult with the lecturer about questions regarding the final project.
+\subsection*{Monday, 07--12. Individual project pitches and peer feedback, 15:00--17:00}
 
-\subsection*{Final project}
-Deadline for handing in: Wednesday, 17--12, 23.59.
+Each student presents a short pitch for the final project. The pitch should address:
+\begin{itemize}
+    \item the research question and substantive motivation;
+    \item the planned dataset and its provenance;
+    \item the intended analytical strategy;
+    \item preliminary data inspection or preliminary output;
+    \item one anticipated issue concerning validity, ethics, reproducibility, or AI use.
+\end{itemize}
 
+Students provide structured written feedback to peers. The quality of project preparation, peer feedback, and a short reflection on feedback received contributes 15\% to the final grade.
+
+\subsection*{Thursday, 10--12. Project workshop and individual consultation, 15:00--17:00}
+
+Students revise their project plans in response to feedback and can consult with the lecturer about methodological, practical, ethical, or reproducibility questions. This session is intended to help students prepare a feasible and well-justified final project.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Week 8: Assessment week}
+
+\subsection*{Final individual project}
+
+Deadline for handing in: Wednesday, 16--12, 23:59.
+
+The final project is an individual computational communication-science research project. It should include a clearly formulated research question, a documented dataset or data-access procedure, well-documented scripts or notebooks, an appropriate analytical strategy, output files, a substantiated interpretation of findings, and a discussion of limitations. Material use of generative AI must be disclosed. The final project contributes 60\% to the final grade.
