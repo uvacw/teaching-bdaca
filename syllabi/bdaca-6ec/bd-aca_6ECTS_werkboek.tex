@@ -1,178 +1,168 @@
+```latex
 % !TEX encoding = UTF-8 Unicode
 
 \documentclass[a4paper,10pt,twocolumn]{report}
 \usepackage[natbibapa,nosectionbib,tocbib,numberedbib]{apacite}
 
-% niet elk chapter op nieuwe pagina
-%\let\cleardoublepage\relax \chapter{bar}
-
 \AtBeginDocument{\renewcommand{\bibname}{Literature}}
-
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-
 \DeclareUnicodeCharacter{2011}{\nobreakdash-}
 
 \usepackage{graphicx}
 \usepackage{enumerate}
 \usepackage{url}
-
-% corona boxes
 \usepackage[dvipsnames]{color}
 \usepackage{framed}
 \definecolor{shadecolor}{named}{Melon}
-%\let\corona\shaded
-%\let\endcorona\endshaded
-% zo kan het met sterretje:
 \newenvironment{corona}{%
-	\begin{shaded*}%
-	}{%
-	\end{shaded*}%
+    \begin{shaded*}%
+    }{%
+    \end{shaded*}%
 }
 
-
-
 \usepackage[colorinlistoftodos]{todonotes}
-
 \usepackage{pifont}
-
 \usepackage{lmodern}
 \usepackage{listings}
 \lstset{
-basicstyle=\scriptsize\ttfamily,
-columns=flexible,
-breaklines=true,
-numbers=left,
-%stepsize=1,
-numberstyle=\tiny,
-backgroundcolor=\color[rgb]{0.85,0.90,1}
+    basicstyle=\scriptsize\ttfamily,
+    columns=flexible,
+    breaklines=true,
+    numbers=left,
+    numberstyle=\tiny,
+    backgroundcolor=\color[rgb]{0.85,0.90,1}
 }
-
 
 \let\oldquote\quote
 \let\endoldquote\endquote
 \renewenvironment{quote}{\footnotesize\oldquote}{\endoldquote}
 
-
 \title{Big Data and Automated Content Analysis\\ (6 ECTS)\\~\\Course Manual}
 \author{
-	dr. Anne Kroon\\
-	Graduate School of Communication\\
-	University of Amsterdam\\
-	a.c.kroon@uva.nl}
-
-
-\date{Academic Year 2025/26\\Semester 1, block  2\ }
+    dr. Anne Kroon\\
+    Graduate School of Communication\\
+    University of Amsterdam\\
+    a.c.kroon@uva.nl}
+\date{Academic Year 2026/27\\Semester 1, block 2}
 
 \begin{document}
 \maketitle
 
 \chapter{About this course}
 
-This course manual contains general information, guidelines, rules and schedules for the Research Master course Big Data \& Automated Content Analysis Part I (6 ECTS). Please make sure you read it carefully, as it  contains information regarding assignments, deadlines and grading.
+This course manual contains general information, guidelines, rules, and schedules for the Research Master course Big Data \& Automated Content Analysis Part I (6 ECTS). Please read it carefully, as it contains information regarding assessments, deadlines, and grading.
 
 \section{Course description}
-
 \input{description}
 
 \section{Goals}
-
 
 Upon completion of this course, the following goals are reached:
 
 \input{testableobjectives}
 
 \section{Help with practical matters}
-While making your first steps with programming in Python, you will probably have a lot of questions.
-Nevertheless, \url{https://google.com} and \url{https://stackoverflow.com} should be your first points of contact. After all, that's how we solve our problems as well\ldots
 
-It is also very much encouraged to try to solve problems together with your classmates. A successful technique can be \emph{pair programming}, where two colleagues sit behind one screen (for an explanation, see \url{https://en.wikipedia.org/wiki/Pair_programming}).
+While making your first steps with programming in Python, you will probably have many questions. Nevertheless, \url{https://google.com} and \url{https://stackoverflow.com} should be your first points of contact. After all, that is how we solve many programming problems ourselves\ldots
 
-If you really cannot find a solution on your own, you can pose such questions during the Thursday lab sessions. However, keep the remark in Section~\ref{sec:yourcomputer} in mind!
+It is also strongly encouraged to try to solve problems together with classmates. A successful technique can be \emph{pair programming}, where two colleagues work together behind one screen (for an explanation, see \url{https://en.wikipedia.org/wiki/Pair_programming}).
 
-\chapter{Rules, assignments, and grading}
+If you cannot find a solution independently, you can pose questions during the Thursday lab sessions. Keep the remark in Section~\ref{sec:yourcomputer} in mind.
+
+\chapter{Rules, assessments, and grading}
 \input{grading}
 
-
 \section{Presence and participation}
-Attendance is compulsory. Missing more than two meetings – for whatever reason – means the course cannot be completed.
 
-Next to attending the meetings, students are also required to prepare the assigned literature and to continue working on the programming tasks after the lab sessions. To successfully finish the course, attending the lab sessions is not enough, but has to go hand-in-hand with continuous self-study.
+Attendance is compulsory. Missing more than two meetings---for whatever reason---means that the course cannot be completed.
+
+In addition to attending meetings, students are required to prepare the assigned literature and continue working on programming tasks after the lab sessions. Completing the course requires continuous self-study; attending lab sessions alone is not sufficient.
+
+Active academic participation is also assessed through the Week 7 project-pitch, peer-feedback, and reflection component. Students are expected to prepare their pitch and provide specific, constructive feedback to peers.
+
 \section{Staying informed}
-It is your responsibility to check the means of communications used for this course (i.e., your email account, but -- if applicable -- also e-learning platforms or any other tool that the lecturer decides to use) on a regular basis, which in most cases means daily.
+
+It is your responsibility to check the means of communication used for this course---your email account and, where applicable, Canvas or other platforms used by the lecturer---regularly, which in most cases means daily.
 
 \section{Plagiarism \& fraud}
-Plagiarism is a serious academic violation. Cases in which students use material such as online sources or any other sources in their written work and present this material as their own original work without citation/referencing, and thus conduct plagiarism, will be reported to the Examencommissie of the Department of Communication without any further negotiation. If the committee comes to the conclusion that a student has indeed committed plagiarism the course cannot be completed.
-General UvA regulations about fraud and plagiarism apply, see also \url{https://student.uva.nl/en/content/az/plagiarism-and-fraud/plagiarism-and-fraud.html}.
+
+Plagiarism is a serious academic violation. Cases in which students use material such as online sources or other sources in their written work and present this material as their own original work without citation or referencing will be reported to the Examencommissie of the Department of Communication. If the committee concludes that a student has committed plagiarism, the course cannot be completed.
+
+General UvA regulations concerning fraud and plagiarism apply; see also \url{https://student.uva.nl/en/content/az/plagiarism-and-fraud/plagiarism-and-fraud.html}.
 
 \subsection{Attributing code}
-Plagiarism rules apply to code in the same way as they apply to text. Just like how your writing often builds on other scholars (who you cite), your code often builds on what others have done or are inspired by solutions of others, for instance in communities like Stackoverflow. Analogous to plagiarism regulations in normal writing, also in your code, it needs to be transparent \emph{what is from you and what is not}. We don't really have something like APA references for code, but you can simply use \texttt{\#comments} for that purpose, such as:
-\texttt{\# The following function is copied from https://stackoverflow.com/XXXXX/XXXXX} for (almost) literal copy-pasting, or \texttt{\# The code in this cell is inspired by https://...; I modified Y and Z}. 
 
-Make sure that there is no doubt about what is yours and what is from someone else!
+Plagiarism rules apply to code in the same way as they apply to text. Just as academic writing builds on the work of other scholars, code may build on solutions developed by others or found in communities such as Stack Overflow. In submitted code, it must be transparent \emph{what is your own work and what is not}.
+
+There is no single citation style for code, but \texttt{\#comments} can be used for this purpose, for example:
+
+\texttt{\# The following function is copied from https://stackoverflow.com/XXXXX/XXXXX}
+
+for an almost literal copy, or:
+
+\texttt{\# The code in this cell is inspired by https://...; I modified Y and Z}
+
+Make sure that there is no doubt about what is yours and what is from someone else.
 
 \subsection{Use of AI tools}
 
-We encourage you to develop your own analytical and research skills throughout this course.
+This course is designed to develop your own analytical, programming, and research skills. You remain responsible for all work submitted in your name.
 
 \begin{itemize}
-	\item Do not use AI tools to generate, write, or substantially complete any assignments or projects that you submit for assessment. Doing so will be treated as academic misconduct.
-	\item You may use AI tools responsibly to clarify concepts, review methodologies, or help debug analyses that you have conducted yourself. The final work you submit must be authored by you and fully understood by you.
-	\item Prefer using UvA AI Chat for privacy and data protection. Be cautious with third‑party tools and do not share sensitive or personal data.
-	\item If you use AI, disclose and cite the tool and briefly describe how you used it. Normal plagiarism and fraud rules apply.
+    \item The Week 4 in-class coding exercise is an individual assessment. The use of generative-AI tools is not permitted during this exercise, subject to the applicable examination arrangements.
+    \item For the final project, AI tools may be used responsibly to clarify concepts, review methodologies, or help debug analyses that you have conducted yourself. They must not replace your own analytical judgement or understanding.
+    \item If you make material use of AI in the final project, disclose the tool used and briefly describe how it was used. The final work must be authored, understood, checked, and defended by you.
+    \item Prefer using UvA AI Chat for privacy and data protection. Be cautious with third-party tools and do not share sensitive or personal data.
+    \item Normal plagiarism and fraud rules apply to AI-assisted work, code, and written text.
 \end{itemize}
 
 \subsection{Working together}
-The take-home exams as well as the final project are \emph{individual exams}. Collaboration with fellow students is thus considered academic fraud and will be reported and handled accordingly.
 
-In some instances, some overlap between final projects may be unavoidable, for instance when relying on very similar data sources. If in doubt, always discuss with me in advance to avoid problems after you handed in! It is almost always possible to find a solution, if discussed in advance.
+The in-class coding exercise and the final project are \emph{individual assessments}. Students may not collaborate on code, analysis, writing, or other substantive parts of these assessments unless explicitly instructed otherwise.
 
-\emph{In contrast to these graded assignments, for all \textbf{ungraded} assignments and exercises, collaboration is explicitly encouraged. Experience with this course over the last decade has shown that those students who met regularly with classmates to go over the week's code examples and exercises together enjoyed the course most, and also performed best.}
+The Week 7 peer-feedback activity is a required and graded form of academic interaction. Students are expected to discuss project plans and provide constructive feedback to peers. Receiving or giving feedback does not permit students to share or jointly produce assessed code, analyses, or written project material.
+
+In some cases, overlap between final projects may be unavoidable, for example when students rely on similar data sources. If in doubt, discuss this with the lecturer in advance. It is almost always possible to find a solution if the issue is discussed before submission.
+
+For all \textbf{ungraded} assignments and exercises, collaboration is explicitly encouraged. Experience with this course has shown that students who meet regularly with classmates to discuss weekly code examples and exercises often benefit from doing so.
 
 \section{Deadlines and handing in}
-Per assignment, the lecturer will specify whether it has to be handed in via Canvas or via Filesender. If no specific instructions are given, or if there is any issue with submitting an assignment through Canvas, use Filesender. Please send all assignments and papers as a PDF file (and do not use formats like .docx) to ensure that it can be read and is displayed the same way on any device. Multiple files should be compressed and handed in as one .zip file or .tar.gz file. Do not email assignments directly but send them via \url{https://filesender.surf.nl/} to my mail-address. This way, you can also transfer huge files.
 
-Final papers and take-home exams that are not handed in on time, will be not be graded and receive the grade 1. This rule also applies for any other assignment that might be given. The deadline is only met when the all files are submitted.
+The lecturer will specify for each assessment whether it must be handed in through Canvas, FileSender, or another designated platform. The Week 4 in-class coding exercise is completed during the scheduled course meeting; students will receive practical instructions beforehand.
 
+For the final project, submit the report as a PDF file and submit code, notebooks, data where permitted, and other required materials in the format specified by the lecturer. When multiple files are required, compress them into one \texttt{.zip} or \texttt{.tar.gz} archive. Do not email assessments directly. If FileSender is used, send files through \url{https://filesender.surf.nl/} to the lecturer's email address.
+
+Final projects that are not handed in on time will not be graded and receive the grade 1. This rule also applies to other assessed assignments. A deadline is met only when all required files have been submitted successfully.
 
 \begin{corona}
-\section{Your computer and operating system: your responsibility}	
+\section{Your computer and operating system: your responsibility}
 \label{sec:yourcomputer}
-Python is a language, not a program, and there are many ways of running Python code. 
 
-It is really hard to help with stuff related to your computer, your operating system, your keyboard etc. Things may work slightly different on Windows compared to MacOS or Linux; it's your responsibility to take care of these things. For instance, a downloaded file may be put under \texttt{/home/damian/Downloads} on Linux, under \texttt{/Users/damian/Downloads} on MacOS, and under \texttt{c:\textbackslash \textbackslash Users \textbackslash \textbackslash Damian\textbackslash \textbackslash Downloads} on Windows -- or maybe something very different. You are expected to have a sufficiently deep understanding of your own computer to deal with these idiosyncrasies yourself.
+Python is a language, not a program, and there are many ways of running Python code.
 
-Therefore you need to make sure that the following things apply. Otherwise, you need to fix it -- we won't have room for that during the course. So, do this \textbf{before the course starts}.
+It is difficult to provide individual support for issues specific to your computer, operating system, or keyboard. Things may work differently on Windows, macOS, and Linux. It is your responsibility to prepare your computer before the course starts. For example, a downloaded file may be located under \texttt{/home/damian/Downloads} on Linux, \texttt{/Users/damian/Downloads} on macOS, or \texttt{C:\textbackslash\textbackslash Users\textbackslash\textbackslash Damian\textbackslash\textbackslash Downloads} on Windows.
+
+Therefore, ensure that the following requirements are met before the course starts:
 
 \begin{itemize}
-\item You need to have a recent version of a Python interpreter installed, and you need to be able to run Jupyter Notebooks. Chapter 1 of \cite{cssbook} gives instructions (you can skip the part about R, though). You can either use Python natively or use Anaconda (see Chapter 1).
-	\item You need to be able to install third-party packages (see Chapter 1). Test this by checking whether you can install the package \texttt{shifterator} and then load it with \texttt{import shifterator} without getting an error.
-	\item You need to make sure that your keyboard produces straight quotes \texttt{"} rather than typographical ones when typing. Test that by making sure that you can run \texttt{print("hello world")} in a Jupyter notebook.
-	\item Create a folder for this course at an easy to remember place, such as \texttt{/home/damian/bdaca} (Linux), \texttt{/Users/damian/bdaca} (MacOS), or \texttt{c://Users//damian//bdaca} (Windows). You could potentially also use \texttt{c://Users//damian//Desktop//bdaca} (Win) or \texttt{/Users/damian/Desktop/bdaca} (Mac) or similar. Make sure that you can locate files in that folder in Jupyter Notebook. And remember/write down it's name! Preferably, don't use spaces (can lead to confusion), and Windows users, replace \texttt{\textbackslash} by either a double \texttt{\textbackslash \textbackslash} or by forward slashes (/).
+    \item Install a recent version of Python and ensure that you can run Jupyter Notebooks. Chapter 1 of \cite{cssbook} provides instructions; you may skip the part about R. You can use Python natively or Anaconda.
+    \item Ensure that you can install third-party packages. Test this by installing \texttt{shifterator} and running \texttt{import shifterator} without an error.
+    \item Ensure that your keyboard produces straight quotation marks, \texttt{"}, rather than typographical quotation marks. Test this by running \texttt{print("hello world")} in a Jupyter notebook.
+    \item Create a folder for this course in an easy-to-remember location, for example \texttt{/home/damian/bdaca} on Linux, \texttt{/Users/damian/bdaca} on macOS, or \texttt{C://Users//damian//bdaca} on Windows. Ensure that you can locate files in this folder from Jupyter Notebook. Preferably, do not use spaces in folder names.
 \end{itemize}
-If -- even after trying -- you do not succeed in any of these steps, ask your classmates. If that also does not help, contact me as soon as possible.
 
-
+If you do not succeed after trying these steps, ask classmates for help. If that does not resolve the issue, contact the lecturer as soon as possible.
 \end{corona}
-
-
-
 
 \chapter{Schedule and Literature}
 
 \input{literature}
-
 \input{schedule}
 
 \bibliographystyle{apacite}
 \bibliography{../../resources/literature}
 
-
-
 \end{document}
-
- 
- 
- 
-\end{document}
+```
