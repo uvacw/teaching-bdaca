@@ -4,59 +4,47 @@
 \usepackage[natbibapa,nosectionbib,tocbib,numberedbib]{apacite}
 \AtBeginDocument{\renewcommand{\bibname}{Literature}}
 
-
 \usepackage[utf8x]{inputenc}
 \usepackage{graphicx}
 \usepackage{enumerate}
 \usepackage{url}
-
 \usepackage{booktabs}
-% \usepackage{graphicx}
-
 \usepackage[colorinlistoftodos]{todonotes}
-
 \usepackage{pifont}
-
 \usepackage{lmodern}
 \usepackage{listings}
 \lstset{
-basicstyle=\scriptsize\ttfamily,
-columns=flexible,
-breaklines=true,
-numbers=left,
-%stepsize=1,
-numberstyle=\tiny,
-backgroundcolor=\color[rgb]{0.85,0.90,1}
+    basicstyle=\scriptsize\ttfamily,
+    columns=flexible,
+    breaklines=true,
+    numbers=left,
+    numberstyle=\tiny,
+    backgroundcolor=\color[rgb]{0.85,0.90,1}
 }
 
-\usepackage{caption} 
+\usepackage{caption}
 \captionsetup[table]{skip=10pt}
 
 \let\oldquote\quote
 \let\endoldquote\endquote
 \renewenvironment{quote}{\footnotesize\oldquote}{\endoldquote}
 
-
-
 \title{Big Data and Automated Content Analysis\\ (6 ECTS)\\~\\Cursusdossier}
 \author{
-	dr. Anne Kroon\\
-	Graduate School of Communication\\
-	University of Amsterdam\\
-	a.c.kroon@uva.nl
+    dr. Anne Kroon\\
+    Graduate School of Communication\\
+    University of Amsterdam\\
+    a.c.kroon@uva.nl
 }
 
-\date{Academic Year 2025/26\\Semester 1, block  2\ }
-
+\date{Academic Year 2026/27\\Semester 1, block 2}
 
 \begin{document}
 \maketitle
 
 \tableofcontents
 
-
 \chapter{Short description of the course}
-
 \input{description}
 
 \chapter{Exit qualifications}
@@ -67,140 +55,126 @@ backgroundcolor=\color[rgb]{0.85,0.90,1}
 
 \chapter{Planning of testing and teaching}
 
-The seminar consists of 12 meetings, two per week. Each week, in the first meeting, the instructor will give short lectures on the key aspects of the week, followed by seminar-style discussions. Theoretical considerations regarding Big Data and Automated Content Analysis are discussed, and techniques for analyzing Big Data are presented. We also discuss examples from the literature, in which these techniques are applied.
+The course consists of seven teaching weeks with two meetings per week, followed by an assessment period. In the first weekly meeting, the instructor gives short lectures on key concepts and methods, followed by seminar-style discussions of theoretical considerations, methodological choices, and examples from the literature. In the second weekly meeting, students work in practical lab sessions in which they apply the techniques they have learned to course materials or their own project data.
 
-The second meetings each week are practicum-meetings, in which the students will apply what the techniques they have learned to their own or provided data sets. Here, they can also deepen their understanding of software tools, prepare their individual projects and get hands-on help. While there are in-class assignments as well as occasional assignments for at home (e.g., completing an online-tutorial to prepare for class), these are not graded.
+During lab sessions, collaboration and mutual support are strongly encouraged. Students are encouraged to discuss programming concepts, compare approaches, ask questions, and help one another work through exercises. This collaboration supports learning but does not permit students to share or jointly produce code, analyses, or written material for individual assessments.
 
-To complete the course, next to active participation, the students have to successfully complete two summative graded assignments: one mid-term take-home exam and an individual project, in which they derive an empirical question from a theoretical starting point, and then conduct an Automated Content Analysis to answer the question. See Chapter 7 for details.
+The course contains three individual summative assessments:
+\begin{itemize}
+    \item an in-class coding exercise in Week 4 (25\%);
+    \item an individual project pitch and short reflection or revision in Week 7 (10\%);
+    \item a final individual project (65\%).
+\end{itemize}
+
+The Week 4 coding exercise assesses students' ability to independently read, adapt, test, debug, and explain Python code. The Week 7 pitch and reflection assess the feasibility and methodological justification of the project plan, as well as students' ability to identify limitations and use feedback to improve their approach. The pitch also enables the lecturer to assess students' understanding of their proposed data, methods, and analytical choices verbally. During the Week 7 workshop, students are encouraged to provide constructive feedback to peers. This peer-feedback activity is formative and is not graded.
+
+\section*{Generative-AI safeguards}
+
+The in-class coding exercise is completed individually without the use of generative-AI tools, subject to the applicable examination arrangements. In other course work, generative AI may be used only to clarify programming concepts or debug small, de-identified code snippets or toy examples. Students may not upload course datasets, substantial project data, full analysis notebooks, or sensitive or personally identifiable data to external AI services. They may not use generative AI as a black-box analysis engine for graded work.
+
+Students remain responsible for the correctness, efficiency, reproducibility, and documentation of all submitted code. Non-trivial generative-AI contributions to code must be disclosed in the relevant notebook or script.
 
 \chapter{Literature}
-
 \input{literature}
 
 \chapter{Specific course timetable}
-
 \input{schedule}
 
 \chapter{Testing}
+
 An overview of the testing is given in the Test Matrix, displayed in Table \ref{testmatrix}.
 
 \begingroup
-
-\setlength{\tabcolsep}{10pt} % Default value: 6pt
-\renewcommand{\arraystretch}{1.5} % Default value: 1
+\setlength{\tabcolsep}{7pt}
+\renewcommand{\arraystretch}{1.35}
 
 \begin{table}[hbt!]
-	\centering
-	\caption{Test Matrix}
-	\label{testmatrix}
-	\resizebox{\columnwidth}{!}{%
-	\begin{tabular}{@{}lccc@{}}
-	\toprule
-	 &
-	  \textbf{\begin{tabular}[c]{@{}c@{}}In-class assignments,\\  reviewing work of \\ fellow students,\\  active participation\end{tabular}} &
-	  \textbf{\begin{tabular}[c]{@{}c@{}}Mid-term \\ take home exam\end{tabular}} &
-	  \textbf{\begin{tabular}[c]{@{}c@{}}Final individual \\ project\end{tabular}} \\ \midrule
-	 &
-	  \textit{precondition} &
-	  \textit{30\% of final grade} &
-	  \textit{70\% of final grade} \\
-	\begin{tabular}[c]{@{}l@{}}A. Students can explain fundamental research designs and commonly em-\\ ployed methods in existing research articles on Big Data and automated\\ content analysis\end{tabular} &
-	  X &
-	  X &
-	   \\
-	\begin{tabular}[c]{@{}l@{}}B. Students can on their own and in own words critically discuss the pros and\\ cons of fundamental research designs and methods employed in existing\\ research articles on Big Data and automated content analysis; they can,\\ based on this, give a critical evaluation of the methods and, where relevant,\\ give advice to improve the study in question.\end{tabular} &
-	  X &
-	  X &
-	   \\
-	\begin{tabular}[c]{@{}l@{}}C. Students are able to identify some basic techniques from the field of com-\\ puter science and computer linguistics that are applicable to research in\\ communication science; they can explain the principle of some traditional\\ approaches to text analysis, namely simple rule-based techniques and ba-\\ sic methods of unsupervised and supervised machine learning.\end{tabular} &
-	  X &
-	  X &
-	  X \\
-	\begin{tabular}[c]{@{}l@{}}D. Students can on their own formulate a research question and hypotheses\\ for own empirical research in the domain of Big Data.\end{tabular} &
-	   &
-	   &
-	  X \\
-	\begin{tabular}[c]{@{}l@{}}E. Students can on their own chose, execute and report on fundamental re-\\ search methods in the domain of Big Data and automatic content analysis.\end{tabular} &
-	   &
-	   &
-	  X \\
-	\begin{tabular}[c]{@{}l@{}}F. Students know how to collect data with APIs or read in existing data\\ files; they know how to analyze these data with fundamental automated\\ techniques and to this end, they have basic knowledge of the programming\\ language Python and know how to use fundamental Python-modules for\\ communication science research.\end{tabular} &
-	   &
-	   &
-	  X \\
-	\begin{tabular}[c]{@{}l@{}}G Students can critically discuss strong and weak points of their own research\\ using fundamental techniques from the field of Big Data and Automated\\ Content Analysis, and suggest improvements.\end{tabular} &
-	   &
-	   &
-	  X \\
-	\begin{tabular}[c]{@{}l@{}}H Students participate actively: reading the literature carefully and on time,\\ completing assignments carefully and on time, active participation in dis-\\ cussions, and giving feedback on the work of fellow students give evidence\\ of this.\end{tabular} &
-	  X &
-	   &
-	   \\ \bottomrule
-	\end{tabular}%
-	}
-	\end{table}
-
+    \centering
+    \caption{Test Matrix}
+    \label{testmatrix}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{@{}p{10.2cm}ccc@{}}
+    \toprule
+     & \textbf{\begin{tabular}[c]{@{}c@{}}In-class coding\\exercise\end{tabular}}
+     & \textbf{\begin{tabular}[c]{@{}c@{}}Project pitch and\\reflection/revision\end{tabular}}
+     & \textbf{\begin{tabular}[c]{@{}c@{}}Final individual\\project\end{tabular}} \\ \midrule
+     & \textit{25\% of final grade} & \textit{10\% of final grade} & \textit{65\% of final grade} \\
+    A. Students can explain fundamental research designs and commonly employed methods in existing research articles on Big Data and automated content analysis. & X &  & X \\
+    B. Students can critically discuss the pros and cons of fundamental research designs and methods employed in existing research articles on Big Data and automated content analysis, evaluate these methods, and, where relevant, advise on improvements. &  & X & X \\
+    C. Students can identify basic techniques from computer science and computational linguistics that are applicable to communication-science research and explain the principles of rule-based techniques and basic unsupervised and supervised machine-learning methods. & X &  & X \\
+    D. Students can independently formulate a research question and hypotheses for empirical research in the domain of Big Data. &  & X & X \\
+    E. Students can independently choose, execute, and report on fundamental research methods in the domain of Big Data and automated content analysis. & X & X & X \\
+    F. Students can collect data with APIs or read existing data files, analyse these data with fundamental automated techniques, and use fundamental Python modules for communication-science research. & X &  & X \\
+    G. Students can critically discuss strong and weak points of their own research using fundamental techniques from the field of Big Data and Automated Content Analysis, and suggest improvements. &  & X & X \\
+    H. Students can critically reflect on the strengths, limitations, and potential improvements of their own research using fundamental techniques from the field of Big Data and Automated Content Analysis. They can use feedback to revise and improve their research plan. &  & X & X \\ \bottomrule
+    \end{tabular}%
+    }
+\end{table}
 \endgroup
 
 \section*{Grading}
 \input{grading}
 
-\chapter{Lecturers’ team, including division of responsibilities}
+\chapter{Lecturers' team, including division of responsibilities}
 
-The course is taught and coordinated by Dr. Anne Kroon.  
-She is responsible for all aspects of the course, including teaching, coordination, and the grading of assignments and exams.
-
+The course is taught and coordinated by Dr. Anne Kroon. She is responsible for all aspects of the course, including teaching, coordination, and the grading of assessments.
 
 \chapter{Calculation of students' study load (in hours)}
+
 \begin{itemize}
-
-\item Elective total: 6 ECTS = 168 hours
-\item Reading: 
-\begin{itemize}
-\item 10 chapters, 5 articles, average 18.5 pages: around 280 pages. 6 pages per hour, thus 46.6 hours for the literature
-\item Reading and doing tutorials: 40 hours for reading tutorials to acquire skills.
-\item Reading/preparation total: 86.6 hours.
+    \item Elective total: 6 ECTS = 168 hours.
+    \item Reading and preparation:
+    \begin{itemize}
+        \item 10 chapters and 5 articles, with an average of 18.5 pages: approximately 280 pages. At six pages per hour, this amounts to 46.6 hours.
+        \item Reading and completing tutorials to acquire practical skills: 40 hours.
+        \item Reading and preparation total: 86.6 hours.
+    \end{itemize}
+    \item Presence: 14 meetings of two hours: 28 hours.
+    \item In-class coding exercise, including preparation: 12 hours.
+    \item Project pitch and reflection or revision, including preparation: 8 hours.
+    \item Final individual project, including data collection, analysis, and write-up: 33.4 hours.
 \end{itemize}
-\item Presence: \\12*2 hours: 24 hours.
-\item Mid-term take-home exam, including preparation: 18 hours
-\item Final individual project, including data collection, analysis, write up: 39.4 hours
-\end{itemize}
 
-Total: 168 hours
-
+Total: 168 hours.
 
 \chapter{Calculation of lecturers' teaching load (in hours)}
 
-
 \begin{itemize}
-\item Presence: 24 hours (= 12 * 2 hours)
-\item Preparation of weekly lectures, 7 * 4 hours: 28 hours
-\item Preparation of weekly tutorials, 7 * 4 hours: 28 hours
-\item Assisting students with setting up Python installation, individual help: 40 hours
-\item Feedback and grading take-home exams: 25*60 minutes: 25 hours
-\item Feedback and grading final projects, including feedback on proposal and individual counseling: 25* 60 min: 25 hours 
+    \item Presence: 28 hours (14 meetings of two hours).
+    \item Preparation of weekly lectures, seven times four hours: 28 hours.
+    \item Preparation of weekly practical sessions, seven times four hours: 28 hours.
+    \item Assisting students with Python installation and providing individual help: 40 hours.
+    \item Preparation, feedback, and grading of in-class coding exercises: 12.5 hours.
+    \item Feedback and grading of project pitches and reflections: 8.5 hours.
+    \item Feedback and grading of final projects, including feedback on proposals and individual counselling: 37.5 hours.
 \end{itemize}
 
-Total: 131 hours
-
+Total: 154.5 hours.
 
 \chapter{History of the course}
+
 In response to the feedback by the test review committee in 2019, the following changes were applied:
 \begin{itemize}
-\item Empasized in the section ``Testable Objectives'' that -- in contrast to the 12 ECTS course -- students should be able to demonstrate, reflect, and apply knowledge about \emph{fundamental} --rather than \emph{advanced} techniques of automated content analysis. Likewise, testing will be based on the extent that students demonstrate knowledge and skills on the level of \emph{fundamental} techniques. This sets the 6ec course apart from Big Data and Automated Content Analysis Part I and Part II, where students take a deeper dive into more advanced and recent techniques for automated content analysis.
+    \item Emphasised in the section ``Testable Objectives'' that---in contrast to the 12 ECTS course---students should be able to demonstrate, reflect, and apply knowledge about \emph{fundamental}, rather than \emph{advanced}, techniques of automated content analysis. Likewise, testing is based on the extent to which students demonstrate knowledge and skills at the level of \emph{fundamental} techniques. This distinguishes the 6 ECTS course from more advanced courses in Big Data and Automated Content Analysis.
 \end{itemize}
 
-In 2022, the course received a thorough update due to the publication of the new textbook \citep{cssbook}.
+In 2022, the course received a thorough update following the publication of the new textbook \citep{cssbook}.
 
-In 2023, the course was slightly updated to incorporate recent developments in machine learning. Most elements remain the same--as the 6ECTS course focuses on fundamental techniques of automated content analysis. Yet, in week 7, we will discuss state of the art techniques for topic modelling. In addition, an outlook is provided on techniques that are the current becoming dominant in the field of machine learning. 
+In 2023, the course was updated to incorporate recent developments in machine learning. The course continues to focus on fundamental techniques of automated content analysis; Week 7 includes an outlook on state-of-the-art topic-modelling and machine-learning approaches.
 
-In 2024, the course was slightly updated to make the course more AI proof (using hours from a TLC grant). The two main changes are: 1) The take-home exam will be more focused on debugging and explaining existing code over writing code and the testing will include a short video-walkthrough in addition to the written deliverable. This is aimed at ensuring some level of active engagement with the content by the students without having to use up addional in-class time. 2) One of the last sessions is being used to have students do a small pitch about their final project in class. This has two reasons: First, the students see what their classmates are working on and can exchange ideas and second they can give and receive feedback on the final projects with enough time to still make changes and adjustments.
+In 2024, the course was updated in response to developments in AI-assisted coding. The take-home exam was redesigned to focus more strongly on debugging and explaining existing code, including a short video walkthrough. In addition, a final in-class project pitch was introduced to enable students to exchange ideas and provide feedback while there was still time to revise their projects.
 
-In 2025, we decided to maintain and consolidate these changes. The take-home exam continues to require a walkthrough video in which students reflect on the meaning of their code and demonstrate debugging skills. In addition, a final in-class presentation of the project has been formally integrated into the course structure. This presentation strengthens students’ ability to reflect on methodological and coding choices and fosters peer feedback. Both measures are intended to ensure that testing standards remain high, with a stronger emphasis on oral examination and critical reflection rather than only on basic coding skills. This focus has become increasingly important with the advent of AI-assisted coding tools, as it safeguards the integrity of assessment while keeping learning outcomes aligned with the course objectives.
+In 2025, these changes were maintained and consolidated. The take-home examination continued to require a walkthrough video, and the in-class project presentation was formally integrated into the course structure.
+
+In 2026, the course was revised in response to feedback from the Toetscommissie following its review of the RM Year 2 curriculum. The Toetscommissie noted that it was not sufficiently clear how ILO H, concerning academic attitudes, was summatively assessed. It also recommended making safeguards concerning generative-AI use more explicit and suggested considering small individual in-class graded assignments.
+
+In response, the 2026--2027 edition introduces an individual in-class coding exercise in Week 4, worth 25\% of the final grade. The exercise requires students to independently read, adapt, test, debug, and explain Python-based data-analysis workflows. It provides direct evidence of individual programming competence and understanding without reliance on generative-AI tools.
+
+ILO H has been reformulated to focus on students' individual critical reflection on the strengths, limitations, and potential improvements of their own research and their use of feedback to revise their research plan. This outcome is assessed through the individual Week 7 project pitch and short reflection or revision, worth 10\% of the final grade, and through the final project. The project pitch also enables the lecturer to assess students' understanding of their proposed data, methods, and analytical choices verbally. This provides an additional safeguard for assessment validity in the context of AI-assisted coding, because students must be able to explain and justify their own work.
+
+The course file now includes an explicit policy on generative-AI use. Generative-AI tools are not permitted during the in-class coding exercise. For other course work, students may use such tools only within defined limits; they may not upload course datasets or full analysis notebooks to external services, use AI as a black-box analysis engine, or submit non-trivial AI-assisted code without disclosure. Collaboration and mutual support are strongly encouraged during lab sessions. Peer feedback in the Week 7 project workshop is formative and is not graded.
 
 \bibliographystyle{apacite}
 \bibliography{../../resources/literature}
 
- 
- 
 \end{document}
