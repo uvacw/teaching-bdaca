@@ -38,7 +38,7 @@
 \let\endoldquote\endquote
 \renewenvironment{quote}{\footnotesize\oldquote}{\endoldquote}
 
-\title{Big Data and Automated Content Analysis\\ (6 ECTS)\\~\\Course Manual}
+\title{Big Data I\\ (6 ECTS)\\~\\Course Manual}
 \author{
     dr. Anne Kroon\\
     Graduate School of Communication\\
@@ -60,10 +60,7 @@ This course manual contains general information, guidelines, rules, and schedule
 
 Upon completion of this course, the following goals are reached:
 
-% Ensure that testableobjectives.tex includes the revised ILO H:
-% \item Students can justify methodological choices in their own research,
-% acknowledge limitations and uncertainties, and respond constructively to
-% critical questions.
+% ILO H is summatively assessed through the individual project pitch.
 \input{testableobjectives}
 
 \section{Help with practical matters}
@@ -76,7 +73,6 @@ If you cannot find a solution independently, you can pose questions during the T
 
 \chapter{Rules, assessments, and grading}
 \input{grading}
-\input{final_project}
 
 \section{Presence and participation}
 
@@ -84,9 +80,7 @@ Attendance is compulsory. Missing more than two meetings---for whatever reason--
 
 In addition to attending meetings, students are required to prepare the assigned literature and continue working on programming tasks after the lab sessions. Completing the course requires continuous self-study; attending lab sessions alone is not sufficient.
 
-Active academic participation is expected throughout the course, including careful preparation, participation in discussions, and constructive engagement with classmates. Participation and peer feedback are not separate graded components. Peer feedback during the Week 7 project workshop is formative and is not graded.
-
-The individual Week 7 project pitch is a graded assessment. In the pitch, students must justify their proposed methodological choices, acknowledge a relevant limitation, uncertainty, or risk in their planned research, and respond to critical questions. The final individual project further assesses students' justification of their research design and their critical discussion of limitations in the data, analysis, and conclusions.
+Active academic participation is expected throughout the course, including careful preparation, participation in discussions, and constructive engagement with classmates. 
 
 \section{Staying informed}
 
@@ -112,12 +106,17 @@ for an almost literal copy, or:
 
 Make sure that there is no doubt about what is yours and what is from someone else.
 
+This requirement also applies to code produced or substantially modified with
+the assistance of generative-AI tools. Such use must be disclosed as described
+in Section~\ref{sec:generative-ai}.
+
 \subsection{Use of generative AI tools}
+\label{sec:generative-ai}
 
 Generative-AI tools may support learning, but this course assesses your own ability to write, read, test, document, and interpret code and analyses. You remain responsible for all work submitted in your name.
 
 \begin{enumerate}
-    \item \textbf{In-class coding exercise.} The Week 4 in-class coding exercise is individual work. Generative-AI tools may not be used during the exercise, subject to the applicable examination arrangements.
+    \item \textbf{In-class coding exercise.} The Week 4 in-class coding exercise is individual work. Generative-AI tools may not be used during the exercise.
 
     \item \textbf{Use of course data with generative AI.} You may send only small, de-identified code snippets or toy examples to external AI tools when you need help understanding or debugging Python. Do not upload substantial parts of project data, sensitive data, or data that could enable re-identification. If you are unsure whether an excerpt is safe to share, do not upload it; ask the lecturer instead.
 
@@ -140,9 +139,9 @@ For all \textbf{ungraded} assignments and exercises, collaboration is explicitly
 
 \section{Deadlines and handing in}
 
-The lecturer will specify for each assessment whether it must be handed in through Canvas, FileSender, or another designated platform. The Week 4 in-class coding exercise is completed during the scheduled course meeting; students will receive practical instructions beforehand. The individual Week 7 project pitch is delivered during the scheduled course meeting. The lecturer will communicate any required preparation materials and the submission format for slides or other pitch materials beforehand.
+The Week 4 in-class coding exercise is completed on Monday 16-11. The individual Week 7 project pitch is delivered on Monday 07-12. 
 
-For the final project, submit the report as a PDF file and submit code, notebooks, data where permitted, and other required materials in the format specified by the lecturer. When multiple files are required, compress them into one \texttt{.zip} or \texttt{.tar.gz} archive. Do not email assessments directly. If FileSender is used, send files through \url{https://filesender.surf.nl/} to the lecturer's email address.
+For the final project, submit the report as a PDF file through Canvas and submit code, notebooks, data where permitted, and other required materials in one \texttt{.zip} archive. Do not email assessments directly.
 
 Final projects that are not handed in on time will not be graded and receive the grade 1. This rule also applies to other assessed assignments. A deadline is met only when all required files have been submitted successfully.
 
@@ -158,7 +157,7 @@ Therefore, ensure that the following requirements are met before the course star
 
 \begin{itemize}
     \item Install a recent version of Python and ensure that you can run Jupyter Notebooks. Chapter 1 of \cite{cssbook} provides instructions; you may skip the part about R. You can use Python natively or Anaconda.
-    \item Ensure that you can install third-party packages. Test this by installing \texttt{shifterator} and running \texttt{import shifterator} without an error.
+    \item Ensure that you can install third-party packages. Test this by installing \texttt{pandas} and running \texttt{import pandas} without an error.
     \item Ensure that your keyboard produces straight quotation marks, \texttt{"}, rather than typographical quotation marks. Test this by running \texttt{print("hello world")} in a Jupyter notebook.
     \item Create a folder for this course in an easy-to-remember location, for example \texttt{/home/damian/bdaca} on Linux, \texttt{/Users/damian/bdaca} on macOS, or \texttt{C://Users//damian//bdaca} on Windows. Ensure that you can locate files in this folder from Jupyter Notebook. Preferably, do not use spaces in folder names.
 \end{itemize}
@@ -170,6 +169,11 @@ If you do not succeed after trying these steps, ask classmates for help. If that
 
 \input{literature}
 \input{schedule}
+
+\appendix
+\chapter{Final Individual Project}
+\newcommand{\finalprojectheading}{}
+\input{final_project}
 
 \bibliographystyle{apacite}
 \bibliography{../../resources/literature}

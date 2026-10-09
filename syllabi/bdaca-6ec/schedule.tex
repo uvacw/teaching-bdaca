@@ -1,20 +1,9 @@
+\newcommand{\mandatoryreading}[1]{\textcolor{red}{\textsc{\ding{52} #1}}}
+
 \section*{Before the course starts: Prepare your computer.}
 
-\textsc{\ding{52} Chapter 1: Introduction}\\
+\mandatoryreading{Chapter 1: Introduction}\\
 Make sure that you have a working Python environment installed on your computer before the course begins. Detailed installation instructions will be provided in advance. Students are responsible for bringing a laptop with a functioning Python environment to every meeting.
-
-\section*{Assessment overview}
-
-The course assessment consists of three components:
-\begin{itemize}
-    \item a supervised individual practical assessment in Week 4 (25\%);
-    \item an individual project pitch, structured peer feedback, and a short reflection in Week 7 (15\%);
-    \item an individual final project, due during Week 8 / the assessment week (60\%).
-\end{itemize}
-
-The Week 4 practical assessment establishes individual competence in reading, debugging, adapting, and interpreting basic Python and data-analysis workflows. Generative-AI use is not permitted during this supervised assessment, subject to the applicable examination arrangements.
-
-The final project assesses students' ability to conduct and report an independent computational communication-science analysis. Where generative AI is used in preparing the final project, students must disclose material use and remain responsible for the correctness, appropriateness, documentation, and interpretation of all submitted work.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -22,19 +11,19 @@ The final project assesses students' ability to conduct and report an independen
 
 \subsection*{Monday, 26--10. Lecture, 15:00--17:00}
 
-\textsc{\ding{52} \cite{Kitchin2014}}\\
-\textsc{\ding{52} \cite{Hilbert2019}}
+\mandatoryreading{\cite{Kitchin2014}}\\
+\mandatoryreading{\cite{Hilbert2019}}
 
 We discuss what Big Data and Computational (Social\textbar Communication) Science are. We consider their opportunities and challenges, including implications for social-scientific research. We also introduce the tools used in Computational Social Science, particularly Python.
 
-Additionally, the journal \textit{Communication Methods and Measures} published a special issue (volume 12, issue 2--3) on Computational Communication Science. Read at least the editorial \citep{VanAtteveldt2018a}; other articles can be read later in the course.
+Additionally, the journal \textit{Communication Methods and Measures} published a special issue (volume 12, issue 2--3) on Computational Communication Science. You are invited to read at least the editorial \citep{VanAtteveldt2018a}; other articles can be read later in the course.
 
 Towards the end of the lecture, we will make first contact with writing and running Python code. We will also discuss expectations concerning reproducibility, responsible use of external code and AI tools, and active participation in the course.
 
 \subsection*{Thursday, 29--10. Lab session, 15:00--17:00}
 
-\textsc{\ding{52} Chapter 3: Programming concepts for data analysis}\\
-\textsc{\ding{52} Chapter 4: How to write code}\\
+\mandatoryreading{Chapter 3: Programming concepts for data analysis}\\
+\mandatoryreading{Chapter 4: How to write code}\\
 
 You will receive a gentle introduction to computer programming. During the lab, you are encouraged to follow examples on your own laptop. We will take the first steps in Python and complete exercises on variables, data types, control flow, functions, and debugging.
 
@@ -46,8 +35,8 @@ We discuss file formats such as \texttt{csv} and \texttt{json}; encodings; readi
 
 \subsection*{Monday, 02--11. Lecture, 15:00--17:00}
 
-\textsc{\ding{52} Chapter 5: From file to dataframe and back}\\
-\textsc{\ding{52} \cite{freelon_computational_2018}}\\
+\mandatoryreading{Chapter 5: From file to dataframe and back}\\
+\mandatoryreading{\cite{freelon_computational_2018}}\\
 
 This lecture provides a conceptual overview of different file formats and data sources, alongside practical guidance on handling data in basic Python and pandas. We introduce APIs as a means of data collection and discuss why documentation, metadata, and collection decisions matter for later analysis.
 
@@ -63,31 +52,31 @@ You do not need Python to conduct conventional statistics. However, using a sing
 
 \subsection*{Monday, 09--11. Lecture, 15:00--17:00}
 
-\textsc{\ding{52} Chapter 6: Data wrangling}\\
-\textsc{\ding{52} Chapter 7.1: Simple exploratory data analysis}\\
-\textsc{\ding{52} Chapter 7.2: Visualising data}\\
+\mandatoryreading{Chapter 6: Data wrangling}\\
+\mandatoryreading{Chapter 7.1: Simple exploratory data analysis}\\
+\mandatoryreading{Chapter 7.2: Visualising data}\\
 
 We will learn how to prepare data for analysis and develop a first understanding of a dataset through exploratory analysis and visualisation. We cover data wrangling with pandas, including filtering, aggregating, reshaping between long and wide formats, joining datasets, and handling missing values.
 
 \subsection*{Thursday, 12--11. Lab session and short lecture, 15:00--17:00}
 
-We will apply the techniques from the previous lectures to multiple datasets. The session also prepares students for the supervised practical assessment in Week 4. We conclude with a short introduction to text as data, including tokenisation and Bag-of-Words representations.
+We will apply the techniques from the previous lectures to multiple datasets. The session also prepares students for the individual in-class coding exercise in Week 4. We conclude with a short introduction to text as data, including tokenisation and Bag-of-Words representations.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section*{Week 4: Individual practical assessment and introduction to textual data}
+\section*{Week 4: Individual in-class coding exercise and introduction to textual data}
 
-\subsection*{Monday, 16--11. Supervised individual practical assessment, 15:00--17:00}
+\subsection*{Monday, 16--11. Individual in-class coding exercise, 15:00--17:00}
 
-This individual, on-campus practical assessment covers the foundations from Weeks 1--3. Students will work with a small dataset, a data dictionary, and a starter notebook. Tasks may include reading and inspecting data, identifying and correcting code errors, transforming data, producing a descriptive output, and interpreting results and limitations.
+This individual, on-campus coding exercise covers the foundations from Weeks 1--3. It assesses students' ability to read, adapt, debug, and explain basic Python and data-analysis code and contributes 25\% to the final grade.
 
-The assessment focuses on students' ability to read, adapt, debug, and explain code rather than reproduce extensive code from memory. It contributes 25\% to the final grade.
+Within the scheduled session, students have 60 minutes to complete the exercise, followed by a 10-minute submission buffer for saving, renaming, and uploading the notebook. The exercise is open book: students may consult lecture slides, readings, course notebooks, personal notes, and Python/pandas documentation saved on their computer or printed before the exercise. Internet access is permitted only to download the assignment and upload the completed notebook. Browsing websites, searching online, downloading other materials during the exercise, using generative-AI tools, and communicating with or receiving help from others are not permitted.
 
-\subsection*{Thursday, 19--11. Lab session: Processing textual data, 15:00--17:00}
+\subsection*{Thursday, 19--11. Lecture: Processing textual data, 15:00--17:00}
 
-\textsc{\ding{52} Chapter 9: Processing text}\\
-\textsc{\ding{52} Chapter 10: Text as data}\\
-\textsc{\ding{52} Chapter 11, Sections 11.1--11.3: Automatic analysis of text}\\
+\mandatoryreading{Chapter 9: Processing text}\\
+\mandatoryreading{Chapter 10: Text as data}\\
+\mandatoryreading{Chapter 11, Sections 11.1--11.3: Automatic analysis of text}\\
 
 Additional recommended background reading on stopwords: \cite{Nothman2018}.
 
@@ -101,9 +90,9 @@ This week, we transition from transparent frequency-based text representations t
 
 \subsection*{Monday, 23--11. Lecture: From topic models to embeddings, 15:00--17:00}
 
-\textsc{\ding{52} Chapter 11.5: Unsupervised text analysis --- Topic modelling and beyond}\\
-\textsc{\ding{52} \cite{kroon_advancing_2024}}\\
-\textsc{\ding{52} \cite{Maier2018a}}\\
+\mandatoryreading{Chapter 11.5: Unsupervised text analysis --- Topic modelling and beyond}\\
+\mandatoryreading{\cite{kroon_advancing_2024}}\\
+\mandatoryreading{\cite{Maier2018a}}\\
 
 We examine the logic of unsupervised text modelling and contrast traditional approaches such as LDA with modern embedding-based approaches. We introduce BERTopic as an example of a workflow that uses embeddings, dimensionality reduction, clustering, and topic descriptions.
 
@@ -121,11 +110,13 @@ This week introduces the logic of supervised machine learning for automated cont
 
 \subsection*{Monday, 30--11. Lecture, 15:00--17:00}
 
-\textsc{\ding{52} Chapter 8: Statistical Modeling and Supervised Machine Learning}\\
+\mandatoryreading{Chapter 8: Statistical Modeling and Supervised Machine Learning}\\
 \textsc{\ding{54} Students may skip Section 8.4: Deep Learning}\\
-\textsc{\ding{52} \cite{Boumans2016}}
+\mandatoryreading{\cite{Boumans2016}}
 
 We discuss supervised machine learning, labelled data, training and test data, classification, and performance evaluation. We consider accuracy, precision, recall, F1, and the importance of inspecting model errors. We also discuss how dictionary methods, conventional classifiers, embedding-based approaches, and LLM-assisted classification can be compared and validated.
+
+LLM-assisted classification is discussed conceptually; the lab uses scikit-learn. This discussion does not authorise the use of generative AI as an analysis engine for graded work. Any practical use of LLM-assisted classification requires explicit authorisation from the lecturer and must comply with the course rules on data sharing and disclosure.
 
 \subsection*{Thursday, 03--12. Lab session, 15:00--17:00}
 
@@ -140,17 +131,17 @@ We work with scikit-learn to construct and evaluate a basic text classifier. Stu
 Each student presents a short pitch for the final project. The pitch should address:
 \begin{itemize}
     \item the research question and substantive motivation;
-    \item the planned dataset and its provenance;
+    \item the planned dataset;
     \item the intended analytical strategy;
     \item preliminary data inspection or preliminary output;
-    \item one anticipated issue concerning validity, ethics, reproducibility, or AI use.
+    \item one anticipated issue concerning validity, ethics, reproducibility, or AI use, together with a feasible response or improvement.
 \end{itemize}
 
-Students provide structured written feedback to peers. The quality of project preparation, peer feedback, and a short reflection on feedback received contributes 15\% to the final grade.
+The individual pitch contributes 10\% to the final grade. After presenting, each student answers critical questions about the proposed data, methods, assumptions, and limitations. Students also provide structured written feedback to peers and use the feedback they receive to improve their project plans. These peer-feedback activities are formative and are not separately graded.
 
-\subsection*{Thursday, 10--12. Project workshop and individual consultation, 15:00--17:00}
+\subsection*{Thursday, 10--12. Individual consultation, 15:00--17:00}
 
-Students revise their project plans in response to feedback and can consult with the lecturer about methodological, practical, ethical, or reproducibility questions. This session is intended to help students prepare a feasible and well-justified final project.
+Students can consult individually with the lecturer about methodological, practical, ethical, or reproducibility questions concerning their final project.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -159,5 +150,3 @@ Students revise their project plans in response to feedback and can consult with
 \subsection*{Final individual project}
 
 Deadline for handing in: Wednesday, 16--12, 23:59.
-
-
