@@ -1,0 +1,7 @@
+article_id,source,date,title,topic,word_count,is_opinion,author_name
+201,CityNews,2026-10-05,Cleaner buses arrive in the city,transport,650,False,Zoë Bakker
+202,CampusNews,2026-10-06,Students organise an arts festival,culture,420,False,Alex Chen
+203,CityNews,2026-10-07,A new neighbourhood health centre,health,810,False,Sam de Vries
+204,LocalForum,2026-10-08,"More cycle paths, fewer parking spaces?",transport,300,True,Maya Ali
+205,CampusNews,2026-10-09,Who gets access to local museums?,culture,560,True,Noor Jansen
+206,CityNews,2026-10-10,Residents discuss the new tram route,transport,700,False,Leo Smit

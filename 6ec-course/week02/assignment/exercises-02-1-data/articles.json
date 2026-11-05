@@ -1,0 +1,85 @@
+{
+  "query": "local public affairs",
+  "collected_at": "2026-10-10T09:00:00",
+  "total_results": 6,
+  "results": [
+    {
+      "article_id": 201,
+      "source": "CityNews",
+      "date": "2026-10-05",
+      "title": "Cleaner buses arrive in the city",
+      "topic": "transport",
+      "word_count": 650,
+      "is_opinion": false,
+      "author": {
+        "name": "Zoë Bakker",
+        "country": "NL"
+      }
+    },
+    {
+      "article_id": 202,
+      "source": "CampusNews",
+      "date": "2026-10-06",
+      "title": "Students organise an arts festival",
+      "topic": "culture",
+      "word_count": 420,
+      "is_opinion": false,
+      "author": {
+        "name": "Alex Chen",
+        "country": "NL"
+      }
+    },
+    {
+      "article_id": 203,
+      "source": "CityNews",
+      "date": "2026-10-07",
+      "title": "A new neighbourhood health centre",
+      "topic": "health",
+      "word_count": 810,
+      "is_opinion": false,
+      "author": {
+        "name": "Sam de Vries",
+        "country": "NL"
+      }
+    },
+    {
+      "article_id": 204,
+      "source": "LocalForum",
+      "date": "2026-10-08",
+      "title": "More cycle paths, fewer parking spaces?",
+      "topic": "transport",
+      "word_count": 300,
+      "is_opinion": true,
+      "author": {
+        "name": "Maya Ali",
+        "country": "NL"
+      }
+    },
+    {
+      "article_id": 205,
+      "source": "CampusNews",
+      "date": "2026-10-09",
+      "title": "Who gets access to local museums?",
+      "topic": "culture",
+      "word_count": 560,
+      "is_opinion": true,
+      "author": {
+        "name": "Noor Jansen",
+        "country": "NL"
+      }
+    },
+    {
+      "article_id": 206,
+      "source": "CityNews",
+      "date": "2026-10-10",
+      "title": "Residents discuss the new tram route",
+      "topic": "transport",
+      "word_count": 700,
+      "is_opinion": false,
+      "author": {
+        "name": "Leo Smit",
+        "country": "NL"
+      }
+    }
+  ]
+}
