@@ -15,24 +15,37 @@ Most central ressource: \textcite{McKinney2012}, a book about pandas by the crea
 
 \begin{frame}[fragile]{Pandas in the Python ecosystem}
   \begin{itemize}
-  \item \emph{The} package that unites everything that fits in a dataframe or in a one-dimensional (time) series
-  \item Operates, on the background, with ``basic'' packages such as \texttt{numpy} (stats) or \texttt{matplotlib} (plotting)
+  \item pandas works with tables (DataFrames) and columns (Series).
+  \item It builds on NumPy and supports plotting with matplotlib.
   \end{itemize}
 
-\begin{minted}{python}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\textbf{With pandas}
+\begin{minted}[fontsize=\scriptsize]{python}
 import pandas as pd
-df = pd.DataFrame({"A":[2,3,3,4,3,5], "B":[10,8,9,7,5,5]})
+
+df = pd.DataFrame({
+    "A": [2,3,3,4,3,5],
+    "B": [10,8,9,7,5,5]
+})
 df.corr()
 \end{minted}
-\vspace{-1cm}
-\begin{minted}{python}
+\end{column}
+\begin{column}{0.48\textwidth}
+\textbf{With NumPy}
+\begin{minted}[fontsize=\scriptsize]{python}
 import numpy as np
+
 A = [2,3,3,4,3,5]
 B = [10,8,9,7,5,5]
-np.corrcoef(A,B)
+np.corrcoef(A, B)
 \end{minted}
+\end{column}
+\end{columns}
 
-$\Rightarrow$ The dataframe method \texttt{.corr()} does the same as we could achieve by feeding lists into the numpy function \texttt{corrcoef()}.
+\medskip
+Both calculate Pearson correlations. pandas returns a labeled table; NumPy returns an array.
 \end{frame}
 
 
