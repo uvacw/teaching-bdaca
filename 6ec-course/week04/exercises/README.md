@@ -14,3 +14,6 @@ Work through four short parts:
 
 The small news-text dataset is included in the notebook. Stemming and
 lemmatisation at the end are optional.
+
+For a walkthrough with an animation and worked examples, see
+[Understanding vectorizers](../Understanding_vectorizers-QUESTIONS_AND_ANSWERS.ipynb).
