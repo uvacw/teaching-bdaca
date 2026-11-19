@@ -1,5 +1,36 @@
 \documentclass[compress]{beamer}
 \input{../../resources/preamble.sty}
+\setbeamerfont{section in head/foot}{size=\scriptsize}
+\newcommand{\lectureprogressbar}[1]{%
+	\def\chapterprogress{0}%
+	\ifnum#1<\value{section}\relax
+		\def\chapterprogress{1}%
+	\else
+		\ifnum#1=\value{section}\relax
+			% Advance on each displayed page, including bullet reveals.
+			\pgfmathsetmacro{\chapterprogress}{min(1,max(0,
+				(\number\value{page}-\insertsectionstartpage+1)/
+				(\insertsectionendpage-\insertsectionstartpage+1)))}%
+		\fi
+	\fi
+	\begin{tikzpicture}[x=18mm,y=1pt,baseline=-.4ex]
+		\fill[fg!20!bg] (0,-1) rectangle (1,1);
+		\fill (0,-1) rectangle (\chapterprogress,1);
+	\end{tikzpicture}%
+}
+\setbeamertemplate{section in head/foot}{%
+	\begin{tabular}[t]{@{}l@{}}
+		\insertsectionhead\\[-.4ex]
+		\lectureprogressbar{\insertsectionheadnumber}
+	\end{tabular}%
+}
+\setbeamertemplate{headline}{%
+	\begin{beamercolorbox}[wd=\paperwidth]{section in head/foot}
+		\vskip2pt
+		\insertsectionnavigationhorizontal{\paperwidth}{}{}%
+		\vskip8pt
+	\end{beamercolorbox}%
+}
 \addbibresource{../../resources/literature.bib}
 \graphicspath{{../../resources/img/}}
 
@@ -8,9 +39,9 @@
 
 \title[Big Data and Automated Content Analysis]{\textbf{Big Data and Automated Content Analysis (6EC)} 
 \\Week 4: »Processing textual data«
-\\Monday}
+\\Thursday}
 \author[Anne Kroon]{Anne Kroon\\ \footnotesize{a.c.kroon@uva.nl}}
-\date{November 17, 2025}
+\date{November 19, 2026}
 \institute[UvA CW]{UvA RM Communication Science}
 
 
@@ -18,8 +49,17 @@
 	\titlepage
 \end{frame}
 
+\begin{frame}{Monday's in-class coding exercise}
+\large How did it go?
+
+\begin{itemize}
+	\item What went well? Where did you get stuck?
+	\item Was 60 minutes enough?
+\end{itemize}
+\end{frame}
+
 \begin{frame}{Today}
-	\tableofcontents
+	\tableofcontents[hideallsubsections]
 \end{frame}
 
 
@@ -28,51 +68,70 @@
 This week, we will get a general overview of working with textual data. This knowledge will help you to get started with cool automated content analyses techniques -- which we will start with next week.
 \end{frame}
 
-\begin{frame}[standout]
-At the end of the class, i'll distribute the take-home exam. 
-\end{frame}
-
 \input{../../modules/working-with-text/basic-string-operations.tex}
 
 \input{../../modules/working-with-text/regular-expressions.tex}
 
-\input{../../modules/working-with-text/bow.tex}
+\newcommand{\countvectorizerillustration}{%
+	\centering
+	\includegraphics[width=\linewidth,height=.68\paperheight,keepaspectratio]{countvectorizer-illustration.png}\par
+	\smallskip
+	\href{run:countvectorizer-animation.html}{\beamergotobutton{Play animation in browser}}%
+}
+\newcommand{\vectorizernotebookslide}{%
+\begin{frame}{Understanding vectorizers}
+Explore the examples in the notebook:
 
-
-
-%\question{Any questions?}
-
-% \section{Next steps}
-
-% \begin{frame}[standout]
-% Make sure you understood all of today's concepts.
-%
-% Re-read the chapters.
-%
-% I prepared exercises to work on (alone or in teams):
-% \large{\url{https://github.com/uvacw/teaching-bdaca/blob/main/6ec-course/week04/exercises/}}
-% \\
-%
-% \end{frame}
-
-\section{Take-home exam}
-
-\begin{frame}[standout]
-Take-home exam
-
-Take your time to go through the instructions carefully  
-and ask your questions now.
+\begin{itemize}
+	\item Read a document-term matrix.
+	\item Compare word counts and TF--IDF weights.
+	\item Apply the same vocabulary to a new text.
+\end{itemize}
 
 \bigskip
-\textbf{Deadline:} Sunday 23, 23:59
+\href{https://github.com/uvacw/teaching-bdaca/blob/main/6ec-course/week04/Understanding_vectorizers-QUESTIONS_AND_ANSWERS.ipynb}{\beamergotobutton{Open the Understanding vectorizers notebook}}
 \end{frame}
+}
+\input{../../modules/working-with-text/bow.tex}
 
+\begin{frame}{Document embeddings}
+Do these headlines describe a similar event?
 
+\begin{quote}
+	City raises bus fares\\
+	Public transport gets more expensive
+\end{quote}
 
-\begin{frame}[allowframebreaks,plain]
-	\printbibliography
+\begin{block}{Bag-of-words}
+	The headlines share no words, so their count vectors have zero cosine similarity.
+\end{block}
+
+\begin{block}{Document embeddings}
+	A pretrained model turns each headline into a vector. Related texts can have similar vectors even when they use different words.
+\end{block}
+
+Next week, BERTopic uses embeddings to group texts and a variant of TF--IDF to describe each group.
 \end{frame}
+\begin{frame}{Week 4 assignment}
+Practise today's techniques on a small set of news texts.
 
+\begin{itemize}
+	\item Clean texts and count mentions with regular expressions.
+	\item Explore tokenisation and stopword choices.
+	\item Read a document-term matrix and try n-grams.
+\end{itemize}
 
+\medskip
+\href{https://github.com/uvacw/teaching-bdaca/tree/main/6ec-course/week04/exercises}{\beamergotobutton{Week 4 exercises on GitHub}}
+
+\medskip
+{\small
+Start with \texttt{pre-processing.ipynb}.\\
+Check \texttt{pre-processing-solutions.ipynb} after trying the tasks.
+
+\smallskip
+Stemming and lemmatisation are optional.
+}
+\end{frame}
 
 \end{document}
